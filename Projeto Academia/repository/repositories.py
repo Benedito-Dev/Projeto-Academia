@@ -34,8 +34,14 @@ class ClienteRepository():
     def validar_login(self, nome, senha):
         try:
             # Busca o cliente com o nome e senha fornecidos
-            cliente = self.session.query(Cliente).filter_by(nome=nome, senha=senha).one()
-            return True  # Login válido
+            cliente = self.session.query(Cliente).filter_by(nome=nome, senha=senha).one_or_none()
+            instrutor = self.session.query(Instrutores).filter_by(nome=nome, senha=senha).one_or_none()
+            if cliente:
+                return 'cliente'
+            elif instrutor:
+                return 'instrutor'
+            else:
+                return False
         except NoResultFound:
             return False 
 

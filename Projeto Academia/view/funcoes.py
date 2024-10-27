@@ -177,10 +177,17 @@ class Funções():
         senha = self.entry_senha.get().strip()
         
         # Chama o método do controlador para validar o login
-        if self.controler.fazer_login(nome.upper(), senha) :
+        if self.controler.fazer_login(nome.upper(), senha) == 'cliente':
             self.nome_usuario = nome.capitalize()
             self.senha_usuario = senha
             self.after(500, self.Home)
+        
+        elif self.controler.fazer_login(nome.upper(), senha) == 'instrutor':
+            self.nome_usuario = nome.capitalize()
+            self.senha_usuario = senha
+            self.instrutor = True
+            self.after(500, self.Home)
+
         else:
             pass
     

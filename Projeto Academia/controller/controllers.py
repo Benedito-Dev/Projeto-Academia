@@ -26,9 +26,13 @@ class UsuarioController:
     def fazer_login(self, nome, senha):
         # Chama a função validar_login do repository
             try:
-                if self.repository.validar_login(nome, senha):
+                if self.repository.validar_login(nome, senha) == 'cliente':
                     messagebox.showinfo("Sucesso", "Login Efetuado")
-                    return True
+                    return 'cliente'
+                
+                elif self.repository.validar_login(nome, senha) == 'instrutor':
+                    messagebox.showinfo("Sucesso", "Login Efetuado")
+                    return 'instrutor'
                 else :
                     messagebox.showerror("Erro", "Login Não encontrado")
             except Exception as e:
