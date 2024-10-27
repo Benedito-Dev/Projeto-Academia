@@ -741,7 +741,6 @@ class Application(tk.Tk, Funções):
         btn_voltar.pack(pady=10)
 
 
-
     def Perna(self):
         # Limpar a janela
         for widget in self.winfo_children():
@@ -853,13 +852,12 @@ class Application(tk.Tk, Funções):
         title = tk.Label(background_frame, text="Perfis dos Clientes", fg="white", bg="#313131", font=("Arial", 20))
         title.pack(pady=20)
 
-        colunas = ("ID", "Nome", "Email", "Telefone", "Endereço") 
+        colunas = ("ID", "Nome", "Email", "Nome Instrutor") 
         self.tree = ttk.Treeview(background_frame, columns=colunas, show='headings')
         self.tree.heading("ID", text="ID")
         self.tree.heading("Nome", text="Nome")
         self.tree.heading("Email", text="Email")
-        self.tree.heading("Telefone", text="Telefone")
-        self.tree.heading("Endereço", text="Endereço")
+        self.tree.heading("Nome Instrutor", text="Nome Instrutor")
         self.tree.pack(pady=0, fill=tk.BOTH, expand=True)
         self.carregar_perfis()
 

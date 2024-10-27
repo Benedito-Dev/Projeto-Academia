@@ -42,6 +42,10 @@ class ClienteRepository():
     # Função para obter todos os clientes
     def obter_usuarios(self):
         return self.session.query(Cliente).all()
+    
+    # Buscar instrutores
+    def obter_instrutores(self):
+        return self.session.query(Instrutores).all()
 
     def obter_usuario(self, nome):
         try:

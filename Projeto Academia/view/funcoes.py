@@ -38,13 +38,19 @@ class Funções():
             # Obtendo os dados da tabela através do controlador
             users = self.controler.listar_usuarios()
 
+            instrutores = self.controler.listar_instrutores()
+
             # Inserindo os dados na ordem correta no TreeView
             for user in users:
                 id = user.id  # Acessando o atributo 'id'
                 nome = user.nome  # Acessando o atributo 'nome'
                 email = user.email  # Acessando o atributo 'email'
-                telefone = user.telefone  # Acessando o atributo 'telefone' # Acessando o atributo 'endereco'
-                self.tree.insert('', tk.END, values=(id, nome, email, telefone))
+                nome_instrutor = 'Teste'
+
+                for instrutor in instrutores:
+                    if instrutor.id == user.instrutor_id:
+                        nome_instrutor = instrutor.nome
+                self.tree.insert('', tk.END, values=(id, nome, email, nome_instrutor))
 
         except Exception as e:
             messagebox.showerror("Erro", f"Erro ao carregar perfis: {e}")

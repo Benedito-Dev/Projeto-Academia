@@ -37,6 +37,10 @@ class UsuarioController:
     # Controlador responsável por obter os produtos para exibir na interface
     def listar_usuarios(self):
         return self.repository.obter_usuarios()
+    
+    # listar Instrutores
+    def listar_instrutores(self):
+        return self.repository.obter_instrutores()
 
     def obter_usuario_por_nome(self, nome):
         return self.repository.obter_usuario(nome)
