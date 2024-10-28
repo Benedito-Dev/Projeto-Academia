@@ -483,7 +483,7 @@ class Application(tk.Tk, Funções):
             coluna = i % 3 + 1  # 1 para os exercícios de peito e 2 para os de ombro
             linha = i // 3  # A mesma coluna para peito e ombro
 
-            exercise_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=15, width=200, height=200)
+            exercise_frame = ctk.CTkFrame(central_frame, fg_color="#002774", corner_radius=15, width=200, height=200)
             exercise_frame.grid(row=linha+1, column=coluna, padx=20, pady=20)
 
             label_exercise_img = ctk.CTkLabel(exercise_frame, image=self.exercise_image, text="")
@@ -514,99 +514,35 @@ class Application(tk.Tk, Funções):
                                 command=self.Superiores, font=("Arial", 18, "bold"), width=150, height=50)
         btn_voltar.place(relx=0.5, rely=0.5, anchor="center")
 
-
     def Costas(self):
-
         # Limpar a janela
         for widget in self.winfo_children():
             widget.destroy()
 
+        # Frame de fundo
         background_frame = ctk.CTkFrame(self, fg_color="#313131", corner_radius=0)
         background_frame.pack(fill="both", expand=True)
 
+        # Frame central
         central_frame = ctk.CTkFrame(background_frame, fg_color="#313131")
         central_frame.pack(pady=20)
 
         # Título
         label_costas = ctk.CTkLabel(central_frame, text="Treino de Costas", text_color="white", font=("Arial", 22, 'bold'))
-        label_costas.grid(row=2, column=0, columnspan=3, pady=10)
+        label_costas.grid(row=0, column=0, columnspan=3, pady=10)
 
-        # Exercício 1: Puxada alta
-        puxada_alta_image_path = "Projeto Academia\\img\\Treinos\\Superiores\\Costas\\puxada.png" 
-        self.puxada_alta_image = ctk.CTkImage(light_image=Image.open(puxada_alta_image_path), size=(150, 150))
-        puxada_alta_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=15, width=200, height=200)
-        puxada_alta_frame.grid(row=3, column=0, padx=20, pady=20)
+        # Caminhos das imagens do treino
+        imagens = [
+            r"Projeto Academia\\img\\Treinos\\Superiores\\Costas\\puxada.png",
+            r"Projeto Academia\\img\\Treinos\\Superiores\\Costas\\remada_curvada.jpg",
+            r"Projeto Academia\\img\\Treinos\\Superiores\\Costas\\levantamento_terra.jpg",
+            r"Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_direta_barra.png",
+            r"Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_martelo.jfif",
+            r"Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_concentrada.jfif"
+        ]
 
-        label_puxada_alta_img = ctk.CTkLabel(puxada_alta_frame, image=self.puxada_alta_image, text="")
-        label_puxada_alta_img.pack()
-
-        label_puxada_alta_text = ctk.CTkLabel(puxada_alta_frame, text="Puxada alta\n3x12 reps", text_color="white", font=("Arial", 16))
-        label_puxada_alta_text.pack()
-
-        # Exercício 2: Remada curvada
-        remada_curvada_image_path = "Projeto Academia\\img\\Treinos\\Superiores\\Costas\\remada_curvada.jpg" 
-        self.remada_curvada_image = ctk.CTkImage(light_image=Image.open(remada_curvada_image_path), size=(150, 150))
-        remada_curvada_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=15, width=200, height=200)
-        remada_curvada_frame.grid(row=3, column=1, padx=20, pady=20)
-
-        label_remada_curvada_img = ctk.CTkLabel(remada_curvada_frame, image=self.remada_curvada_image, text="")
-        label_remada_curvada_img.pack()
-
-        label_remada_curvada_text = ctk.CTkLabel(remada_curvada_frame, text="Remada curvada\n3x12 reps", text_color="white", font=("Arial", 16))
-        label_remada_curvada_text.pack()
-
-        # Exercício 3: Levantamento terra
-        levantamento_terra_image_path = "Projeto Academia\\img\\Treinos\\Superiores\\Costas\\levantamento_terra.jpg" 
-        self.levantamento_terra_image = ctk.CTkImage(light_image=Image.open(levantamento_terra_image_path), size=(150, 150))
-        levantamento_terra_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=15, width=200, height=200)
-        levantamento_terra_frame.grid(row=3, column=2, padx=20, pady=20)
-
-        label_levantamento_terra_img = ctk.CTkLabel(levantamento_terra_frame, image=self.levantamento_terra_image, text="")
-        label_levantamento_terra_img.pack()
-
-        label_levantamento_terra_text = ctk.CTkLabel(levantamento_terra_frame, text="Levantamento terra\n3x10 reps", text_color="white", font=("Arial", 16))
-        label_levantamento_terra_text.pack()
-
-        # Adicionando Treino de Bíceps
-        label_biceps = ctk.CTkLabel(central_frame, text="Treino de Bíceps", text_color="white", font=("Arial", 22, 'bold'))
-        label_biceps.grid(row=4, column=0, columnspan=3, pady=10)
-
-        # Exercício 1: Rosca direta com barra
-        rosca_direta_image_path = "Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_direta_barra.png"
-        self.rosca_direta_image = ctk.CTkImage(light_image=Image.open(rosca_direta_image_path), size=(150, 150))
-        rosca_direta_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=15, width=200, height=200)
-        rosca_direta_frame.grid(row=5, column=0, padx=20, pady=20)
-
-        label_rosca_direta_img = ctk.CTkLabel(rosca_direta_frame, image=self.rosca_direta_image, text="")
-        label_rosca_direta_img.pack()
-
-        label_rosca_direta_text = ctk.CTkLabel(rosca_direta_frame, text="Rosca direta com barra\n3x12 reps", text_color="white", font=("Arial", 16))
-        label_rosca_direta_text.pack()
-
-        # Exercício 2: Rosca martelo com halteres
-        rosca_martelo_image_path = "Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_martelo.jfif"
-        self.rosca_martelo_image = ctk.CTkImage(light_image=Image.open(rosca_martelo_image_path), size=(150, 150))
-        rosca_martelo_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=15, width=200, height=200)
-        rosca_martelo_frame.grid(row=5, column=1, padx=20, pady=20)
-
-        label_rosca_martelo_img = ctk.CTkLabel(rosca_martelo_frame, image=self.rosca_martelo_image, text="")
-        label_rosca_martelo_img.pack()
-
-        label_rosca_martelo_text = ctk.CTkLabel(rosca_martelo_frame, text="Rosca martelo com halteres\n3x12 reps", text_color="white", font=("Arial", 16))
-        label_rosca_martelo_text.pack()
-
-        # Exercício 3: Rosca concentrada
-        rosca_concentrada_image_path = "Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_concentrada.jfif"
-        self.rosca_concentrada_image = ctk.CTkImage(light_image=Image.open(rosca_concentrada_image_path), size=(150, 150))
-        rosca_concentrada_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=15, width=200, height=200)
-        rosca_concentrada_frame.grid(row=5, column=2, padx=20, pady=20)
-
-        label_rosca_concentrada_img = ctk.CTkLabel(rosca_concentrada_frame, image=self.rosca_concentrada_image, text="")
-        label_rosca_concentrada_img.pack()
-
-        label_rosca_concentrada_text = ctk.CTkLabel(rosca_concentrada_frame, text="Rosca concentrada\n3x12 reps", text_color="white", font=("Arial", 16))
-        label_rosca_concentrada_text.pack()
-
+        # Inicializar o carrossel de imagens
+        self.iniciar_carrossel_imagens(central_frame, imagens, 200, 200)
 
         # Frame inferior com botão Voltar
         frame_inferior = ctk.CTkFrame(background_frame, fg_color="#5ce1e6", corner_radius=0, height=50)
@@ -635,7 +571,7 @@ class Application(tk.Tk, Funções):
         # Exercício 1: Agachamento Smith
         agachamento_smith_image_path = "Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\agachamento_smith.gif"
         self.agachamento_smith_image = ctk.CTkImage(light_image=Image.open(agachamento_smith_image_path), size=(150, 150))
-        agachamento_smith_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=15, width=200, height=200)
+        agachamento_smith_frame = ctk.CTkFrame(central_frame, fg_color="#002774", corner_radius=15, width=200, height=200)
         agachamento_smith_frame.grid(row=1, column=0, padx=20, pady=20)
 
         label_agachamento_smith_img = ctk.CTkLabel(agachamento_smith_frame, image=self.agachamento_smith_image, text="")
@@ -647,7 +583,7 @@ class Application(tk.Tk, Funções):
         # Exercício 2: Extensão de Pernas
         extensao_pernas_image_path = "Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\extensao_pernas.gif"
         self.extensao_pernas_image = ctk.CTkImage(light_image=Image.open(extensao_pernas_image_path), size=(150, 150))
-        extensao_pernas_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=30, width=200, height=200)
+        extensao_pernas_frame = ctk.CTkFrame(central_frame, fg_color="#002774", corner_radius=30, width=200, height=200)
         extensao_pernas_frame.grid(row=1, column=1, padx=20, pady=20)
 
         label_extensao_pernas_img = ctk.CTkLabel(extensao_pernas_frame, image=self.extensao_pernas_image, text="")
@@ -659,7 +595,7 @@ class Application(tk.Tk, Funções):
         # Exercício 3: Leg Press
         leg_press_image_path = "Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\leg_press.gif"
         self.leg_press_image = ctk.CTkImage(light_image=Image.open(leg_press_image_path), size=(150, 150))
-        leg_press_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=30)
+        leg_press_frame = ctk.CTkFrame(central_frame, fg_color="#002774", corner_radius=30)
         leg_press_frame.grid(row=1, column=2, padx=20, pady=20)
 
         label_leg_press_img = ctk.CTkLabel(leg_press_frame, image=self.leg_press_image, text="")
@@ -671,7 +607,7 @@ class Application(tk.Tk, Funções):
         # Exercício 4: Agachamento Frontal
         agachamento_frontal_image_path = "Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\agachamento_frontal.webp"
         self.agachamento_frontal_image = ctk.CTkImage(light_image=Image.open(agachamento_frontal_image_path), size=(150, 150))
-        agachamento_frontal_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=30)
+        agachamento_frontal_frame = ctk.CTkFrame(central_frame, fg_color="#002774", corner_radius=30)
         agachamento_frontal_frame.grid(row=2, column=0, padx=20, pady=20)
 
         label_agachamento_frontal_img = ctk.CTkLabel(agachamento_frontal_frame, image=self.agachamento_frontal_image, text="")
@@ -683,7 +619,7 @@ class Application(tk.Tk, Funções):
         # Exercício 5: Avanço
         avancado_image_path = "Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\avanco.webp"
         self.avancado_image = ctk.CTkImage(light_image=Image.open(avancado_image_path), size=(150, 150))
-        avancado_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=30)
+        avancado_frame = ctk.CTkFrame(central_frame, fg_color="#002774", corner_radius=30)
         avancado_frame.grid(row=2, column=1, padx=20, pady=20)
 
         label_avancado_img = ctk.CTkLabel(avancado_frame, image=self.avancado_image, text="")
@@ -695,7 +631,7 @@ class Application(tk.Tk, Funções):
         # Exercício 6: Step-Up
         step_up_image_path = "Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\step_up.webp"
         self.step_up_image = ctk.CTkImage(light_image=Image.open(step_up_image_path), size=(150, 150))
-        step_up_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=30)
+        step_up_frame = ctk.CTkFrame(central_frame, fg_color="#002774", corner_radius=30)
         step_up_frame.grid(row=2, column=2, padx=20, pady=20)
 
         label_step_up_img = ctk.CTkLabel(step_up_frame, image=self.step_up_image, text="")
@@ -733,7 +669,7 @@ class Application(tk.Tk, Funções):
         # Exercício 1: Stiff
         stiff_image_path = "Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\stiff.webp"
         self.stiff_image = ctk.CTkImage(light_image=Image.open(stiff_image_path), size=(150, 150))
-        stiff_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=15, width=200, height=200)
+        stiff_frame = ctk.CTkFrame(central_frame, fg_color="#002774", corner_radius=15, width=200, height=200)
         stiff_frame.grid(row=1, column=0, padx=20, pady=20)
 
         label_stiff_img = ctk.CTkLabel(stiff_frame, image=self.stiff_image, text="")
@@ -745,7 +681,7 @@ class Application(tk.Tk, Funções):
         # Exercício 2: Afundo com Halteres
         afundo_image_path = "Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\afundo_halteres.gif"
         self.afundo_image = ctk.CTkImage(light_image=Image.open(afundo_image_path), size=(150, 150))
-        afundo_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=30, width=200, height=200)
+        afundo_frame = ctk.CTkFrame(central_frame, fg_color="#002774", corner_radius=30, width=200, height=200)
         afundo_frame.grid(row=1, column=1, padx=20, pady=20)
 
         label_afundo_img = ctk.CTkLabel(afundo_frame, image=self.afundo_image, text="")
@@ -757,7 +693,7 @@ class Application(tk.Tk, Funções):
         # Exercício 3: Flexão de Pernas na Máquina
         pernas_image_path = "Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\pernas-na-maquina.webp"
         self.pernas_image = ctk.CTkImage(light_image=Image.open(pernas_image_path), size=(150, 150))
-        pernas_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=30)
+        pernas_frame = ctk.CTkFrame(central_frame, fg_color="#002774", corner_radius=30)
         pernas_frame.grid(row=1, column=2, padx=20, pady=20)
 
         label_pernas_img = ctk.CTkLabel(pernas_frame, image=self.pernas_image, text="")
@@ -769,7 +705,7 @@ class Application(tk.Tk, Funções):
             # Exercício 4: Agachamento Sumô
         sumo_image_path = "Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\agachamento_sumo.webp"
         self.sumo_image = ctk.CTkImage(light_image=Image.open(sumo_image_path), size=(150, 150))
-        sumo_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=30)
+        sumo_frame = ctk.CTkFrame(central_frame, fg_color="#002774", corner_radius=30)
         sumo_frame.grid(row=2, column=0, padx=20, pady=20)
 
         label_sumo_img = ctk.CTkLabel(sumo_frame, image=self.sumo_image, text="")
@@ -781,7 +717,7 @@ class Application(tk.Tk, Funções):
         # Exercício 5: Levantamento de Quadril
         hip_thrust_image_path = "Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\levantamento_quadril.gif"
         self.hip_thrust_image = ctk.CTkImage(light_image=Image.open(hip_thrust_image_path), size=(150, 150))
-        hip_thrust_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=30)
+        hip_thrust_frame = ctk.CTkFrame(central_frame, fg_color="#002774", corner_radius=30)
         hip_thrust_frame.grid(row=2, column=1, padx=20, pady=20)
 
         label_hip_thrust_img = ctk.CTkLabel(hip_thrust_frame, image=self.hip_thrust_image, text="")
@@ -793,7 +729,7 @@ class Application(tk.Tk, Funções):
         # Exercício 6: Elevação de Panturrilha
         panturrilha_image_path = "Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\elevacao_panturrilha.webp"
         self.panturrilha_image = ctk.CTkImage(light_image=Image.open(panturrilha_image_path), size=(150, 150))
-        panturrilha_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=30)
+        panturrilha_frame = ctk.CTkFrame(central_frame, fg_color="#002774", corner_radius=30)
         panturrilha_frame.grid(row=2, column=2, padx=20, pady=20)
 
         label_panturrilha_img = ctk.CTkLabel(panturrilha_frame, image=self.panturrilha_image, text="")

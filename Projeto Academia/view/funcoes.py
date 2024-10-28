@@ -1,12 +1,11 @@
 import tkinter as tk
-import re
+from customtkinter import CTkLabel, CTkButton
 from tkinter import ttk
 from tkinter import messagebox
 from tkcalendar import Calendar
 from datetime import datetime, date
+from PIL import Image, ImageTk
 from controller.controllers import UsuarioController
-
-
 
 
 class Funções():
@@ -18,6 +17,41 @@ class Funções():
             self.entry_senha.configure(show="")
         else:
             self.entry_senha.configure(show="*")
+    
+
+    def iniciar_carrossel_imagens(self, frame, imagens, altura, largura):
+        # Carrega as imagens
+        imagens_carregadas = [ImageTk.PhotoImage(Image.open(img).resize((largura, altura))) for img in imagens]
+        index = 0
+
+        # Label para exibir a imagem no carrossel
+        label_imagem = CTkLabel(frame, text='')
+        label_imagem.grid(row=1, column=1)
+
+        # Função para exibir a imagem atual
+        def exibir_imagem():
+            label_imagem.configure(image=imagens_carregadas[index])
+
+        # Funções para controle do carrossel
+        def mostrar_proximo():
+            nonlocal index
+            index = (index + 1) % len(imagens_carregadas)
+            exibir_imagem()
+
+        def mostrar_anterior():
+            nonlocal index
+            index = (index - 1) % len(imagens_carregadas)
+            exibir_imagem()
+
+        # Botões de controle
+        btn_anterior = CTkButton(frame, text="⟵ Anterior", command=mostrar_anterior)
+        btn_anterior.grid(row=1, column=0, padx=5, pady=5)
+
+        btn_proximo = CTkButton(frame, text="Próximo ⟶", command=mostrar_proximo)
+        btn_proximo.grid(row=1, column=2, padx=5, pady=5)
+
+        # Exibe a primeira imagem
+        exibir_imagem()
 
 
     def carregar_perfis(self):
@@ -51,7 +85,6 @@ class Funções():
         # Se todos os dados estiverem válidos, prosseguir com a lógica de envio
         self.enviar_dados(nome=nome, data_de_nascimento=data_de_nascimento)
 
-    # Função para validar a idade do novo usuário
 
     def enviar_dados(self, nome, data_de_nascimento):
         if self.controler.adicionar_usuario(nome.upper(), data_de_nascimento):
@@ -74,6 +107,7 @@ class Funções():
 
         btn_selecionar_data = ttk.Button(janela_calendario, text="Selecionar", command=pegar_data)
         btn_selecionar_data.pack(pady=10)
+
 
     def validando_login(self):
         nome = self.entry_nome.get().strip()
@@ -116,9 +150,11 @@ class Funções():
         except Exception as e:
             messagebox.showerror("Erro", f"Ao buscar informações : {e}")
 
+
     def get_informacao(self, informacao):
         return getattr(self.informacoes, informacao, None)
     
+
     def validar_alteracoes(self):
         id_cliente = self.get_informacao("id")  # Renomeado para id_cliente para maior clareza
 
