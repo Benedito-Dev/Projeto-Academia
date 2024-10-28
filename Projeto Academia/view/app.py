@@ -532,17 +532,17 @@ class Application(tk.Tk, Funções):
         label_costas.grid(row=0, column=0, columnspan=3, pady=10)
 
         # Caminhos das imagens do treino
-        imagens = [
-            r"Projeto Academia\\img\\Treinos\\Superiores\\Costas\\puxada.png",
-            r"Projeto Academia\\img\\Treinos\\Superiores\\Costas\\remada_curvada.jpg",
-            r"Projeto Academia\\img\\Treinos\\Superiores\\Costas\\levantamento_terra.jpg",
-            r"Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_direta_barra.png",
-            r"Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_martelo.jfif",
-            r"Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_concentrada.jfif"
+        exercicios = [
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Costas\\puxada.png", "nome": "Puxada", "series": 3, "repeticoes": 12},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Costas\\remada_curvada.jpg", "nome": "Remada Curvada", "series": 3, "repeticoes": 10},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Costas\\levantamento_terra.jpg", "nome": "Levantamento Terra", "series": 4, "repeticoes": 8},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_direta_barra.png", "nome": "Rosca Direta com Barra", "series": 3, "repeticoes": 10},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_martelo.jfif", "nome": "Rosca Martelo", "series": 3, "repeticoes": 12},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_concentrada.jfif", "nome": "Rosca Concentrada", "series": 3, "repeticoes": 10}
         ]
 
         # Inicializar o carrossel de imagens
-        self.iniciar_carrossel_imagens(central_frame, imagens, 200, 200)
+        self.iniciar_carrossel_imagens(central_frame, exercicios, 200, 200)
 
         # Frame inferior com botão Voltar
         frame_inferior = ctk.CTkFrame(background_frame, fg_color="#5ce1e6", corner_radius=0, height=50)
