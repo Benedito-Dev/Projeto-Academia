@@ -22,9 +22,36 @@ class Application(tk.Tk, Funções):
         self.geometry("800x600")
         self.current_page = 0
         self.controler = UsuarioController()
-        self.menu_inicial()
+        self.feedback()
 
 # Janelas
+
+
+    def feedback(self):
+
+        for widget in self.winfo_children():
+            widget.destroy()
+        
+        background_frame = ctk.CTkFrame(self, fg_color="#313131", corner_radius=0)
+        background_frame.pack(fill='both', expand=True)
+
+        title_label = ctk.CTkLabel(background_frame, text="Feedback", text_color="white", font=("Arial", 24))
+        title_label.pack(pady=20)
+
+        self.feedback_text = ctk.CTkTextbox(background_frame, width=400, height=200, fg_color="#454545", text_color="white")
+        self.feedback_text.pack(pady=10)
+
+        submit_button = ctk.CTkButton(background_frame, text="Enviar Feedback", command=self.submit_feedback)
+        submit_button.pack(pady=20)
+
+    def submit_feedback(self):
+        feedback = self.feedback_text.get("1.0", "end-1c") 
+
+        print("Feedback enviado:", feedback)
+        self.feedback_text.delete("1.0", "end")  
+
+
+        
 
     def menu_inicial(self):
         for widget in self.winfo_children():
@@ -36,7 +63,7 @@ class Application(tk.Tk, Funções):
         background_frame.grid_columnconfigure(0, weight=1)
         background_frame.grid_rowconfigure(0, weight=0) 
 
-        image_path = "Projeto Academia\\img\\Logo.png"
+        image_path = "D:\\Users\\Aluno\\Desktop\\kaua\\Senac-UC5\\Projeto Academia\\img\\Logo.png"
         self.logo_image = ctk.CTkImage(light_image=Image.open(image_path), size=(150, 150))  # Ajuste o tamanho da imagem
 
         # Criar um Label para exibir a imagem
@@ -224,7 +251,7 @@ class Application(tk.Tk, Funções):
 
         #Imagem Perfil
 
-        image_path = "Projeto Academia\\img\\Home\\Perfil.png"
+        image_path = "D:\\Users\\Aluno\\Desktop\\kaua\\Senac-UC5\\Projeto Academia\\img\\Home\\Perfil.png"
 
         self.logo_image_perfil = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
