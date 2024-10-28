@@ -514,6 +514,7 @@ class Application(tk.Tk, Funções):
                                 command=self.Superiores, font=("Arial", 18, "bold"), width=150, height=50)
         btn_voltar.place(relx=0.5, rely=0.5, anchor="center")
 
+
     def Costas(self):
         # Limpar a janela
         for widget in self.winfo_children():
@@ -525,7 +526,13 @@ class Application(tk.Tk, Funções):
 
         # Frame central
         central_frame = ctk.CTkFrame(background_frame, fg_color="#313131")
-        central_frame.pack(pady=20)
+        central_frame.pack(pady=20, padx=20)  # Adicionando padding
+
+        # Configurar pesos das colunas e linhas para centralização
+        central_frame.grid_columnconfigure(0, weight=1)
+        central_frame.grid_columnconfigure(1, weight=1)
+        central_frame.grid_columnconfigure(2, weight=1)
+        central_frame.grid_rowconfigure(1, weight=2)  # Se houver uma segunda linha para o carrossel
 
         # Título
         label_costas = ctk.CTkLabel(central_frame, text="Treino de Costas", text_color="white", font=("Arial", 22, 'bold'))
