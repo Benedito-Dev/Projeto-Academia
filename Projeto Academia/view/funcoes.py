@@ -1,12 +1,11 @@
 import tkinter as tk
-import re
+from customtkinter import CTkLabel, CTkButton
 from tkinter import ttk
 from tkinter import messagebox
 from tkcalendar import Calendar
 from datetime import datetime, date
+from PIL import Image, ImageTk
 from controller.controllers import UsuarioController
-
-
 
 
 class Funções():
@@ -18,7 +17,40 @@ class Funções():
             self.entry_senha.configure(show="")
         else:
             self.entry_senha.configure(show="*")
+    
+    def iniciar_carrossel_imagens(self, frame, imagens, altura, largura):
+        # Carrega as imagens
+        imagens_carregadas = [ImageTk.PhotoImage(Image.open(img).resize((largura, altura))) for img in imagens]
+        index = 0
 
+        # Label para exibir a imagem no carrossel
+        label_imagem = CTkLabel(frame, text='')
+        label_imagem.grid(row=1, column=1)
+
+        # Função para exibir a imagem atual
+        def exibir_imagem():
+            label_imagem.configure(image=imagens_carregadas[index])
+
+        # Funções para controle do carrossel
+        def mostrar_proximo():
+            nonlocal index
+            index = (index + 1) % len(imagens_carregadas)
+            exibir_imagem()
+
+        def mostrar_anterior():
+            nonlocal index
+            index = (index - 1) % len(imagens_carregadas)
+            exibir_imagem()
+
+        # Botões de controle
+        btn_anterior = CTkButton(frame, text="⟵ Anterior", command=mostrar_anterior)
+        btn_anterior.grid(row=1, column=0, padx=5, pady=5)
+
+        btn_proximo = CTkButton(frame, text="Próximo ⟶", command=mostrar_proximo)
+        btn_proximo.grid(row=1, column=2, padx=5, pady=5)
+
+        # Exibe a primeira imagem
+        exibir_imagem()
 
     def carregar_perfis(self):
         try:
