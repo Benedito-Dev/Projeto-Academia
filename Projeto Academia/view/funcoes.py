@@ -55,6 +55,27 @@ class Funções():
         except Exception as e:
             messagebox.showerror("Erro", f"Erro ao carregar perfis: {e}")
 
+    
+    def obter_alunos_por_instrutor(self):
+        try:
+            # Obtendo os dados da tabela através do controlador
+            instrutores = self.controler.listar_instrutores()
+            users = self.controler.listar_usuarios()
+            alunos = []
+
+            for instrutor in instrutores:
+                if instrutor.nome.upper() == self.nome_usuario.upper():
+                    instrutor_atual = instrutor.id
+            
+            for user in users:
+                if user.instrutor_id == instrutor_atual:
+                    alunos.append(user.nome)
+            
+            return alunos
+        
+        except Exception as e:
+            messagebox.showerror("Erro", f"Erro ao Obter alunos: {e}")
+
 
     def validar_dados(self):
         nome = self.entry_nome.get().strip()
@@ -175,14 +196,16 @@ class Funções():
     def validando_login(self):
         nome = self.entry_nome.get().strip()
         senha = self.entry_senha.get().strip()
+
+        usuario = self.controler.fazer_login(nome.upper(), senha)
         
         # Chama o método do controlador para validar o login
-        if self.controler.fazer_login(nome.upper(), senha) == 'cliente':
+        if usuario == 'cliente':
             self.nome_usuario = nome.capitalize()
             self.senha_usuario = senha
             self.after(500, self.Home)
         
-        elif self.controler.fazer_login(nome.upper(), senha) == 'instrutor':
+        elif usuario == 'instrutor':
             self.nome_usuario = nome.capitalize()
             self.senha_usuario = senha
             self.instrutor = True
