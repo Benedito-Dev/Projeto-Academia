@@ -26,32 +26,35 @@ class Application(tk.Tk, Funções):
 
 # Janelas
 
-
     def feedback(self):
 
         for widget in self.winfo_children():
             widget.destroy()
-        
+
         background_frame = ctk.CTkFrame(self, fg_color="#313131", corner_radius=0)
         background_frame.pack(fill='both', expand=True)
 
         title_label = ctk.CTkLabel(background_frame, text="Feedback", text_color="white", font=("Arial", 24))
         title_label.pack(pady=20)
 
-        self.feedback_text = ctk.CTkTextbox(background_frame, width=400, height=200, fg_color="#454545", text_color="white")
-        self.feedback_text.pack(pady=10)
+        border_frame = ctk.CTkFrame(background_frame, fg_color="green", corner_radius=10)
+        border_frame.pack(padx=10, pady=10)
+
+        self.feedback_text = ctk.CTkTextbox(border_frame, width=400, height=200, fg_color="#454545", text_color="white")
+        self.feedback_text.pack(pady=10, padx=10)
 
         submit_button = ctk.CTkButton(background_frame, text="Enviar Feedback", command=self.submit_feedback)
         submit_button.pack(pady=20)
 
     def submit_feedback(self):
-        feedback = self.feedback_text.get("1.0", "end-1c") 
+
+        feedback = self.feedback_text.get("1.0", "end-1c")
 
         print("Feedback enviado:", feedback)
-        self.feedback_text.delete("1.0", "end")  
+
+        self.feedback_text.delete("1.0", "end")
 
 
-        
 
     def menu_inicial(self):
         for widget in self.winfo_children():
