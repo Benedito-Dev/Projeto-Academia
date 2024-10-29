@@ -38,16 +38,43 @@ class Funções():
             # Obtendo os dados da tabela através do controlador
             users = self.controler.listar_usuarios()
 
+            instrutores = self.controler.listar_instrutores()
+
             # Inserindo os dados na ordem correta no TreeView
             for user in users:
                 id = user.id  # Acessando o atributo 'id'
                 nome = user.nome  # Acessando o atributo 'nome'
                 email = user.email  # Acessando o atributo 'email'
-                telefone = user.telefone  # Acessando o atributo 'telefone' # Acessando o atributo 'endereco'
-                self.tree.insert('', tk.END, values=(id, nome, email, telefone))
+                nome_instrutor = 'Teste'
+
+                for instrutor in instrutores:
+                    if instrutor.id == user.instrutor_id:
+                        nome_instrutor = instrutor.nome
+                self.tree.insert('', tk.END, values=(id, nome, email, nome_instrutor))
 
         except Exception as e:
             messagebox.showerror("Erro", f"Erro ao carregar perfis: {e}")
+
+    
+    def obter_alunos_por_instrutor(self):
+        try:
+            # Obtendo os dados da tabela através do controlador
+            instrutores = self.controler.listar_instrutores()
+            users = self.controler.listar_usuarios()
+            alunos = []
+
+            for instrutor in instrutores:
+                if instrutor.nome.upper() == self.nome_usuario.upper():
+                    instrutor_atual = instrutor.id
+            
+            for user in users:
+                if user.instrutor_id == instrutor_atual:
+                    alunos.append(user.nome)
+            
+            return alunos
+        
+        except Exception as e:
+            messagebox.showerror("Erro", f"Erro ao Obter alunos: {e}")
 
 
     def validar_dados(self):
@@ -169,12 +196,21 @@ class Funções():
     def validando_login(self):
         nome = self.entry_nome.get().strip()
         senha = self.entry_senha.get().strip()
+
+        usuario = self.controler.fazer_login(nome.upper(), senha)
         
         # Chama o método do controlador para validar o login
-        if self.controler.fazer_login(nome.upper(), senha) :
+        if usuario == 'cliente':
             self.nome_usuario = nome.capitalize()
             self.senha_usuario = senha
             self.after(500, self.Home)
+        
+        elif usuario == 'instrutor':
+            self.nome_usuario = nome.capitalize()
+            self.senha_usuario = senha
+            self.instrutor = True
+            self.after(500, self.Home)
+
         else:
             pass
     
