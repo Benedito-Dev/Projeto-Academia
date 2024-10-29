@@ -1,12 +1,10 @@
 import tkinter as tk
 from sqlalchemy import *
-from sqlalchemy.exc import SQLAlchemyError
 from tkinter import ttk
 import customtkinter as ctk
 from PIL import Image, ImageTk
 from view.funcoes import Funções
-from tkinter import messagebox
-from tkinter import font
+from view.treinos_usuario_view import Treinos
 from controller.controllers import UsuarioController
 
 
@@ -15,13 +13,14 @@ from controller.controllers import UsuarioController
 ctk.set_appearance_mode("Dark")
 ctk.set_default_color_theme("blue")
 
-class Application(tk.Tk, Funções):
+class Application(tk.Tk, Funções, Treinos):
     def __init__(self):
         super().__init__()
-        self.title("4 FITNESS")
+        self.title("MultiForm")
         self.geometry("800x600")
         self.current_page = 0
         self.controler = UsuarioController()
+        self.state('zoomed')
         self.menu_inicial()
 
 # Janelas

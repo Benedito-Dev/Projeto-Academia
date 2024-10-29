@@ -1,7 +1,7 @@
 import tkinter as tk
 import re
 from tkinter import ttk
-from customtkinter import CTkLabel, CTkButton
+from customtkinter import CTkLabel, CTkButton, CTkFrame
 from PIL import Image, ImageTk
 from tkinter import messagebox
 from tkcalendar import Calendar
@@ -39,13 +39,16 @@ class Funções():
         label_titulo = CTkLabel(frame, text=titulo, text_color="white", font=("Arial", 22, 'bold'))
         label_titulo.grid(row=0, column=0, columnspan=3, pady=20)
 
+        border_frame = CTkFrame(frame, fg_color="#7fd350", corner_radius=10)
+        border_frame.grid(row=1, column=1)
+
         # Label para exibir a imagem no carrossel
-        label_imagem = CTkLabel(frame, text="")
-        label_imagem.grid(row=1, column=1)
+        label_imagem = CTkLabel(border_frame, text="")
+        label_imagem.grid(row=0, column=1, padx=10, pady=10)
 
         # Label para exibir o texto do exercício
         label_texto = CTkLabel(frame, text="", text_color="white", font=("Arial", 16, 'bold'))
-        label_texto.grid(row=2, column=1, pady=10)
+        label_texto.grid(row=3, column=1, pady=10)
 
         # Função para exibir a imagem e o texto atual
         def exibir_imagem():
