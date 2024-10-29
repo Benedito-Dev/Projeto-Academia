@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Date, ForeignKey
+from sqlalchemy import Column, Integer, Numeric, String, Date, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -32,6 +32,21 @@ class Cliente(Base):
     endereco = Column(String)
     cpf = Column(String)
     data_de_nascimento = Column(Date)
+    peso = Column(Numeric(precision=5,scale=2))
+    altura = Column(Numeric(precision=3,scale=2))
+    braco_direito = Column(Numeric(float))
+    braco_esquerdo = Column(Numeric(float))
+    peitoral = Column(Numeric(float))
+    cintura = Column(Numeric(float))
+    quadril = Column(Numeric(float)) 
+    coxa_direita = Column(Numeric(float))
+    coxa_esquerda = Column(Numeric(float))
+    panturrilha_direita = Column(float)
+    panturrilha_esquerda = Column(float)
+
+
+    
+
     
     # Chave estrangeira que referencia a tabela instrutores
     instrutor_id = Column(Integer, ForeignKey('instrutores.id'))
