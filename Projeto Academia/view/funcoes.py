@@ -3,7 +3,7 @@ from customtkinter import CTkLabel, CTkButton
 from tkinter import ttk
 from tkinter import messagebox
 from tkcalendar import Calendar
-from datetime import datetime, date
+from datetime import datetime
 from PIL import Image, ImageTk
 from controller.controllers import UsuarioController
 
@@ -19,18 +19,35 @@ class Funções():
             self.entry_senha.configure(show="*")
     
 
-    def iniciar_carrossel_imagens(self, frame, imagens, altura, largura):
-        # Carrega as imagens
-        imagens_carregadas = [ImageTk.PhotoImage(Image.open(img).resize((largura, altura))) for img in imagens]
+    def iniciar_carrossel_imagens(self, titulo, frame, exercicios, largura, altura):
+        # Carrega as imagens e informações dos exercícios
+        imagens_carregadas = [
+            {
+                "imagem": ImageTk.PhotoImage(Image.open(ex["imagem"]).resize((largura, altura))),
+                "nome": ex["nome"],
+                "series": ex["series"],
+                "repeticoes": ex["repeticoes"]
+            } for ex in exercicios
+        ]
         index = 0
 
+        #Label para exibir titulo do exericios
+        label_titulo = CTkLabel(frame, text=titulo, text_color="white", font=("Arial", 22, 'bold'))
+        label_titulo.grid(row=0, column=0, columnspan=3, pady=20)
+
         # Label para exibir a imagem no carrossel
-        label_imagem = CTkLabel(frame, text='')
+        label_imagem = CTkLabel(frame, text="")
         label_imagem.grid(row=1, column=1)
 
-        # Função para exibir a imagem atual
+        # Label para exibir o texto do exercício
+        label_texto = CTkLabel(frame, text="", text_color="white", font=("Arial", 16, 'bold'))
+        label_texto.grid(row=2, column=1, pady=10)
+
+        # Função para exibir a imagem e o texto atual
         def exibir_imagem():
-            label_imagem.configure(image=imagens_carregadas[index])
+            exercicio_atual = imagens_carregadas[index]
+            label_imagem.configure(image=exercicio_atual["imagem"])
+            label_texto.configure(text=f"{exercicio_atual['nome']}: {exercicio_atual['series']} séries de {exercicio_atual['repeticoes']} repetições")
 
         # Funções para controle do carrossel
         def mostrar_proximo():
@@ -50,8 +67,20 @@ class Funções():
         btn_proximo = CTkButton(frame, text="Próximo ⟶", command=mostrar_proximo)
         btn_proximo.grid(row=1, column=2, padx=5, pady=5)
 
-        # Exibe a primeira imagem
+        # Exibe a primeira imagem e texto
         exibir_imagem()
+
+
+    def mudar_exercicios(self, titulo, novos_exercicios, central_frame):
+
+        """Muda os exercícios exibidos para o carrossel."""
+        self.exercicios_atual = novos_exercicios
+        self.indice_atual = 0
+        # Limpa o frame central
+        for widget in central_frame.winfo_children():
+            widget.destroy()
+        # Reinicia o carrossel de imagens
+        self.iniciar_carrossel_imagens(titulo, central_frame, self.exercicios_atual, 200, 200)
 
 
     def carregar_perfis(self):
