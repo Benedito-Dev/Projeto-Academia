@@ -1,6 +1,8 @@
 import tkinter as tk
 import re
 from tkinter import ttk
+from customtkinter import CTkLabel, CTkButton
+from PIL import Image, ImageTk
 from tkinter import messagebox
 from tkcalendar import Calendar
 from datetime import datetime, date
@@ -13,24 +15,76 @@ class Funções():
     def __init__(self):
         self.controler = UsuarioController()
 
-    # Funções para acrescentar placeholder
-    def on_entry_click(self, event):
-        if len(entry.get()) > 0:  # type: ignore # Texto do placeholder
-            entry.delete(0, tk.END)  # type: ignore # Limpa o placeholder
-            entry.configure(fg_color='white')  # type: ignore # Muda a cor de fundo para branco
-            entry.configure(fg='black')  # type: ignore # Muda a cor do texto
-
-    def on_focusout(self, event):
-        if entry.get() == '':  # type: ignore # Se o campo estiver vazio
-            entry.insert(0, 'Digite aqui...')  # type: ignore # Reinsere o placeholder
-            entry.configure(fg_color='grey')  # type: ignore # Muda a cor de fundo para cinza
-            entry.configure(fg='grey')  # type: ignore # Muda a cor do texto
 
     def Exibir_senha(self):
         if self.check_senha.get() == 1:
             self.entry_senha.configure(show="")
         else:
             self.entry_senha.configure(show="*")
+
+
+    def iniciar_carrossel_imagens(self, titulo, frame, exercicios, largura, altura):
+        # Carrega as imagens e informações dos exercícios
+        imagens_carregadas = [
+            {
+                "imagem": ImageTk.PhotoImage(Image.open(ex["imagem"]).resize((largura, altura))),
+                "nome": ex["nome"],
+                "series": ex["series"],
+                "repeticoes": ex["repeticoes"]
+            } for ex in exercicios
+        ]
+        index = 0
+
+        #Label para exibir titulo do exericios
+        label_titulo = CTkLabel(frame, text=titulo, text_color="white", font=("Arial", 22, 'bold'))
+        label_titulo.grid(row=0, column=0, columnspan=3, pady=20)
+
+        # Label para exibir a imagem no carrossel
+        label_imagem = CTkLabel(frame, text="")
+        label_imagem.grid(row=1, column=1)
+
+        # Label para exibir o texto do exercício
+        label_texto = CTkLabel(frame, text="", text_color="white", font=("Arial", 16, 'bold'))
+        label_texto.grid(row=2, column=1, pady=10)
+
+        # Função para exibir a imagem e o texto atual
+        def exibir_imagem():
+            exercicio_atual = imagens_carregadas[index]
+            label_imagem.configure(image=exercicio_atual["imagem"])
+            label_texto.configure(text=f"{exercicio_atual['nome']}: {exercicio_atual['series']} séries de {exercicio_atual['repeticoes']} repetições")
+
+        # Funções para controle do carrossel
+        def mostrar_proximo():
+            nonlocal index
+            index = (index + 1) % len(imagens_carregadas)
+            exibir_imagem()
+
+        def mostrar_anterior():
+            nonlocal index
+            index = (index - 1) % len(imagens_carregadas)
+            exibir_imagem()
+
+        # Botões de controle
+        btn_anterior = CTkButton(frame, text="⟵ Anterior", command=mostrar_anterior)
+        btn_anterior.grid(row=1, column=0, padx=5, pady=5)
+
+        btn_proximo = CTkButton(frame, text="Próximo ⟶", command=mostrar_proximo)
+        btn_proximo.grid(row=1, column=2, padx=5, pady=5)
+
+        # Exibe a primeira imagem e texto
+        exibir_imagem()
+
+
+    def mudar_exercicios(self, titulo, novos_exercicios, central_frame):
+
+        """Muda os exercícios exibidos para o carrossel."""
+        self.exercicios_atual = novos_exercicios
+        self.indice_atual = 0
+        # Limpa o frame central
+        for widget in central_frame.winfo_children():
+            widget.destroy()
+        # Reinicia o carrossel de imagens
+        self.iniciar_carrossel_imagens(titulo, central_frame, self.exercicios_atual, 200, 200)
 
 
     def carregar_perfis(self):
@@ -138,8 +192,6 @@ class Funções():
         if self.controler.adicionar_usuario(nome.upper(), email, senha, telefone, endereco, cpf, data_de_nascimento):
             self.after(500, self.menu_inicial)
 
-            
-    from datetime import datetime, date
 
     def validar_data(self, data_nascimento_str):
         try:
