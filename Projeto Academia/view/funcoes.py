@@ -1,5 +1,6 @@
 import tkinter as tk
 from customtkinter import CTkLabel, CTkButton
+from random import randint
 from tkinter import ttk
 from tkinter import messagebox
 from tkcalendar import Calendar
@@ -82,6 +83,23 @@ class Funções():
         # Reinicia o carrossel de imagens
         self.iniciar_carrossel_imagens(titulo, central_frame, self.exercicios_atual, 200, 200)
 
+    def gerar_codigo(self):
+        # Gera o primeiro número entre 1 e 7 para que os próximos sejam sequenciais
+        a = randint(1, 7)
+
+        choose = randint(1, 2)
+
+        if choose == 1:
+            b = a + 1
+            c = b + 1
+
+        else:
+            b = a - 1
+            c = b - 1
+
+        # Concatena os números para formar o código em string
+        codigo = f"{a}{b}{c}"
+        return codigo
 
     def carregar_perfis(self):
         try:

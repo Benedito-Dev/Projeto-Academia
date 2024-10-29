@@ -430,7 +430,7 @@ class Application(tk.Tk, Funções):
             central_frame, 
             text="Gerar Código Experimental", 
             command=lambda: [
-                label_numero.configure(text=f"#{random.randint(1, 1000)}"), 
+                label_numero.configure(text=f"#{self.gerar_codigo()}"), 
                 label_text.configure(text="Apresente este código ao nosso instrutor Wilkson")
             ]
         )
@@ -795,13 +795,13 @@ class Application(tk.Tk, Funções):
         for widget in self.winfo_children():
             widget.destroy()
 
-        backgorund_frame = ctk.CTkFrame(self, fg_color="#313131", corner_radius=0)
-        backgorund_frame.pack(fill="both", expand=True)
+        background_frame = ctk.CTkFrame(self, fg_color="#313131", corner_radius=0)
+        background_frame.pack(fill="both", expand=True)
    
-        backgorund_frame.grid_columnconfigure(0, weight=1)
-        backgorund_frame.grid_columnconfigure(1, weight=1)
-        backgorund_frame.grid_rowconfigure(0, weight=1)  # Para centralizar verticalmente
-        backgorund_frame.grid_rowconfigure(6, weight=1) 
+        background_frame.grid_columnconfigure(0, weight=1)
+        background_frame.grid_columnconfigure(1, weight=1)
+        background_frame.grid_rowconfigure(0, weight=1)  # Para centralizar verticalmente
+        background_frame.grid_rowconfigure(6, weight=1) 
         
         self.grid_columnconfigure(0, weight=1)
         self.grid_columnconfigure(1, weight=1)
@@ -809,8 +809,12 @@ class Application(tk.Tk, Funções):
         self.grid_rowconfigure(6, weight=1)  # Espaço na parte inferior
 
         # Frame para centralizar o conteúdo
-        frame = tk.Frame(backgorund_frame, bg='#313131', highlightthickness=4, highlightbackground='#7fd350', highlightcolor='#7fd350')
-        frame.grid(row=1, column=0, columnspan=2)
+        border_frame = ctk.CTkFrame(background_frame, fg_color="#5ce1e6", corner_radius=10)
+        border_frame.grid(row=2, column=0, columnspan=2, padx=20, pady=20)
+
+        # Frame para centralizar o conteúdo
+        frame = ctk.CTkFrame(border_frame, fg_color="#313131", corner_radius=10)
+        frame.grid(row=0, column=0, columnspan=2, padx=10, pady=10)
 
         # Título
         title = tk.Label(frame, text="Ajustes", fg="white", bg="#313131", font=('Arial', 20))
