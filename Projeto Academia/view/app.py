@@ -36,7 +36,7 @@ class Application(tk.Tk, Funções):
         background_frame.grid_columnconfigure(0, weight=1)
         background_frame.grid_rowconfigure(0, weight=0) 
 
-        image_path = "Projeto Academia\\img\\Logo.png"
+        image_path = "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Logo.png"
         self.logo_image = ctk.CTkImage(light_image=Image.open(image_path), size=(150, 150))  # Ajuste o tamanho da imagem
 
         # Criar um Label para exibir a imagem
@@ -78,7 +78,7 @@ class Application(tk.Tk, Funções):
         background_frame.grid_rowconfigure(0, weight=0)  # Para centralizar verticalmente
         # Imagem
 
-        image_path = "Projeto Academia\\img\\Logo.png"
+        image_path = "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Logo.png"
 
         self.logo_image = ctk.CTkImage(light_image=Image.open(image_path), size=(150, 150))  # Ajuste o tamanho da imagem
 
@@ -117,13 +117,13 @@ class Application(tk.Tk, Funções):
         ctk.CTkButton(frame, text="Acessar", font=("Arial", 18), width=160, fg_color="#808080", hover_color="#A9A9A9", command=self.validando_login).grid(row=4, column=0, columnspan=2, pady=10)
 
         # Botão de criar conta
-        ctk.CTkButton(frame, text="Cadastrar", font=("Arial", 18), width=160, fg_color="#808080",  hover_color="#A9A9A9", command=self.cadastrar_cliente).grid(row=5, column=0, columnspan=2, pady=10)
+        ctk.CTkButton(frame, text="Cadastrar", font=("Arial", 18), width=160, fg_color="#808080",  hover_color="#A9A9A9", command=self.cadastrar_usuario).grid(row=5, column=0, columnspan=2, pady=10)
 
         # Botão de voltar
         ctk.CTkButton(frame, text="Voltar", font=("Arial", 18), width=160, fg_color="#808080", hover_color="#A9A9A9", command=self.menu_inicial).grid(row=6, column=0, columnspan=2, pady=10)
 
 
-    def cadastrar_cliente(self):
+    def cadastrar_usuario(self):
         # Remove widgets existentes
         for widget in self.winfo_children():
             widget.destroy()
@@ -193,11 +193,14 @@ class Application(tk.Tk, Funções):
         btn_abrir_calendario = ttk.Button(frame, text="Escolher data", command=self.abrir_calendario)
         btn_abrir_calendario.grid(row=8, column=2,padx=10)
 
+        check_button_adm = ctk.CTkCheckBox(frame, text="Administrador", text_color="white")
+        check_button_adm.grid(row=9, column=1, pady=5)  # Posicionando à esquerda
+
         # Botão Cadastrar-se
-        ctk.CTkButton(frame,text="Cadastrar-se",fg_color="#609746", hover_color="#A9A9A9", command=self.validar_dados).grid(row=9,column=1,pady=10)
+        ctk.CTkButton(frame,text="Cadastrar-se",fg_color="#609746", hover_color="#A9A9A9", command=self.validar_dados).grid(row=10,column=1,pady=10)
 
         # Botão Voltar
-        ctk.CTkButton(frame, text="Voltar",fg_color="#808080", hover_color="#A9A9A9", command=self.realizar_login).grid(row=10, column=1,pady=10)
+        ctk.CTkButton(frame, text="Voltar",fg_color="#808080", hover_color="#A9A9A9", command=self.realizar_login).grid(row=11, column=1,pady=10)
 
     def Home(self):
         for widget in self.winfo_children():
@@ -226,7 +229,7 @@ class Application(tk.Tk, Funções):
 
         #Imagem Perfil
 
-        image_path = "Projeto Academia\\img\\Home\\Perfil.png"
+        image_path = "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Home\\Perfil.png"
 
         self.logo_image_perfil = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
@@ -239,7 +242,7 @@ class Application(tk.Tk, Funções):
         btn_perfil.grid(row=0, column=0, pady=(250, 00))
 
 
-        image_path = "Projeto Academia\\img\\Home\\Treinos.png"
+        image_path = "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Home\\Treinos.png"
 
         self.logo_image_treinos = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
@@ -255,7 +258,7 @@ class Application(tk.Tk, Funções):
             btn_treinos = ctk.CTkButton(central_frame, text="Treinos", fg_color="#808080", hover_color="#A9A9A9", command=self.Treinos, font=("Arial", 18, "bold"), width=150, height=50)
             btn_treinos.grid(row=0, column=1, pady=(250, 00))
 
-        image_path = "Projeto Academia\\img\\Home\\Ajustes.png"
+        image_path = "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Home\\Ajustes.png"
 
         self.logo_image_ajustes = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
@@ -342,7 +345,7 @@ class Application(tk.Tk, Funções):
         central_frame.place(relx=0.5, rely=0.45, anchor=ctk.CENTER)  # Centralizando o frame
 
 
-        image_path = "Projeto Academia\\img\\Treinos\\Menu-Treinos\\Puxador.png"
+        image_path = "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Menu-Treinos\\Puxador.png"
 
         self.logo_image_treinos = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
@@ -353,7 +356,7 @@ class Application(tk.Tk, Funções):
         btn_superiores = ctk.CTkButton(central_frame, text="Superiores", fg_color="#808080", hover_color="#A9A9A9", command=self.Superiores, font=("Arial", 18, "bold"), width=150, height=50)
         btn_superiores.grid(row=0, column=0, pady=(250, 00))
 
-        image_path = "Projeto Academia\\img\\Treinos\\Menu-Treinos\\Leg-press.png"
+        image_path = "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Menu-Treinos\\Leg-press.png"
 
         self.logo_image_ajustes = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
@@ -397,7 +400,7 @@ class Application(tk.Tk, Funções):
         central_frame = ctk.CTkFrame(background_frame, fg_color="#313131")
         central_frame.place(relx=0.5, rely=0.45, anchor=ctk.CENTER)  # Centralizando o frame
 
-        image_path = "Projeto Academia\\img\\Treinos\\Superiores\\Peito.png"
+        image_path = "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito.png"
 
         self.logo_image_treinos = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
@@ -408,7 +411,7 @@ class Application(tk.Tk, Funções):
         btn_Peito = ctk.CTkButton(central_frame, text="Peito", fg_color="#808080", hover_color="#A9A9A9", command=self.Peito, font=("Arial", 18, "bold"), width=150, height=50)
         btn_Peito.grid(row=0, column=0, pady=(250, 00))
 
-        image_path = "Projeto Academia\\img\\Treinos\\Superiores\\Costas.png"
+        image_path = "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Costas.png"
 
         self.logo_image_ajustes = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
@@ -452,9 +455,9 @@ class Application(tk.Tk, Funções):
         central_frame = ctk.CTkFrame(background_frame, fg_color="#313131")
         central_frame.place(relx=0.5, rely=0.45, anchor=ctk.CENTER)  # Centralizando o frame
 
-        image_path = "Projeto Academia\\img\\Treinos\\Inferiores\\Perna.png"
+        image_path = "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Perna.png"
 
-        image_path = "Projeto Academia\\img\\Treinos\\Inferiores\\Perna.png"
+        image_path = "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Perna.png"
         self.logo_image_treinos = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
         # Criar um Label para exibir a imagem
@@ -465,7 +468,7 @@ class Application(tk.Tk, Funções):
         btn_Perna.grid(row=0, column=0, pady=(250, 00))
 
 
-        image_path = "Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps.png"
+        image_path = "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps.png"
 
         self.logo_image_ajustes = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
@@ -506,27 +509,27 @@ class Application(tk.Tk, Funções):
                 "exercicios": [
                     {
                         "nome": "Supino reto com barra\n3x15 reps",
-                        "imagem": "Projeto Academia\\img\\\\Treinos\\Superiores\\Peito\\supino reto.jpg"
+                        "imagem": "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\supino reto.jpg"
                     },
                     {
                         "nome": "Crucifixo inclinado\n3x15 reps",
-                        "imagem": "Projeto Academia\\img\\\\Treinos\\Superiores\\Peito\\crucifixo inclinado.jpg"
+                        "imagem": "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\crucifixo inclinado.jpg"
                     },
                     {
                         "nome": "Cruxifico no Crossover\n3x12 reps",
-                        "imagem": "Projeto Academia\\img\\\\Treinos\\Superiores\\Peito\\crossover-musculos-.jpg"
+                        "imagem": "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\crossover-musculos-.jpg"
                     },
                                         {
                         "nome": "Elevação Lateral com Halteres\n3x12 reps",
-                        "imagem": "Projeto Academia\\img\\\\Treinos\\Superiores\\Peito\\elevacao_lateral.jpg"
+                        "imagem": "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\elevacao_lateral.jpg"
                     },
                     {
                         "nome": "Desenvolvimento com Halteres\n3x12 reps",
-                        "imagem": "Projeto Academia\\img\\\\Treinos\\Superiores\\Peito\\desenvolvimento_halteres.jpg"
+                        "imagem": "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\desenvolvimento_halteres.jpg"
                     },
                     {
                         "nome": "Remada alta com barra\n3x12 reps",
-                        "imagem": "Projeto Academia\\img\\\\Treinos\\Superiores\\Peito\\remada_alta_barra.jpg"
+                        "imagem": "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\remada_alta_barra.jpg"
                     }
                 ]
             },
@@ -535,15 +538,15 @@ class Application(tk.Tk, Funções):
                 "exercicios": [
                     {
                         "nome": "Tríceps testa\n3x15 reps",
-                        "imagem": "Projeto Academia\\img\\\\Treinos\\Superiores\\Peito\\triceps_testa.png"
+                        "imagem": "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\triceps_testa.png"
                     },
                     {
                         "nome": "Mergulho em bancos\n3x12 reps",
-                        "imagem": "Projeto Academia\\img\\\\Treinos\\Superiores\\Peito\\mergulho_bancos.jpg"
+                        "imagem": "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\mergulho_bancos.jpg"
                     },
                     {
                         "nome": "Puxada de tríceps na polia\n3x15 reps",
-                        "imagem": "Projeto Academia\\img\\\\Treinos\\Superiores\\Peito\\triceps_polia.jfif"
+                        "imagem": "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\triceps_polia.jfif"
                     }
                 ]
             }
@@ -612,7 +615,7 @@ class Application(tk.Tk, Funções):
         label_costas.grid(row=2, column=0, columnspan=3, pady=10)
 
         # Exercício 1: Puxada alta
-        puxada_alta_image_path = "Projeto Academia\\img\\Treinos\\Superiores\\Costas\\puxada.png" 
+        puxada_alta_image_path = "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Costas\\puxada.png" 
         self.puxada_alta_image = ctk.CTkImage(light_image=Image.open(puxada_alta_image_path), size=(150, 150))
         puxada_alta_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=15, width=200, height=200)
         puxada_alta_frame.grid(row=3, column=0, padx=20, pady=20)
@@ -624,7 +627,7 @@ class Application(tk.Tk, Funções):
         label_puxada_alta_text.pack()
 
         # Exercício 2: Remada curvada
-        remada_curvada_image_path = "Projeto Academia\\img\\Treinos\\Superiores\\Costas\\remada_curvada.jpg" 
+        remada_curvada_image_path = "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Costas\\remada_curvada.jpg" 
         self.remada_curvada_image = ctk.CTkImage(light_image=Image.open(remada_curvada_image_path), size=(150, 150))
         remada_curvada_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=15, width=200, height=200)
         remada_curvada_frame.grid(row=3, column=1, padx=20, pady=20)
@@ -636,7 +639,7 @@ class Application(tk.Tk, Funções):
         label_remada_curvada_text.pack()
 
         # Exercício 3: Levantamento terra
-        levantamento_terra_image_path = "Projeto Academia\\img\\Treinos\\Superiores\\Costas\\levantamento_terra.jpg" 
+        levantamento_terra_image_path = "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Costas\\levantamento_terra.jpg" 
         self.levantamento_terra_image = ctk.CTkImage(light_image=Image.open(levantamento_terra_image_path), size=(150, 150))
         levantamento_terra_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=15, width=200, height=200)
         levantamento_terra_frame.grid(row=3, column=2, padx=20, pady=20)
@@ -652,7 +655,7 @@ class Application(tk.Tk, Funções):
         label_biceps.grid(row=4, column=0, columnspan=3, pady=10)
 
         # Exercício 1: Rosca direta com barra
-        rosca_direta_image_path = "Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_direta_barra.png"
+        rosca_direta_image_path = "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_direta_barra.png"
         self.rosca_direta_image = ctk.CTkImage(light_image=Image.open(rosca_direta_image_path), size=(150, 150))
         rosca_direta_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=15, width=200, height=200)
         rosca_direta_frame.grid(row=5, column=0, padx=20, pady=20)
@@ -664,7 +667,7 @@ class Application(tk.Tk, Funções):
         label_rosca_direta_text.pack()
 
         # Exercício 2: Rosca martelo com halteres
-        rosca_martelo_image_path = "Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_martelo.jfif"
+        rosca_martelo_image_path = "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_martelo.jfif"
         self.rosca_martelo_image = ctk.CTkImage(light_image=Image.open(rosca_martelo_image_path), size=(150, 150))
         rosca_martelo_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=15, width=200, height=200)
         rosca_martelo_frame.grid(row=5, column=1, padx=20, pady=20)
@@ -676,7 +679,7 @@ class Application(tk.Tk, Funções):
         label_rosca_martelo_text.pack()
 
         # Exercício 3: Rosca concentrada
-        rosca_concentrada_image_path = "Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_concentrada.jfif"
+        rosca_concentrada_image_path = "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_concentrada.jfif"
         self.rosca_concentrada_image = ctk.CTkImage(light_image=Image.open(rosca_concentrada_image_path), size=(150, 150))
         rosca_concentrada_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=15, width=200, height=200)
         rosca_concentrada_frame.grid(row=5, column=2, padx=20, pady=20)
@@ -713,7 +716,7 @@ class Application(tk.Tk, Funções):
         label_pernas.grid(row=0, column=0, columnspan=3, pady=10)
 
         # Exercício 1: Agachamento Smith
-        agachamento_smith_image_path = "Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\agachamento_smith.gif"
+        agachamento_smith_image_path = "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\agachamento_smith.gif"
         self.agachamento_smith_image = ctk.CTkImage(light_image=Image.open(agachamento_smith_image_path), size=(150, 150))
         agachamento_smith_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=15, width=200, height=200)
         agachamento_smith_frame.grid(row=1, column=0, padx=20, pady=20)
@@ -725,7 +728,7 @@ class Application(tk.Tk, Funções):
         label_agachamento_smith_text.pack()
 
         # Exercício 2: Extensão de Pernas
-        extensao_pernas_image_path = "Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\extensao_pernas.gif"
+        extensao_pernas_image_path = "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\extensao_pernas.gif"
         self.extensao_pernas_image = ctk.CTkImage(light_image=Image.open(extensao_pernas_image_path), size=(150, 150))
         extensao_pernas_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=30, width=200, height=200)
         extensao_pernas_frame.grid(row=1, column=1, padx=20, pady=20)
@@ -737,7 +740,7 @@ class Application(tk.Tk, Funções):
         label_extensao_pernas_text.pack()
 
         # Exercício 3: Leg Press
-        leg_press_image_path = "Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\leg_press.gif"
+        leg_press_image_path = "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\leg_press.gif"
         self.leg_press_image = ctk.CTkImage(light_image=Image.open(leg_press_image_path), size=(150, 150))
         leg_press_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=30)
         leg_press_frame.grid(row=1, column=2, padx=20, pady=20)
@@ -749,7 +752,7 @@ class Application(tk.Tk, Funções):
         label_leg_press_text.pack()
 
         # Exercício 4: Agachamento Frontal
-        agachamento_frontal_image_path = "Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\agachamento_frontal.webp"
+        agachamento_frontal_image_path = "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\agachamento_frontal.webp"
         self.agachamento_frontal_image = ctk.CTkImage(light_image=Image.open(agachamento_frontal_image_path), size=(150, 150))
         agachamento_frontal_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=30)
         agachamento_frontal_frame.grid(row=2, column=0, padx=20, pady=20)
@@ -761,7 +764,7 @@ class Application(tk.Tk, Funções):
         label_agachamento_frontal_text.pack()
 
         # Exercício 5: Avanço
-        avancado_image_path = "Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\avanco.webp"
+        avancado_image_path = "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\avanco.webp"
         self.avancado_image = ctk.CTkImage(light_image=Image.open(avancado_image_path), size=(150, 150))
         avancado_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=30)
         avancado_frame.grid(row=2, column=1, padx=20, pady=20)
@@ -773,7 +776,7 @@ class Application(tk.Tk, Funções):
         label_avancado_text.pack()
 
         # Exercício 6: Step-Up
-        step_up_image_path = "Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\step_up.webp"
+        step_up_image_path = "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\step_up.webp"
         self.step_up_image = ctk.CTkImage(light_image=Image.open(step_up_image_path), size=(150, 150))
         step_up_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=30)
         step_up_frame.grid(row=2, column=2, padx=20, pady=20)
@@ -810,7 +813,7 @@ class Application(tk.Tk, Funções):
         label_pernas.grid(row=0, column=0, columnspan=3, pady=10)
 
         # Exercício 1: Stiff
-        stiff_image_path = "Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\stiff.webp"
+        stiff_image_path = "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\stiff.webp"
         self.stiff_image = ctk.CTkImage(light_image=Image.open(stiff_image_path), size=(150, 150))
         stiff_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=15, width=200, height=200)
         stiff_frame.grid(row=1, column=0, padx=20, pady=20)
@@ -822,7 +825,7 @@ class Application(tk.Tk, Funções):
         label_stiff_text.pack()
 
         # Exercício 2: Afundo com Halteres
-        afundo_image_path = "Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\afundo_halteres.gif"
+        afundo_image_path = "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\afundo_halteres.gif"
         self.afundo_image = ctk.CTkImage(light_image=Image.open(afundo_image_path), size=(150, 150))
         afundo_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=30, width=200, height=200)
         afundo_frame.grid(row=1, column=1, padx=20, pady=20)
@@ -834,7 +837,7 @@ class Application(tk.Tk, Funções):
         label_afundo_text.pack()
 
         # Exercício 3: Flexão de Pernas na Máquina
-        pernas_image_path = "Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\pernas-na-maquina.webp"
+        pernas_image_path = "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\pernas-na-maquina.webp"
         self.pernas_image = ctk.CTkImage(light_image=Image.open(pernas_image_path), size=(150, 150))
         pernas_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=30)
         pernas_frame.grid(row=1, column=2, padx=20, pady=20)
@@ -846,7 +849,7 @@ class Application(tk.Tk, Funções):
         label_pernas_text.pack()
 
             # Exercício 4: Agachamento Sumô
-        sumo_image_path = "Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\agachamento_sumo.webp"
+        sumo_image_path = "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\agachamento_sumo.webp"
         self.sumo_image = ctk.CTkImage(light_image=Image.open(sumo_image_path), size=(150, 150))
         sumo_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=30)
         sumo_frame.grid(row=2, column=0, padx=20, pady=20)
@@ -858,7 +861,7 @@ class Application(tk.Tk, Funções):
         label_sumo_text.pack()
 
         # Exercício 5: Levantamento de Quadril
-        hip_thrust_image_path = "Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\levantamento_quadril.gif"
+        hip_thrust_image_path = "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\levantamento_quadril.gif"
         self.hip_thrust_image = ctk.CTkImage(light_image=Image.open(hip_thrust_image_path), size=(150, 150))
         hip_thrust_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=30)
         hip_thrust_frame.grid(row=2, column=1, padx=20, pady=20)
@@ -870,7 +873,7 @@ class Application(tk.Tk, Funções):
         label_hip_thrust_text.pack()
 
         # Exercício 6: Elevação de Panturrilha
-        panturrilha_image_path = "Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\elevacao_panturrilha.webp"
+        panturrilha_image_path = "C:\\Users\\Luiza Bruna\\Documents\\GUILPROGIT\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\elevacao_panturrilha.webp"
         self.panturrilha_image = ctk.CTkImage(light_image=Image.open(panturrilha_image_path), size=(150, 150))
         panturrilha_frame = ctk.CTkFrame(central_frame, fg_color="#29412b", corner_radius=30)
         panturrilha_frame.grid(row=2, column=2, padx=20, pady=20)
