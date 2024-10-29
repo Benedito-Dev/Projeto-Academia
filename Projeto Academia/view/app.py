@@ -449,7 +449,7 @@ class Application(tk.Tk, Funções):
         # Inicializar o carrossel de imagens com título "Treino de Peito e Ombros"
         self.exercicios_atual = exercicios_peito
         self.indice_atual = 0
-        self.iniciar_carrossel_imagens("Treino de Peito e Ombros", central_frame, self.exercicios_atual, 200, 200)
+        self.iniciar_carrossel_imagens("Treino de Peito", central_frame, self.exercicios_atual, 200, 200)
 
         # Frame para botões de controle
         btn_frame = ctk.CTkFrame(background_frame, fg_color="#313131")
