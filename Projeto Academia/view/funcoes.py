@@ -1,5 +1,5 @@
 import tkinter as tk
-from customtkinter import CTkLabel, CTkButton
+from customtkinter import CTkLabel, CTkButton, CTkFrame
 from random import randint
 from tkinter import ttk
 from tkinter import messagebox
@@ -36,13 +36,16 @@ class Funções():
         label_titulo = CTkLabel(frame, text=titulo, text_color="white", font=("Arial", 22, 'bold'))
         label_titulo.grid(row=0, column=0, columnspan=3, pady=20)
 
+        border_frame = CTkFrame(frame, fg_color="#5ce1e6", corner_radius=10)
+        border_frame.grid(row=1, column=1)
+
         # Label para exibir a imagem no carrossel
-        label_imagem = CTkLabel(frame, text="")
-        label_imagem.grid(row=1, column=1)
+        label_imagem = CTkLabel(border_frame, text="")
+        label_imagem.grid(row=0, column=1, padx=10, pady=10)
 
         # Label para exibir o texto do exercício
         label_texto = CTkLabel(frame, text="", text_color="white", font=("Arial", 16, 'bold'))
-        label_texto.grid(row=2, column=1, pady=10)
+        label_texto.grid(row=3, column=1, pady=10)
 
         # Função para exibir a imagem e o texto atual
         def exibir_imagem():
@@ -83,6 +86,7 @@ class Funções():
         # Reinicia o carrossel de imagens
         self.iniciar_carrossel_imagens(titulo, central_frame, self.exercicios_atual, 200, 200)
 
+
     def gerar_codigo(self):
         # Gera o primeiro número entre 1 e 7 para que os próximos sejam sequenciais
         a = randint(1, 7)
@@ -104,6 +108,7 @@ class Funções():
         # Concatena os números para formar o código em string
         codigo = f"{a}{b}{c}"
         return codigo
+
 
     def carregar_perfis(self):
         try:
