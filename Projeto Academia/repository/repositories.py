@@ -26,10 +26,10 @@ class ClienteRepository():
         self.session.commit()
         return True
 
-    def validar_login(self, nome):
+    def validar_login(self, nome, data_de_nascimento):
         try:
             # Busca o cliente com o nome e senha fornecidos
-            cliente = self.session.query(Cliente).filter_by(nome=nome).one()
+            cliente = self.session.query(Cliente).filter_by(nome=nome, data_de_nascimento=data_de_nascimento).one()
             return True  # Login válido
         except NoResultFound:
             return False 
@@ -45,14 +45,10 @@ class ClienteRepository():
             print(f"Erro ao buscar usuário: {e}")
 
     # Função para atualizar um cliente
-    def atualizar_cliente(self, cliente_id, nome, email, senha, telefone, endereco, data_de_nascimento):
+    def atualizar_cliente(self, cliente_id, nome, data_de_nascimento):
         cliente = self.session.query(Cliente).get(cliente_id)
         if cliente:
             cliente.nome = nome
-            cliente.email = email
-            cliente.senha = senha
-            cliente.telefone = telefone
-            cliente.endereco = endereco
             if not data_de_nascimento:
                 raise ValueError("Data de nascimento não pode estar vazia")
             cliente.data_de_nascimento = data_de_nascimento
@@ -65,12 +61,4 @@ class ClienteRepository():
         if cliente:
             self.session.delete(cliente)
             self.session.commit()
-
-    def consultar_cpf(self, cpf):
-        cliente = self.session.query(Cliente).filter_by(cpf=cpf).first()
-        return cliente  # Retorna o cliente ou None
-    
-    def consultar_email(self,email):
-        cliente = self.session.query(Cliente).filter_by(email=email).first()
-        return cliente
     

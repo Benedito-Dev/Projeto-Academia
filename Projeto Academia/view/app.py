@@ -9,6 +9,7 @@ from tkinter import messagebox
 from tkinter import font
 from controller.controllers import UsuarioController
 import random
+import random
 
 
 
@@ -100,12 +101,20 @@ class Application(tk.Tk, Funções):
         # Nome do usuário
         nome_emoji = ctk.CTkLabel(frame, text="👤", text_color="white", font=("Arial", 16))
         nome_emoji.grid(row=1, column=0)
+        nome_emoji = ctk.CTkLabel(frame, text="👤", text_color="white", font=("Arial", 16))
+        nome_emoji.grid(row=1, column=0)
         self.entry_nome = ctk.CTkEntry(frame, placeholder_text="Nome")
         self.entry_nome.grid(row=1, column=1, pady=10, padx=20)
         
         self.entry_dataDeNascimento = ctk.CTkEntry(frame, placeholder_text="Data de Nascimento")
         self.entry_dataDeNascimento.grid(row=2,column=1,pady=10)
+        self.entry_nome.grid(row=1, column=1, pady=10, padx=20)
+        
+        self.entry_dataDeNascimento = ctk.CTkEntry(frame, placeholder_text="Data de Nascimento")
+        self.entry_dataDeNascimento.grid(row=2,column=1,pady=10)
 
+        btn_abrir_calendario = ctk.CTkButton(frame, text="🗓️", font=("Arial", 16, 'bold'), fg_color="#313131", hover_color="#313131", width=15, command=self.abrir_calendario)
+        btn_abrir_calendario.grid(row=2, column=0, padx=(20, 0))
         btn_abrir_calendario = ctk.CTkButton(frame, text="🗓️", font=("Arial", 16, 'bold'), fg_color="#313131", hover_color="#313131", width=15, command=self.abrir_calendario)
         btn_abrir_calendario.grid(row=2, column=0, padx=(20, 0))
 
@@ -144,11 +153,35 @@ class Application(tk.Tk, Funções):
         border_frame = ctk.CTkFrame(background_frame, fg_color="#5ce1e6", corner_radius=10)
         border_frame.grid(row=1, column=0, padx=20, pady=20)
 
+        background_frame = ctk.CTkFrame(self, fg_color="#313131", corner_radius=0)
+        background_frame.pack(fill='both', expand=True)
+        
+        # Configuração de colunas e linhas para centralizar
+        background_frame.grid_columnconfigure(0, weight=1)
+        background_frame.grid_rowconfigure(0, weight=0)  # Para centralizar verticalmente
+        # Imagem
+
+        image_path = "Projeto Academia\\img\\Logo.png"
+
+        self.logo_image = ctk.CTkImage(light_image=Image.open(image_path), size=(200, 200))  # Ajuste o tamanho da imagem
+
+        # Criar um Label para exibir a imagem
+        self.label_image = ctk.CTkLabel(background_frame, image=self.logo_image, text="")
+        self.label_image.grid(row=0, column=0, pady=0)
+
+        # Frame para a borda
+        border_frame = ctk.CTkFrame(background_frame, fg_color="#5ce1e6", corner_radius=10)
+        border_frame.grid(row=1, column=0, padx=20, pady=20)
+
         # Frame para centralizar o conteúdo
+        frame = ctk.CTkFrame(border_frame, fg_color="#313131", corner_radius=10)
+        frame.grid(row=0, column=0, padx=10, pady=10)
         frame = ctk.CTkFrame(border_frame, fg_color="#313131", corner_radius=10)
         frame.grid(row=0, column=0, padx=10, pady=10)
 
         # Título
+        titulo = ctk.CTkLabel(frame, text="Realizar Cadastro", text_color="white", font=("Arial", 20))
+        titulo.grid(row=0, column=0, columnspan=2, pady=10)
         titulo = ctk.CTkLabel(frame, text="Realizar Cadastro", text_color="white", font=("Arial", 20))
         titulo.grid(row=0, column=0, columnspan=2, pady=10)
 
@@ -160,11 +193,22 @@ class Application(tk.Tk, Funções):
         
         self.entry_dataDeNascimento = ctk.CTkEntry(frame, placeholder_text="Data de Nascimento")
         self.entry_dataDeNascimento.grid(row=2,column=1,pady=10)
+        # Nome do usuário
+        nome_emoji = ctk.CTkLabel(frame, text="👤", text_color="white", font=("Arial", 16))
+        nome_emoji.grid(row=1, column=0)
+        self.entry_nome = ctk.CTkEntry(frame, placeholder_text="Nome")
+        self.entry_nome.grid(row=1, column=1, pady=10, padx=20)
+        
+        self.entry_dataDeNascimento = ctk.CTkEntry(frame, placeholder_text="Data de Nascimento")
+        self.entry_dataDeNascimento.grid(row=2,column=1,pady=10)
 
+        btn_abrir_calendario = ctk.CTkButton(frame, text="🗓️", font=("Arial", 16, 'bold'), fg_color="#313131", hover_color="#313131", width=15, command=self.abrir_calendario)
+        btn_abrir_calendario.grid(row=2, column=0, padx=(20, 0))
         btn_abrir_calendario = ctk.CTkButton(frame, text="🗓️", font=("Arial", 16, 'bold'), fg_color="#313131", hover_color="#313131", width=15, command=self.abrir_calendario)
         btn_abrir_calendario.grid(row=2, column=0, padx=(20, 0))
 
         # Botão Cadastrar-se
+        ctk.CTkButton(frame, text="Cadastrar Novo Cliente", font=("Arial", 18), width=160, fg_color="#808080", hover_color="#A9A9A9", command=self.validar_dados).grid(row=3, column=0, columnspan=2, pady=10)
         ctk.CTkButton(frame, text="Cadastrar Novo Cliente", font=("Arial", 18), width=160, fg_color="#808080", hover_color="#A9A9A9", command=self.validar_dados).grid(row=3, column=0, columnspan=2, pady=10)
 
         # Botão Voltar
@@ -977,9 +1021,11 @@ class Application(tk.Tk, Funções):
         title.pack(pady=20)
 
         colunas = ("ID", "Nome", "Data_de_nascimento") 
+        colunas = ("ID", "Nome", "Data_de_nascimento") 
         self.tree = ttk.Treeview(background_frame, columns=colunas, show='headings')
         self.tree.heading("ID", text="ID")
         self.tree.heading("Nome", text="Nome")
+        self.tree.heading("Data_de_nascimento", text="Data_de_nascimento")
         self.tree.heading("Data_de_nascimento", text="Data_de_nascimento")
         self.tree.pack(pady=0, fill=tk.BOTH, expand=True)
         self.carregar_perfis()
@@ -1084,7 +1130,24 @@ class Application(tk.Tk, Funções):
         background_frame.pack(fill='both', expand=True)
         
         # Configuração de colunas e linhas para centralizar
+        background_frame.pack(fill='both', expand=True)
+        
+        # Configuração de colunas e linhas para centralizar
         background_frame.grid_columnconfigure(0, weight=1)
+        background_frame.grid_rowconfigure(0, weight=0)  # Para centralizar verticalmente
+        # Imagem
+
+        image_path = "Projeto Academia\\img\\Logo.png"
+
+        self.logo_image = ctk.CTkImage(light_image=Image.open(image_path), size=(200, 200))  # Ajuste o tamanho da imagem
+
+        # Criar um Label para exibir a imagem
+        self.label_image = ctk.CTkLabel(background_frame, image=self.logo_image, text="")
+        self.label_image.grid(row=0, column=0, pady=0)
+
+        # Frame para a borda
+        border_frame = ctk.CTkFrame(background_frame, fg_color="#5ce1e6", corner_radius=10)
+        border_frame.grid(row=1, column=0, padx=20, pady=20)
         background_frame.grid_rowconfigure(0, weight=0)  # Para centralizar verticalmente
         # Imagem
 
@@ -1103,7 +1166,13 @@ class Application(tk.Tk, Funções):
         # Frame para centralizar o conteúdo
         frame = ctk.CTkFrame(border_frame, fg_color="#313131", corner_radius=10)
         frame.grid(row=0, column=0, padx=10, pady=10)
+        # Frame para centralizar o conteúdo
+        frame = ctk.CTkFrame(border_frame, fg_color="#313131", corner_radius=10)
+        frame.grid(row=0, column=0, padx=10, pady=10)
 
+        # Título
+        titulo = ctk.CTkLabel(frame, text="Alterar Informações", text_color="white", font=("Arial", 20))
+        titulo.grid(row=0, column=0, columnspan=2, pady=10)
         # Título
         titulo = ctk.CTkLabel(frame, text="Alterar Informações", text_color="white", font=("Arial", 20))
         titulo.grid(row=0, column=0, columnspan=2, pady=10)
@@ -1116,14 +1185,28 @@ class Application(tk.Tk, Funções):
         
         self.entry_dataDeNascimento = ctk.CTkEntry(frame, placeholder_text=self.get_informacao('data_de_nascimento'))
         self.entry_dataDeNascimento.grid(row=2,column=1,pady=10)
+        # Nome do usuário
+        nome_emoji = ctk.CTkLabel(frame, text="👤", text_color="white", font=("Arial", 16))
+        nome_emoji.grid(row=1, column=0)
+        self.entry_novo_nome = ctk.CTkEntry(frame, placeholder_text=self.get_informacao('nome').lower().capitalize())
+        self.entry_novo_nome.grid(row=1, column=1, pady=10, padx=20)
+        
+        self.entry_dataDeNascimento = ctk.CTkEntry(frame, placeholder_text=self.get_informacao('data_de_nascimento'))
+        self.entry_dataDeNascimento.grid(row=2,column=1,pady=10)
 
+        btn_abrir_calendario = ctk.CTkButton(frame, text="🗓️", font=("Arial", 16, 'bold'), fg_color="#313131", hover_color="#313131", width=15, command=self.abrir_calendario)
+        btn_abrir_calendario.grid(row=2, column=0, padx=(20, 0))
         btn_abrir_calendario = ctk.CTkButton(frame, text="🗓️", font=("Arial", 16, 'bold'), fg_color="#313131", hover_color="#313131", width=15, command=self.abrir_calendario)
         btn_abrir_calendario.grid(row=2, column=0, padx=(20, 0))
 
         # Botão de cancelar
         btn_voltar = ctk.CTkButton(frame, text="Cancelar", command=self.Home, fg_color="#000000", text_color="#FF0000")
         btn_voltar.grid(row=7, column=0, columnspan=2, pady=15)
+        btn_voltar = ctk.CTkButton(frame, text="Cancelar", command=self.Home, fg_color="#000000", text_color="#FF0000")
+        btn_voltar.grid(row=7, column=0, columnspan=2, pady=15)
 
         # Botão de salvar alterações
+        botao_salvar = ctk.CTkButton(frame, text="Salvar alterações", fg_color="#000000", text_color="#00ff00", font=("Nunito", 12, "bold"), command=self.validar_alteracoes)
+        botao_salvar.grid(row=8, column=0, columnspan=2, pady=15)
         botao_salvar = ctk.CTkButton(frame, text="Salvar alterações", fg_color="#000000", text_color="#00ff00", font=("Nunito", 12, "bold"), command=self.validar_alteracoes)
         botao_salvar.grid(row=8, column=0, columnspan=2, pady=15)
