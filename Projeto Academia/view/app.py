@@ -8,6 +8,7 @@ from view.funcoes import Funções
 from tkinter import messagebox
 from tkinter import font
 from controller.controllers import UsuarioController
+import random
 
 
 
@@ -169,6 +170,7 @@ class Application(tk.Tk, Funções):
         # Botão Voltar
         ctk.CTkButton(frame, text="Voltar", font=("Arial", 18), width=160, fg_color="#808080", hover_color="#A9A9A9", command=self.realizar_login).grid(row=4, column=0, columnspan=2, pady=10)
 
+
     def Home(self):
         for widget in self.winfo_children():
             widget.destroy()
@@ -217,7 +219,7 @@ class Application(tk.Tk, Funções):
         self.label_image_treinos = ctk.CTkLabel(central_frame, image=self.logo_image_treinos, text="")
         self.label_image_treinos.grid(row=0, column=1, pady=0)
 
-        btn_treinos = ctk.CTkButton(central_frame, text="Treinos", fg_color="#808080", hover_color="#A9A9A9", command=self.Treinos, font=("Arial", 18, "bold"), width=150, height=50)
+        btn_treinos = ctk.CTkButton(central_frame, text="Treinos", fg_color="#808080", hover_color="#A9A9A9", command=self.Modalidades, font=("Arial", 18, "bold"), width=150, height=50)
         btn_treinos.grid(row=0, column=1, pady=(250, 00))
 
         image_path = "Projeto Academia\\img\\Home\\Ajustes.png"
@@ -236,7 +238,63 @@ class Application(tk.Tk, Funções):
         frame_inferior.pack(side="bottom", fill="x", pady=10)
 
 
-    def Treinos(self):
+    def Modalidades(self):
+        for widget in self.winfo_children():
+            widget.destroy()
+
+        # Criando Fundo com CustomTkinter
+        background_frame = ctk.CTkFrame(self, fg_color="#313131", corner_radius=0)
+        background_frame.pack(fill="both", expand=True)
+
+        # Frame superior com o título e plano (usando CustomTkinter)
+        frame_superior = ctk.CTkFrame(background_frame, fg_color="#5ce1e6", corner_radius=0, height=30)
+        frame_superior.pack(side="top", fill="x", pady=10)
+
+        title = ctk.CTkLabel(frame_superior, text="MultiForm", text_color="white", fg_color="#5ce1e6", font=("Arial", 18, 'bold'))
+        title.pack(side="left", padx=20)
+
+        home_button = ctk.CTkButton(frame_superior, text="🏠 Home", font=("Arial", 14, 'bold'), text_color="white", height=20 ,command=self.Home)
+        home_button.pack(side="right", padx=10)
+
+        plano_label = ctk.CTkLabel(frame_superior, text=f"Plano Intermediário, Olá {self.nome_usuario}", text_color="white", fg_color="#5ce1e6", font=("Arial", 18, 'bold'))
+        plano_label.pack(side="top")
+
+        # Frame central para os botões (usando CustomTkinter)
+        central_frame = ctk.CTkFrame(background_frame, fg_color="#313131")
+        central_frame.place(relx=0.5, rely=0.45, anchor=ctk.CENTER)  # Centralizando o frame
+
+
+        image_path = "Projeto Academia\\img\\Treinos\\Menu-Treinos\\Artes Marciais.png"
+
+        self.logo_image_treinos = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
+
+        # Criar um Label para exibir a imagem
+        self.label_image_treinos = ctk.CTkLabel(central_frame, image=self.logo_image_treinos, text="")
+        self.label_image_treinos.grid(row=0, column=0, pady=0)
+
+        btn_artesMarciais = ctk.CTkButton(central_frame, text="Artes Marciais", fg_color="#808080", hover_color="#A9A9A9", command=self.Artes_marciais, font=("Arial", 18, "bold"), width=150, height=50)
+        btn_artesMarciais.grid(row=0, column=0, pady=(250, 00))
+
+        image_path = "Projeto Academia\\img\\Treinos\\Menu-Treinos\\Musculação-Menu.png"
+
+        self.logo_image_ajustes = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
+
+        # Criar um Label para exibir a imagem
+        self.label_image_ajustes = ctk.CTkLabel(central_frame, image=self.logo_image_ajustes, text="")
+        self.label_image_ajustes.grid(row=0, column=1, pady=0)
+
+        btn_musculação = ctk.CTkButton(central_frame, text="Musculação", fg_color="#808080", hover_color="#A9A9A9", command=self.Musculação, font=("Arial", 18, "bold"), width=150, height=50)
+        btn_musculação.grid(row=0, column=1, pady=(250, 00))
+
+        btn_voltar = ctk.CTkButton(central_frame, text="Voltar", fg_color="#808080", hover_color="#A9A9A9", command=self.Home, font=("Arial", 18, "bold"), width=150, height=50)
+        btn_voltar.grid(row=1, column=0, columnspan=2, pady=(20, 0))
+
+        # Frame inferior (usando CustomTkinter)
+        frame_inferior = ctk.CTkFrame(background_frame, fg_color="#5ce1e6", corner_radius=0,height=30)
+        frame_inferior.pack(side="bottom", fill="x", pady=10)
+
+
+    def Musculação(self):
         for widget in self.winfo_children():
             widget.destroy()
 
@@ -284,14 +342,108 @@ class Application(tk.Tk, Funções):
         btn_inferiores = ctk.CTkButton(central_frame, text="Inferiores", fg_color="#808080", hover_color="#A9A9A9", command=self.Inferiores, font=("Arial", 18, "bold"), width=150, height=50)
         btn_inferiores.grid(row=0, column=1, pady=(250, 00))
 
-        btn_voltar = ctk.CTkButton(central_frame, text="Voltar", fg_color="#808080", hover_color="#A9A9A9", command=self.Home, font=("Arial", 18, "bold"), width=150, height=50)
-        btn_voltar.grid(row=1, column=0, columnspan=2, pady=(20, 0))
+        btn_voltar = ctk.CTkButton(central_frame, text="Voltar", fg_color="#808080", hover_color="#A9A9A9", command=self.Modalidades, font=("Arial", 18, "bold"), width=150, height=50)
+        btn_voltar.grid(row=1, column=0, columnspan=2, pady=20)
 
         # Frame inferior (usando CustomTkinter)
         frame_inferior = ctk.CTkFrame(background_frame, fg_color="#5ce1e6", corner_radius=0,height=30)
         frame_inferior.pack(side="bottom", fill="x", pady=10)
 
 
+    def Artes_marciais(self):
+        for widget in self.winfo_children():
+            widget.destroy()
+
+        # Criando Fundo com CustomTkinter
+        background_frame = ctk.CTkFrame(self, fg_color="#313131", corner_radius=0)
+        background_frame.pack(fill="both", expand=True)
+
+        # Frame superior com o título e plano (usando CustomTkinter)
+        frame_superior = ctk.CTkFrame(background_frame, fg_color="#5ce1e6", corner_radius=0, height=30)
+        frame_superior.pack(side="top", fill="x", pady=10)
+
+        title = ctk.CTkLabel(frame_superior, text="MultiForm", text_color="white", fg_color="#5ce1e6", font=("Arial", 18, 'bold'))
+        title.pack(side="left", padx=20)
+
+        home_button = ctk.CTkButton(frame_superior, text="🏠 Home", font=("Arial", 14, 'bold'), text_color="white", height=20 ,command=self.Home)
+        home_button.pack(side="right", padx=10)
+
+        plano_label = ctk.CTkLabel(frame_superior, text=f"Plano Intermediário, Olá {self.nome_usuario}", text_color="white", fg_color="#5ce1e6", font=("Arial", 18, 'bold'))
+        plano_label.pack(side="top")
+
+        # Frame central para os botões (usando CustomTkinter)
+        central_frame = ctk.CTkFrame(background_frame, fg_color="#313131")
+        central_frame.place(relx=0.5, rely=0.45, anchor=ctk.CENTER)
+
+        image_path = "Projeto Academia\\img\\Treinos\\Menu-Treinos\\Karate.png"
+
+        logo_image_treinos = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
+
+        # Criar um Label para exibir a imagem
+        label_image_treinos = ctk.CTkLabel(central_frame, image=logo_image_treinos, text="", height=200)
+        label_image_treinos.grid(row=0, column=0)
+
+        btn_karate = ctk.CTkButton(central_frame, text="Karate", fg_color="#808080", hover_color="#A9A9A9", command=self.Karate, font=("Arial", 18, "bold"), width=150, height=50)
+        btn_karate.grid(row=0, column=0, pady=(250, 00))
+
+        # Frame inferior (usando CustomTkinter)
+        frame_inferior = ctk.CTkFrame(background_frame, fg_color="#5ce1e6", corner_radius=0,height=30)
+        frame_inferior.pack(side="bottom", fill="x", pady=10)
+
+        btn_voltar = ctk.CTkButton(frame_inferior, text="Voltar", fg_color="#808080", hover_color="#A9A9A9", command=self.Modalidades, font=("Arial", 18, "bold"), width=150, height=50)
+        btn_voltar.pack(pady=10)
+
+
+    def Karate(self):
+        for widget in self.winfo_children():
+            widget.destroy()
+
+         # Criando Fundo com CustomTkinter
+        background_frame = ctk.CTkFrame(self, fg_color="#313131", corner_radius=0)
+        background_frame.pack(fill="both", expand=True)
+
+        # Frame superior com o título e plano (usando CustomTkinter)
+        frame_superior = ctk.CTkFrame(background_frame, fg_color="#5ce1e6", corner_radius=0, height=30)
+        frame_superior.pack(side="top", fill="x", pady=10)
+
+        title = ctk.CTkLabel(frame_superior, text="MultiForm", text_color="white", fg_color="#5ce1e6", font=("Arial", 18, 'bold'))
+        title.pack(side="left", padx=20)
+
+        home_button = ctk.CTkButton(frame_superior, text="🏠 Home", font=("Arial", 14, 'bold'), text_color="white", height=20 ,command=self.Home)
+        home_button.pack(side="right", padx=10)
+
+        plano_label = ctk.CTkLabel(frame_superior, text=f"Plano Intermediário, Olá {self.nome_usuario}", text_color="white", fg_color="#5ce1e6", font=("Arial", 18, 'bold'))
+        plano_label.pack(side="top")
+
+        # Frame central para os botões (usando CustomTkinter)
+        central_frame = ctk.CTkFrame(background_frame, fg_color="#313131")
+        central_frame.place(relx=0.5, rely=0.45, anchor=ctk.CENTER)
+
+        label_numero = ctk.CTkLabel(central_frame, text="#AAA", text_color="green", font=("Arial", 24))
+        label_numero.grid(row=0, column=0, pady=0)
+
+        label_text = ctk.CTkLabel(central_frame, text="", font=("Arial", 14, 'bold'))
+        label_text.grid(row=1, column=0, pady=5)
+
+        # Cria um botão que gera e exibe o número diretamente ao ser clicado
+        botao_gerar = ctk.CTkButton(
+            central_frame, 
+            text="Gerar Código Experimental", 
+            command=lambda: [
+                label_numero.configure(text=f"#{random.randint(1, 1000)}"), 
+                label_text.configure(text="Apresente este código ao nosso instrutor Wilkson")
+            ]
+        )
+        botao_gerar.grid(row=2, column=0, pady=20)
+
+        # Frame inferior (usando CustomTkinter)
+        frame_inferior = ctk.CTkFrame(background_frame, fg_color="#5ce1e6", corner_radius=0,height=30)
+        frame_inferior.pack(side="bottom", fill="x", pady=10)
+
+        btn_voltar = ctk.CTkButton(frame_inferior, text="Voltar", fg_color="#808080", hover_color="#A9A9A9", command=self.Modalidades, font=("Arial", 18, "bold"), width=150, height=50)
+        btn_voltar.pack(pady=10)
+
+        
     def Superiores(self):
         for widget in self.winfo_children():
             widget.destroy()
@@ -339,7 +491,7 @@ class Application(tk.Tk, Funções):
         btn_Costas = ctk.CTkButton(central_frame, text="Costas", fg_color="#808080", hover_color="#A9A9A9", command=self.Costas, font=("Arial", 18, "bold"), width=150, height=50)
         btn_Costas.grid(row=0, column=1, pady=(250, 00))
 
-        btn_voltar = ctk.CTkButton(central_frame, text="Voltar", fg_color="#808080", hover_color="#A9A9A9", command=self.Treinos, font=("Arial", 18, "bold"), width=150, height=50)
+        btn_voltar = ctk.CTkButton(central_frame, text="Voltar", fg_color="#808080", hover_color="#A9A9A9", command=self.Musculação, font=("Arial", 18, "bold"), width=150, height=50)
         btn_voltar.grid(row=1, column=0, columnspan=2, pady=(20, 0))
 
         # Frame inferior (usando CustomTkinter)
@@ -397,7 +549,7 @@ class Application(tk.Tk, Funções):
         btn_quadriceps.grid(row=0, column=1, pady=(250, 00))
 
 
-        btn_voltar = ctk.CTkButton(central_frame, text="Voltar", fg_color="#808080", hover_color="#A9A9A9", command=self.Treinos, font=("Arial", 18, "bold"), width=150, height=50)
+        btn_voltar = ctk.CTkButton(central_frame, text="Voltar", fg_color="#808080", hover_color="#A9A9A9", command=self.Musculação, font=("Arial", 18, "bold"), width=150, height=50)
 
         btn_voltar.grid(row=1, column=0, columnspan=2, pady=(20, 0))
 
