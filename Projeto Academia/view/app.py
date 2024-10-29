@@ -22,7 +22,7 @@ class Application(tk.Tk, Funções, Treinos):
         self.controler = UsuarioController()
         self.state('zoomed')
         self.iconbitmap('Projeto Academia\\img\\Logo.ico')
-        self.menu_inicial()
+        self.after(100, self.menu_inicial)
 
 # Janelas
 
@@ -30,13 +30,34 @@ class Application(tk.Tk, Funções, Treinos):
         for widget in self.winfo_children():
             widget.destroy()
         
+        self.resize_timer = None  # Inicializa o temporizador
+
+        # Função que redimensiona a imagem com atraso para evitar carregamento repetido
+        def update_background_image(event=None):
+            if self.resize_timer:
+                self.after_cancel(self.resize_timer)  # Cancela o temporizador anterior, se existir
+            self.resize_timer = self.after(200, resize_image)
+
+        # Função para redimensionar e atualizar a imagem de fundo
+        def resize_image():
+            new_width = self.winfo_width()
+            new_height = self.winfo_height()
+            resized_image = image.resize((new_width, new_height), Image.LANCZOS)
+            self.bg_photo = ImageTk.PhotoImage(resized_image)
+            bg_label.configure(image=self.bg_photo)
+
         # Carrega a imagem
-        image = Image.open("Projeto Academia\\img\\Imagens-Inicias\\Img-Login.png")  # Altere para o caminho da sua imagem
-        self.bg_photo = ImageTk.PhotoImage(image)  # Armazena a referência da imagem
+        image = Image.open("Projeto Academia\\img\\Imagens-Inicias\\Img-Login.png")
+        self.bg_photo = ImageTk.PhotoImage(image)
 
         # Cria um Label para exibir a imagem de fundo
         bg_label = ctk.CTkLabel(self, image=self.bg_photo, text="")
-        bg_label.place(relwidth=1, relheight=1)  # Faz o Label ocupar toda a janela
+        bg_label.place(relwidth=1, relheight=1)
+
+        # Liga o evento para redimensionar a imagem com atraso
+        self.bind("<Configure>", update_background_image)
+
+        self.deiconify()
 
         # Cria um CTkFrame sobre a imagem
         background_frame = ctk.CTkFrame(self, fg_color="#313131", corner_radius=0)
