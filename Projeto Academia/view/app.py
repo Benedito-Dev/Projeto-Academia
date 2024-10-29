@@ -24,6 +24,7 @@ class Application(tk.Tk, Funções):
         self.current_page = 0
         self.controler = UsuarioController()
         self.state('zoomed')
+        self.iconbitmap('Projeto Academia\\img\\Logo.ico')
         self.menu_inicial()
 
 # Janelas
@@ -237,6 +238,9 @@ class Application(tk.Tk, Funções):
         # Frame inferior (usando CustomTkinter)
         frame_inferior = ctk.CTkFrame(background_frame, fg_color="#5ce1e6", corner_radius=0,height=30)
         frame_inferior.pack(side="bottom", fill="x", pady=10)
+
+        label_credits = ctk.CTkLabel(frame_inferior, text="Desenvolvido por Benedito & Eric", text_color="#1b1b1b", fg_color="#5ce1e6", font=("Arial", 16, 'italic'))
+        label_credits.pack(side="left", pady=5, padx=10)
 
 
     def Modalidades(self):
