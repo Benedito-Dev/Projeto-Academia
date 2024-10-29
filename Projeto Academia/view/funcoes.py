@@ -93,9 +93,13 @@ class Funções():
             b = a + 1
             c = b + 1
 
-        else:
+        elif choose == 2:
             b = a - 1
             c = b - 1
+        
+        if b == 0:
+            b = a + 1
+            c = b + 1
 
         # Concatena os números para formar o código em string
         codigo = f"{a}{b}{c}"
