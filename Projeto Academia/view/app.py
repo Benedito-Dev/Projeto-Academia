@@ -291,11 +291,11 @@ class Application(tk.Tk, Funções):
         Musculos = ctk.CTkLabel(central_frame, text="Musculos :", text_color="white", font=('Arial', 14))
         Musculos.grid(row=1, column=0, pady=10, padx=10)
 
-        alunos = self.obter_alunos_por_instrutor()
+        lista_musculos = self.obter_musculatura()
 
-        self.aluno_selecionado = ctk.StringVar(value=alunos[0])
+        self.muscuclo_selecionado = ctk.StringVar(value=alunos[0])
 
-        optionmenu_alunos = ctk.CTkOptionMenu(central_frame, variable=self.aluno_selecionado, values=alunos)
+        optionmenu_alunos = ctk.CTkOptionMenu(central_frame, variable=self.aluno_selecionado, values=lista_musculos)
         optionmenu_alunos.grid(row=1, column=1, padx=10)
 
         avancar_btn = ctk.CTkButton(central_frame, text="Avançar", text_color="white", fg_color="#808080", hover_color="#A9A9A9", command=self.Treinos)
