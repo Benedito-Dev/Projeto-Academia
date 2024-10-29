@@ -2,7 +2,7 @@ import tkinter as tk
 from sqlalchemy import *
 from tkinter import ttk
 import customtkinter as ctk
-from PIL import Image
+from PIL import Image, ImageTk
 from view.funcoes import Funções
 from view.treinos_usuario_view import Treinos
 from controller.controllers import UsuarioController
@@ -30,21 +30,35 @@ class Application(tk.Tk, Funções, Treinos):
         for widget in self.winfo_children():
             widget.destroy()
         
-        background_frame = ctk.CTkFrame(self, fg_color="#313131", corner_radius=0)
-        background_frame.pack(fill='both', expand=True)
+        # Carrega a imagem
+        image = Image.open("Projeto Academia\\img\\Imagens-Inicias\\Img-Login.png")  # Altere para o caminho da sua imagem
+        self.bg_photo = ImageTk.PhotoImage(image)  # Armazena a referência da imagem
 
+        # Cria um Label para exibir a imagem de fundo
+        bg_label = ctk.CTkLabel(self, image=self.bg_photo, text="")
+        bg_label.place(relwidth=1, relheight=1)  # Faz o Label ocupar toda a janela
+
+        # Cria um CTkFrame sobre a imagem
+        background_frame = ctk.CTkFrame(self, fg_color="#313131", corner_radius=0)
+        background_frame.place(relwidth=0.4, relheight=1)  # Faz o Frame ocupar toda a janela
+
+        # Configura o grid do Frame
         background_frame.grid_columnconfigure(0, weight=1)
-        background_frame.grid_rowconfigure(0, weight=0) 
+        background_frame.grid_rowconfigure(0, weight=0)
+
+        # Adicione widgets ao background_frame conforme necessário
+        label = ctk.CTkLabel(background_frame, text="", text_color="white", fg_color="#313131")
+        label.grid(row=0, column=0, padx=20, pady=20)
 
         image_path = "Projeto Academia\\img\\Logo.png"
         self.logo_image = ctk.CTkImage(light_image=Image.open(image_path), size=(200, 200))  # Ajuste o tamanho da imagem
 
         # Criar um Label para exibir a imagem
         self.label_image = ctk.CTkLabel(background_frame, image=self.logo_image, text="")
-        self.label_image.grid(row=1, column=0, pady=0)
+        self.label_image.grid(row=0, column=0, columnspan=2, padx=(100, 00), pady=0)
 
         border_frame = ctk.CTkFrame(background_frame, fg_color="#5ce1e6", corner_radius=10)
-        border_frame.grid(row=2, column=0, padx=20, pady=20)
+        border_frame.grid(row=1, column=0, columnspan=5, padx=(90, 00), pady=20)
 
         # Frame para centralizar o conteúdo
         frame = ctk.CTkFrame(border_frame, fg_color="#313131", corner_radius=10)
@@ -369,8 +383,8 @@ class Application(tk.Tk, Funções, Treinos):
         # Configuração de colunas e linhas para centralizar
         background_frame.grid_columnconfigure(0, weight=1)
         background_frame.grid_rowconfigure(0, weight=0)  # Para centralizar verticalmente
+        
         # Imagem
-
         image_path = "Projeto Academia\\img\\Logo.png"
 
         self.logo_image = ctk.CTkImage(light_image=Image.open(image_path), size=(200, 200))  # Ajuste o tamanho da imagem
