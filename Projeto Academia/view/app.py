@@ -233,7 +233,7 @@ class Application(tk.Tk, Funções):
         self.label_image_perfil.grid(row=0, column=0, pady=0)
 
         # Colocando os botões lado a lado usando grid (CustomTkinter)
-        btn_perfil = ctk.CTkButton(central_frame, text="Perfil", fg_color="#808080", hover_color="#A9A9A9", command=self.Perfil_usuario, font=("Arial", 18, "bold"), width=150, height=50)
+        btn_perfil = ctk.CTkButton(central_frame, text="Perfil", fg_color="#808080", hover_color="#A9A9A9", command=self.Medidas, font=("Arial", 18, "bold"), width=150, height=50)
         btn_perfil.grid(row=0, column=0, pady=(250, 00))
 
 
@@ -293,9 +293,9 @@ class Application(tk.Tk, Funções):
 
         lista_musculos = self.obter_musculatura()
 
-        self.muscuclo_selecionado = ctk.StringVar(value=alunos[0])
+        self.musculo_selecionado = ctk.StringVar(value=lista_musculos[0])
 
-        optionmenu_alunos = ctk.CTkOptionMenu(central_frame, variable=self.aluno_selecionado, values=lista_musculos)
+        optionmenu_alunos = ctk.CTkOptionMenu(central_frame, variable=self.musculo_selecionado, values=lista_musculos)
         optionmenu_alunos.grid(row=1, column=1, padx=10)
 
         avancar_btn = ctk.CTkButton(central_frame, text="Avançar", text_color="white", fg_color="#808080", hover_color="#A9A9A9", command=self.Treinos)

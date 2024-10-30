@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, Numeric, String, Date, ForeignKey
+from sqlalchemy import Column, Integer, Numeric, String, Float, Date, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -34,15 +34,15 @@ class Cliente(Base):
     data_de_nascimento = Column(Date)
     peso = Column(Numeric(precision=5,scale=2))
     altura = Column(Numeric(precision=3,scale=2))
-    braco_direito = Column(Numeric(float))
-    braco_esquerdo = Column(Numeric(float))
-    peitoral = Column(Numeric(float))
-    cintura = Column(Numeric(float))
-    quadril = Column(Numeric(float)) 
-    coxa_direita = Column(Numeric(float))
-    coxa_esquerda = Column(Numeric(float))
-    panturrilha_direita = Column(float)
-    panturrilha_esquerda = Column(float)
+    braco_direito = Column(Numeric(Float))
+    braco_esquerdo = Column(Numeric(Float))
+    peitoral = Column(Numeric(Float))
+    cintura = Column(Numeric(Float))
+    quadril = Column(Numeric(Float)) 
+    coxa_direita = Column(Numeric(Float))
+    coxa_esquerda = Column(Numeric(Float))
+    panturrilha_direita = Column(Float)
+    panturrilha_esquerda = Column(Float)
 
 
     
