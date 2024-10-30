@@ -508,7 +508,7 @@ class Application(tk.Tk, Funções, Treinos):
         exercicios_ombros = [
             {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\elevacao_lateral.jpg", "nome": "Elevação Lateral", "series": 3, "repeticoes": 12},
             {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\desenvolvimento_halteres.jpg", "nome": "Desenvolvimento com Halteres", "series": 3, "repeticoes": 12},
-            {"imagem": r"D:D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\remada_alta_barra.jpg", "nome": "Remada Alta", "series": 3, "repeticoes": 12}
+            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\remada_alta_barra.jpg", "nome": "Remada Alta", "series": 3, "repeticoes": 12}
         ]
 
         # Exercícios de Triceps para o carrossel
@@ -528,13 +528,13 @@ class Application(tk.Tk, Funções, Treinos):
         btn_frame.pack(pady=30)
 
         # Botões para alternar os grupos de exercícios
-        btn_peito = ctk.CTkButton(btn_frame, text="Peito", command=lambda: self.mudar_exercicios("Treino de Peito", exercicios_peito, central_frame), font=("Arial", 18, "bold"))
+        btn_peito = ctk.CTkButton(btn_frame, text="Peito", fg_color="#808080", hover_color="#A9A9A9", command=lambda: self.mudar_exercicios("Treino de Peito", exercicios_peito, central_frame), font=("Arial", 18, "bold"))
         btn_peito.pack(side="left", padx=5)
 
-        btn_peito = ctk.CTkButton(btn_frame, text="Ombros", command=lambda: self.mudar_exercicios("Treino de Ombros", exercicios_ombros, central_frame), font=("Arial", 18, "bold"))
+        btn_peito = ctk.CTkButton(btn_frame, text="Ombros", fg_color="#808080", hover_color="#A9A9A9", command=lambda: self.mudar_exercicios("Treino de Ombros", exercicios_ombros, central_frame), font=("Arial", 18, "bold"))
         btn_peito.pack(side="left", padx=5)
 
-        btn_peito = ctk.CTkButton(btn_frame, text="Triceps", command=lambda: self.mudar_exercicios("Treino de Triceps", exercicios_triceps, central_frame), font=("Arial", 18, "bold"))
+        btn_peito = ctk.CTkButton(btn_frame, text="Triceps", fg_color="#808080", hover_color="#A9A9A9", command=lambda: self.mudar_exercicios("Treino de Triceps", exercicios_triceps, central_frame), font=("Arial", 18, "bold"))
         btn_peito.pack(side="right", padx=5)
 
         # Frame inferior com botão Voltar
@@ -586,10 +586,10 @@ class Application(tk.Tk, Funções, Treinos):
         btn_frame.pack(pady=30)
 
         # Botões para alternar entre os grupos de exercícios
-        btn_costas = ctk.CTkButton(btn_frame, text="Costas", command=lambda: self.mudar_exercicios("Treino de Costas", exercicios_costas, central_frame), font=("Arial", 18, "bold"))
+        btn_costas = ctk.CTkButton(btn_frame, text="Costas", fg_color="#808080", hover_color="#A9A9A9", command=lambda: self.mudar_exercicios("Treino de Costas", exercicios_costas, central_frame), font=("Arial", 18, "bold"))
         btn_costas.pack(side="left", padx=5)
 
-        btn_biceps = ctk.CTkButton(btn_frame, text="Bíceps", command=lambda: self.mudar_exercicios("Treino de Biceps", exercicios_biceps, central_frame), font=("Arial", 18, "bold"))
+        btn_biceps = ctk.CTkButton(btn_frame, text="Bíceps", fg_color="#808080", hover_color="#A9A9A9", command=lambda: self.mudar_exercicios("Treino de Biceps", exercicios_biceps, central_frame), font=("Arial", 18, "bold"))
         btn_biceps.pack(side="right", padx=5)
 
         # Frame inferior com botão Voltar

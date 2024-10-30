@@ -68,10 +68,10 @@ class Funções():
             exibir_imagem()
 
         # Botões de controle
-        btn_anterior = CTkButton(frame, text="⟵ Anterior", command=mostrar_anterior)
+        btn_anterior = CTkButton(frame, text="⟵ Anterior", fg_color="#808080", hover_color="#A9A9A9", command=mostrar_anterior)
         btn_anterior.grid(row=1, column=0, padx=5, pady=5)
 
-        btn_proximo = CTkButton(frame, text="Próximo ⟶", command=mostrar_proximo)
+        btn_proximo = CTkButton(frame, text="Próximo ⟶", fg_color="#808080", hover_color="#A9A9A9", command=mostrar_proximo)
         btn_proximo.grid(row=1, column=2, padx=5, pady=5)
 
         # Exibe a primeira imagem e texto
