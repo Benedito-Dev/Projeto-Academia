@@ -29,39 +29,11 @@ class Application(tk.Tk, Funções, Treinos):
     def menu_inicial(self):
         for widget in self.winfo_children():
             widget.destroy()
-        
-        self.resize_timer = None  # Inicializa o temporizador
 
-        # Função que redimensiona a imagem com atraso para evitar carregamento repetido
-        def update_background_image(event=None):
-            if self.resize_timer:
-                self.after_cancel(self.resize_timer)  # Cancela o temporizador anterior, se existir
-            self.resize_timer = self.after(200, resize_image)
-
-        # Função para redimensionar e atualizar a imagem de fundo
-        def resize_image():
-            new_width = self.winfo_width()
-            new_height = self.winfo_height()
-            resized_image = image.resize((new_width, new_height), Image.LANCZOS)
-            self.bg_photo = ImageTk.PhotoImage(resized_image)
-            bg_label.configure(image=self.bg_photo)
-
-        # Carrega a imagem
-        image = Image.open("Projeto Academia\\img\\Imagens-Inicias\\Img-Login.png")
-        self.bg_photo = ImageTk.PhotoImage(image)
-
-        # Cria um Label para exibir a imagem de fundo
-        bg_label = ctk.CTkLabel(self, image=self.bg_photo, text="")
-        bg_label.place(relwidth=1, relheight=1)
-
-        # Liga o evento para redimensionar a imagem com atraso
-        self.bind("<Configure>", update_background_image)
-
-        self.deiconify()
 
         # Cria um CTkFrame sobre a imagem
         background_frame = ctk.CTkFrame(self, fg_color="#313131", corner_radius=0)
-        background_frame.place(relwidth=0.4, relheight=1)  # Faz o Frame ocupar toda a janela
+        background_frame.pack(fill='both', expand=True)  # Faz o Frame ocupar toda a janela
 
         # Configura o grid do Frame
         background_frame.grid_columnconfigure(0, weight=1)
@@ -112,16 +84,15 @@ class Application(tk.Tk, Funções, Treinos):
         # Imagem
 
         image_path = "Projeto Academia\\img\\Logo.png"
-
         self.logo_image = ctk.CTkImage(light_image=Image.open(image_path), size=(200, 200))  # Ajuste o tamanho da imagem
 
         # Criar um Label para exibir a imagem
         self.label_image = ctk.CTkLabel(background_frame, image=self.logo_image, text="")
-        self.label_image.grid(row=0, column=0, pady=0)
+        self.label_image.grid(row=0, column=0, columnspan=2, padx=(100, 00), pady=0)
 
         # Frame para a borda
         border_frame = ctk.CTkFrame(background_frame, fg_color="#5ce1e6", corner_radius=10)
-        border_frame.grid(row=1, column=0, padx=20, pady=20)
+        border_frame.grid(row=1, column=0, columnspan=5, padx=(90, 00), pady=20)
 
         # Frame para centralizar o conteúdo
         frame = ctk.CTkFrame(border_frame, fg_color="#313131", corner_radius=10)
@@ -167,16 +138,15 @@ class Application(tk.Tk, Funções, Treinos):
         # Imagem
 
         image_path = "Projeto Academia\\img\\Logo.png"
-
         self.logo_image = ctk.CTkImage(light_image=Image.open(image_path), size=(200, 200))  # Ajuste o tamanho da imagem
 
         # Criar um Label para exibir a imagem
         self.label_image = ctk.CTkLabel(background_frame, image=self.logo_image, text="")
-        self.label_image.grid(row=0, column=0, pady=0)
+        self.label_image.grid(row=0, column=0, columnspan=2, padx=(100, 00), pady=0)
 
         # Frame para a borda
         border_frame = ctk.CTkFrame(background_frame, fg_color="#5ce1e6", corner_radius=10)
-        border_frame.grid(row=1, column=0, padx=20, pady=20)
+        border_frame.grid(row=1, column=0, columnspan=5, padx=(90, 00), pady=20)
 
         # Frame para centralizar o conteúdo
         frame = ctk.CTkFrame(border_frame, fg_color="#313131", corner_radius=10)
