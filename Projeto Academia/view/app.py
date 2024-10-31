@@ -23,7 +23,7 @@ class Application(tk.Tk, Funções):
         self.current_page = 0
         self.controler = UsuarioController()
         self.feedback()
-
+  
 # Janelas
 
     def feedback(self):
@@ -34,11 +34,26 @@ class Application(tk.Tk, Funções):
         background_frame = ctk.CTkFrame(self, fg_color="#313131", corner_radius=0)
         background_frame.pack(fill='both', expand=True)
 
+        frame_superior = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=0, height=30)
+        frame_superior.pack(side="top", fill="x", pady=10)
+
         title_label = ctk.CTkLabel(background_frame, text="Feedback", text_color="white", font=("Arial", 24))
         title_label.pack(pady=20)
 
+        log_out = ctk.CTkButton(frame_superior, text=" ⬅ Log Out", text_color="white", fg_color='#ED1B24', hover_color='#242424', font=("Arial", 14, 'bold'), height=20, command=self.realizar_login)
+        log_out.pack(side="right", padx=10) 
+
         border_frame = ctk.CTkFrame(background_frame, fg_color="green", corner_radius=10)
         border_frame.pack(padx=10, pady=10)
+
+        frame_inferior = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=0, height=30)
+        frame_inferior.pack(side="bottom", fill="x", pady=20)
+
+        title = ctk.CTkLabel(frame_superior, text="4 FITNESS", text_color="white", fg_color="#7fd350", font=("Arial", 18, 'bold'))
+        title.pack(side="left", padx=20)
+
+        usuario = ctk.CTkLabel(frame_superior, text="Olá usuário", text_color="white", fg_color="#7fd350", font=("Arial", 21, 'bold'))
+        usuario.pack(side="top", pady=5)
 
         self.feedback_text = ctk.CTkTextbox(border_frame, width=400, height=200, fg_color="#454545", text_color="white")
         self.feedback_text.pack(pady=10, padx=10)
@@ -106,7 +121,7 @@ class Application(tk.Tk, Funções):
         background_frame.grid_rowconfigure(0, weight=0)  # Para centralizar verticalmente
         # Imagem
 
-        image_path = "Projeto Academia\\img\\Logo.png"
+        image_path = "D:\\Users\\Aluno\\Desktop\\kaua\\Senac-UC5\\Projeto Academia\\img\\Logo.png"
 
         self.logo_image = ctk.CTkImage(light_image=Image.open(image_path), size=(150, 150))  # Ajuste o tamanho da imagem
 
