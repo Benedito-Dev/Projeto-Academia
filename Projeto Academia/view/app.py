@@ -2,10 +2,12 @@ import tkinter as tk
 from sqlalchemy import *
 from tkinter import ttk
 import customtkinter as ctk
+from tkinter import messagebox
 from PIL import Image, ImageTk
 from view.funcoes import Funções
 from view.treinos_usuario_view import Treinos
 from controller.controllers import UsuarioController
+
 
 
 
@@ -523,6 +525,16 @@ class Application(tk.Tk, Funções, Treinos):
         self.indice_atual = 0
         self.iniciar_carrossel_imagens("Treino de Peito", central_frame, self.exercicios_atual, 200, 200)
 
+        # Função para exibir a mensagem de conclusão
+        def concluir_treino():
+            messagebox.showinfo(" ", "Treino concluído com sucesso!!")
+            self.Superiores()
+
+        # Criar o botão Finalizar treino, fora da função de mudança de exercícios
+        if not hasattr(self, 'btn_finalizar'):
+            self.btn_finalizar = ctk.CTkButton(central_frame, text="Finalizar treino", fg_color="#32CD32", hover_color="#228B22", command=concluir_treino, font=("Arial", 18, "bold"), width=150, height=50)
+            self.btn_finalizar.grid(column=1, columnspan=2, padx=(0, 150), pady=30)
+
         # Frame para botões de controle
         btn_frame = ctk.CTkFrame(background_frame, fg_color="#313131")
         btn_frame.pack(pady=30)
@@ -582,6 +594,16 @@ class Application(tk.Tk, Funções, Treinos):
         self.indice_atual = 0
         self.iniciar_carrossel_imagens("Treino de Costas", central_frame, self.exercicios_atual, 200, 200)
 
+        # Função para exibir a mensagem de conclusão
+        def concluir_treino():
+            messagebox.showinfo(" ", "Treino concluído com sucesso!!")
+            self.Superiores()
+
+        # Criar o botão Finalizar treino, fora da função de mudança de exercícios
+        if not hasattr(self, 'btn_finalizar'):
+            self.btn_finalizar = ctk.CTkButton(central_frame, text="Finalizar treino", fg_color="#32CD32", hover_color="#228B22", command=concluir_treino, font=("Arial", 18, "bold"), width=150, height=50)
+            self.btn_finalizar.grid(column=1, columnspan=2, padx=(0, 150), pady=30)
+
         btn_frame = ctk.CTkFrame(background_frame, fg_color="#313131")
         btn_frame.pack(pady=30)
 
@@ -598,7 +620,6 @@ class Application(tk.Tk, Funções, Treinos):
 
         btn_voltar = ctk.CTkButton(frame_inferior, text="Voltar", fg_color="#808080", hover_color="#A9A9A9", command=self.Superiores, font=("Arial", 18, "bold"), width=150, height=50)
         btn_voltar.pack(pady=10)
-
 
     def Quadriceps(self):
         # Limpar a janela
@@ -633,6 +654,15 @@ class Application(tk.Tk, Funções, Treinos):
         self.exercicios_atual = exercicios_quadriceps
         self.indice_atual = 0
         self.iniciar_carrossel_imagens("Treino de Quadriceps", central_frame, self.exercicios_atual, 200, 200)
+
+        # Função para exibir a mensagem de conclusão
+        def concluir_treino():
+            messagebox.showinfo(" ", "Treino concluído com sucesso!!")
+            self.Inferiores()
+
+        # Botão Finalizar treino, abaixo da imagem no mesmo frame
+        btn_finalizar = ctk.CTkButton(central_frame, text="Finalizar treino", fg_color="#32CD32", hover_color="#228B22", command=concluir_treino, font=("Arial", 18, "bold"), width=150, height=50)
+        btn_finalizar.grid(column= 1, columnspan= 2, padx=(0,150), pady=30)
 
         # Frame inferior com botão Voltar
         frame_inferior = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=0, height=50)
@@ -675,6 +705,15 @@ class Application(tk.Tk, Funções, Treinos):
         self.exercicios_atual = exercicios_pernas
         self.indice_atual = 0
         self.iniciar_carrossel_imagens("Treino de Perna", central_frame, self.exercicios_atual, 200, 200)
+
+        # Função para exibir a mensagem de conclusão
+        def concluir_treino():
+            messagebox.showinfo(" ", "Treino concluído com sucesso!!")
+            self.Inferiores()
+
+        # Botão Finalizar treino, abaixo da imagem no mesmo frame
+        btn_finalizar = ctk.CTkButton(central_frame, text="Finalizar treino", fg_color="#32CD32", hover_color="#228B22", command=concluir_treino, font=("Arial", 18, "bold"), width=150, height=50)
+        btn_finalizar.grid(column= 1, columnspan= 2, padx=(0,150), pady=30)
 
         # Frame inferior com botão Voltar
         frame_inferior = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=0, height=50)

@@ -84,10 +84,14 @@ class Funções():
         self.exercicios_atual = novos_exercicios
         self.indice_atual = 0
         # Limpa o frame central
+        # Limpa apenas o carrossel, não o botão
         for widget in central_frame.winfo_children():
-            widget.destroy()
+            if widget != self.btn_finalizar:  # Não destrói o botão
+                widget.destroy()
+
         # Reinicia o carrossel de imagens
         self.iniciar_carrossel_imagens(titulo, central_frame, self.exercicios_atual, 200, 200)
+
 
 
     def carregar_perfis(self):
