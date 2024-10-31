@@ -142,6 +142,7 @@ class Funções():
         endereco = self.entry_endereco.get().strip()
         cpf = self.entry_cpf.get().strip()
         data_de_nascimento = self.entry_dataDeNascimento.get().strip()
+        tabela = self.tabela.get()
 
         # Validação do nome (mínimo de 3 letras, apenas caracteres alfabéticos)
         if len(nome) < 3 or not nome.isalpha():
@@ -187,12 +188,12 @@ class Funções():
             return
 
         # Se todos os dados estiverem válidos, prosseguir com a lógica de envio
-        self.enviar_dados(nome=nome, email=email, senha=senha, telefone=telefone, endereco=endereco, cpf=cpf, data_de_nascimento=data_de_nascimento)
+        self.enviar_dados(nome=nome, email=email, senha=senha, telefone=telefone, endereco=endereco, cpf=cpf, data_de_nascimento=data_de_nascimento, tabela=tabela)
 
     # Função para validar a idade do novo usuário
 
-    def enviar_dados(self, nome, email, senha, telefone, endereco, cpf, data_de_nascimento):
-        if self.controler.adicionar_usuario(nome.upper(), email, senha, telefone, endereco, cpf, data_de_nascimento):
+    def enviar_dados(self, nome, email, senha, telefone, endereco, cpf, data_de_nascimento, tabela):
+        if self.controler.adicionar_usuario(nome.upper(), email, senha, telefone, endereco, cpf, data_de_nascimento, tabela):
             self.after(500, self.menu_inicial)
 
 
