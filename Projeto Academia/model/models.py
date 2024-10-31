@@ -34,15 +34,15 @@ class Cliente(Base):
     data_de_nascimento = Column(Date)
     peso = Column(Numeric(precision=5,scale=2))
     altura = Column(Numeric(precision=3,scale=2))
-    braco_direito = Column(Numeric(Float))
-    braco_esquerdo = Column(Numeric(Float))
-    peitoral = Column(Numeric(Float))
-    cintura = Column(Numeric(Float))
-    quadril = Column(Numeric(Float)) 
-    coxa_direita = Column(Numeric(Float))
-    coxa_esquerda = Column(Numeric(Float))
-    panturrilha_direita = Column(Float)
-    panturrilha_esquerda = Column(Float)
+    braco_direito = Column(Numeric(precision=4, scale=1))  # Ex.: 40.5 cm
+    braco_esquerdo = Column(Numeric(precision=4, scale=1))
+    peitoral = Column(Numeric(precision=5, scale=1))  # Ex.: 120.0 cm
+    cintura = Column(Numeric(precision=4, scale=1))  # Ex.: 90.0 cm
+    quadril = Column(Numeric(precision=4, scale=1))  # Ex.: 100.5 cm
+    coxa_direita = Column(Numeric(precision=4, scale=1))  # Ex.: 60.0 cm
+    coxa_esquerda = Column(Numeric(precision=4, scale=1))
+    panturrilha_direita = Column(Numeric(precision=4, scale=1))  # Ex.: 40.0 cm
+    panturrilha_esquerda = Column(Numeric(precision=4, scale=1))
 
 
     

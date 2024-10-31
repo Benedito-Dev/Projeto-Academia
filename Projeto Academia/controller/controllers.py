@@ -48,6 +48,9 @@ class UsuarioController:
 
     def obter_usuario_por_nome(self, nome):
         return self.repository.obter_usuario(nome)
+    
+    def obter_musculatura(self, nome):
+        return self.repository.registros_musculatura(nome=nome)
 
     # Controlador responsável por atualizar um produto
     def atualizar_usuario(self, id, nome, data_de_nascimento, endereco, telefone, email, senha):

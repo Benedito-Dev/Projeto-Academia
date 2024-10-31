@@ -59,22 +59,27 @@ class ClienteRepository():
         except SQLAlchemyError as e:
             print(f"Erro ao buscar usuário: {e}")
 
-    def obter_musculatura(self):
-        if Cliente:
-            return {
-                'Braco Direito': Cliente.braco_direito,
-                'Braco Esquerdo': Cliente.braco_esquerdo,
-                'Peitoral': Cliente.peitoral,
-                'Cintura': Cliente.cintura,
-                'Quadril': Cliente.quadril,
-                'Coxa direita': Cliente.coxa_direita,
-                'Coxa esquerda': Cliente.coxa_esquerda,
-                'Panturrilha direita': Cliente.panturrilha_direita,
-                'Panturrilha esquerda': Cliente.panturrilha_esquerda
-            }
+    def registros_musculatura(self, nome):
+        # Fazendo a consulta para obter as colunas de musculatura do primeiro cliente como exemplo
+        cliente = self.session.query(Cliente).filter_by(nome=nome).first()
         
+        # Obter apenas as colunas de musculatura
+        if cliente:
+            lista_musculos = [
+                Cliente.braco_direito,
+                Cliente.braco_esquerdo,
+                Cliente.peitoral,
+                Cliente.cintura,
+                Cliente.quadril,
+                Cliente.coxa_direita,
+                Cliente.coxa_esquerda,
+                Cliente.panturrilha_direita,
+                Cliente.panturrilha_esquerda
+            ]
+            return lista_musculos
         else:
-            return  print(None), print(1)
+            return []
+    
        
 
     # Função para atualizar um cliente
