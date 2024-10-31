@@ -66,6 +66,25 @@ class UsuarioController:
 
         except Exception as e:
             raise Exception(f"Erro ao atualizar usuário: {e}")
+        
+    def atualizar_medidas(self, id, peso, altura, braco_direito, braco_esquerdo, peitoral, cintura, quadril, coxa_direita, coxa_esquerda, panturrilha_direita, panturrilha_esquerda):
+        try:
+            peso = peso
+            altura = altura
+            braco_direito = braco_direito
+            braco_esquerdo = braco_esquerdo
+            peitoral = peitoral
+            cintura = cintura
+            quadril = quadril
+            coxa_direita = coxa_direita
+            coxa_esquerda = coxa_esquerda
+            panturrilha_direita = panturrilha_direita
+            panturrilha_esquerda = panturrilha_esquerda
+            self.repository.atualizar_medidas_repository(id, peso=peso, altura=altura, braco_direito=braco_direito, braco_esquerdo=braco_esquerdo, peitoral=peitoral, cintura=cintura, quadril=quadril, coxa_direita=coxa_direita, coxa_esquerda=coxa_esquerda, panturrilha_direita=panturrilha_direita, panturrilha_esquerda=panturrilha_esquerda)
+            messagebox.showinfo("Sucesso", "Medidas atualizadas com sucesso")
+
+        except Exception as e:
+            raise Exception(f"Erro ao atualizar as medidas: {e}")
 
     # Controlador responsável por deletar um produto
     def deletar_usuario(self, usuario_id):

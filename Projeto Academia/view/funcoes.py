@@ -234,6 +234,24 @@ class Funções():
     def get_informacao(self, informacao):
         return getattr(self.informacoes, informacao, None)
     
+    def enviar_medidas(self):
+        id_cliente = self.get_informacao("id")
+        
+        novo_peso = self.entry_novo_peso.get() or self.get_informacao("peso")
+        novo_altura = self.entry_novo_peso.get() or self.get_informacao("altura")
+        novo_braco_direito = self.entry_novo_braco_direito.get() or self.get_informacao("braco_direito")
+        novo_braco_esquerdo = self.entry_novo_braco_esquerdo.get() or self.get_informacao("braco_esquerdo")
+        novo_peitoral = self.entry_novo_peitoral.get() or self.get_informacao("peitoral")
+        novo_cintura = self.entry_novo_cintura.get() or self.get_informacao("cintura")
+        novo_quadril = self.entry_novo_quadril.get() or self.get_informacao("quadril")
+        novo_coxa_direita = self.entry_novo_coxa_direita.get() or self.get_informacao("coxa_direita")
+        novo_coxa_esquerda = self.entry_novo_coxa_esquerda.get() or self.get_informacao("coxa_esquerda")
+        novo_panturrilha_direita = self.entry_nova_panturrilha_direita.get() or self.get_informacao("panturrilha_direita")
+        novo_panturrilha_esquerda = self.entry_nova_panturrilha_esquerda.get() or self.get_informacao("panturrilha_esquerda")
+
+        self.controler.atualizar_medidas(id_cliente, novo_peso, novo_altura, novo_braco_direito, novo_braco_esquerdo, novo_peitoral, novo_cintura, novo_quadril, novo_coxa_direita, novo_coxa_esquerda, novo_panturrilha_direita, novo_panturrilha_esquerda)
+        
+    
     def validar_alteracoes(self):
         id_cliente = self.get_informacao("id")  # Renomeado para id_cliente para maior clareza
 
@@ -277,7 +295,7 @@ class Funções():
 
         # Chamada para salvar alterações
         self.salvar_alterações(id_cliente, novo_nome, novo_email, nova_senha, novo_telefone, novo_endereco, nova_data_de_nascimento)
-
+    
     def salvar_alterações(self, id, nome, email, senha, telefone, endereco, data_de_nascimento):
         if not data_de_nascimento:
             messagebox.showerror("Erro", "Data de nascimento inválida")

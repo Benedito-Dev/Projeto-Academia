@@ -94,9 +94,19 @@ class ClienteRepository():
             if not data_de_nascimento:
                 raise ValueError("Data de nascimento não pode estar vazia")
             cliente.data_de_nascimento = data_de_nascimento
-        
-            self.session.commit()
 
+    def atualizar_medidas_repository(self, cliente_id, braco_direito, braco_esquerda, peitoral, quadril, cintura, coxa_direita, coxa_esquerda, panturrilha_direita, panturrilha_esquerda):
+        cliente = self.session.query(Cliente).filter_by(cliente_id).first()
+        if cliente:
+            cliente.braco_direito = braco_direito
+            cliente.braco_esquerdo = braco_esquerda
+            cliente.peitoral = peitoral
+            cliente.quadril = quadril
+            cliente.cintura = cintura
+            cliente.coxa_direita = coxa_direita
+            cliente.coxa_esquerda = coxa_esquerda
+            cliente.panturrilha_direita = panturrilha_direita
+            cliente.panturrilha_esquerda = panturrilha_esquerda
     # Função para deletar um cliente
     def deletar_cliente(self, cliente_id):
         cliente = self.session.query(Cliente).get(cliente_id)

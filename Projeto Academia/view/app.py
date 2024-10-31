@@ -296,30 +296,37 @@ class Application(tk.Tk, Funções):
         Musculos = ctk.CTkLabel(central_frame, text="Músculos:", text_color="white", font=('Arial', 14))
         Musculos.grid(row=1, column=0, pady=10, padx=10)
 
+        
+
         # Exibindo a lista de músculos no OptionMenu
         if lista_musculos:
             self.musculo_selecionado = ctk.StringVar(value=str(lista_musculos[0]))
             optionmenu_alunos = ctk.CTkOptionMenu(central_frame, variable=self.musculo_selecionado, values=[str(m) for m in lista_musculos])
             optionmenu_alunos.grid(row=1, column=1, padx=10)
+            label_musculo = ctk.CTkEntry(central_frame, placeholder_text="Medida do Musculo", text_color="black")
+            label_musculo.grid(row=1, column=2)
+
+            def update_placeholder(*args):
+                label_musculo.configure(placeholder_text=self.get_informacao(self.musculo_selecionado.get()))
+
+            # Conectando a função à StringVar para que seja chamada sempre que o valor mudar
+            self.musculo_selecionado.trace_add("write", update_placeholder)
         else:
             vazio_label = ctk.CTkLabel(central_frame, text="Nenhuma musculatura encontrada", text_color="red", font=('Arial', 14))
             vazio_label.grid(row=1, column=1, padx=10)
 
-        while True:
-            print(self.musculo_selecionado)
+        avancar_btn = ctk.CTkButton(
+            central_frame,
+            text="Avançar",
+            text_color="white",
+            fg_color="#808080",
+            hover_color="#A9A9A9",
+            command=lambda: self.enviar_medidas() )
+        avancar_btn.grid(row=2, column=0, columnspan=2, pady=5)
 
-        # avancar_btn = ctk.CTkButton(central_frame, text="Avançar", text_color="white", fg_color="#808080", hover_color="#A9A9A9", command=self.musculo_selecionado.get())
-        # avancar_btn.grid(row=2, column=0, columnspan=2, pady=5)
-
-        # # Frame inferior (usando CustomTkinter)
-        # frame_inferior = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=0, height=30)
-        # frame_inferior.pack(side="bottom", fill="x", pady=10)
-
-
-
-
-        
-
+        # Frame inferior (usando CustomTkinter)
+        frame_inferior = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=0, height=30)
+        frame_inferior.pack(side="bottom", fill="x", pady=10)
 
 
     def Treinos(self):
