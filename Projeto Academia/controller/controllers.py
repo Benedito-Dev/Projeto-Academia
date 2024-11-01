@@ -69,7 +69,8 @@ class UsuarioController:
         
     def atualizar_medidas(self, id, musculo_selecionado, medida):
         try:
-            self.repository.enviando_medidas(id=id, musculo=musculo_selecionado, medida=medida)
+            if self.repository.enviando_medidas(id=id, musculo=musculo_selecionado, medida=medida):
+                messagebox.showinfo("Sucesso", f"Medida atualizada com sucesso")
         except Exception as e:
             messagebox.showerror("Erro", f"O erro e {e}")
 

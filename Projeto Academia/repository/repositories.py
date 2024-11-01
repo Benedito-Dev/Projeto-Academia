@@ -96,9 +96,19 @@ class ClienteRepository():
             cliente.data_de_nascimento = data_de_nascimento
 
     def enviando_medidas(self, id, musculo, medida):
-        print(id)
-        print(musculo)
-        print(medida)
+        cliente = self.session.query(Cliente).filter_by(id=id).first()
+        if cliente:
+            try:
+                # Use setattr para atualizar o atributo dinamicamente
+                setattr(cliente, musculo, medida)
+                self.session.commit()  # Salvar as alterações no banco de dados
+                return True
+            except Exception as e:
+                self.session.rollback()  # Reverter em caso de erro
+                print(f"Erro: {e}")
+        else:
+            print("Cliente não encontrado")
+            
 
     # Função para deletar um cliente
     def deletar_cliente(self, cliente_id):
