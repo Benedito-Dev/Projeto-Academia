@@ -296,18 +296,16 @@ class Application(tk.Tk, Funções):
         Musculos = ctk.CTkLabel(central_frame, text="Músculos:", text_color="white", font=('Arial', 14))
         Musculos.grid(row=1, column=0, pady=10, padx=10)
 
-        
-
         # Exibindo a lista de músculos no OptionMenu
         if lista_musculos:
             self.musculo_selecionado = ctk.StringVar(value=str(lista_musculos[0]))
             optionmenu_alunos = ctk.CTkOptionMenu(central_frame, variable=self.musculo_selecionado, values=[str(m) for m in lista_musculos])
             optionmenu_alunos.grid(row=1, column=1, padx=10)
-            label_musculo = ctk.CTkEntry(central_frame, placeholder_text="Medida do Musculo", text_color="black")
-            label_musculo.grid(row=1, column=2)
+            self.entry_musculo = ctk.CTkEntry(central_frame, placeholder_text="Medida do Musculo", text_color="white")
+            self.entry_musculo.grid(row=1, column=2)
 
             def update_placeholder(*args):
-                label_musculo.configure(placeholder_text=self.get_informacao(self.musculo_selecionado.get()))
+                self.entry_musculo.configure(placeholder_text=self.get_informacao(self.musculo_selecionado.get()))
 
             # Conectando a função à StringVar para que seja chamada sempre que o valor mudar
             self.musculo_selecionado.trace_add("write", update_placeholder)
@@ -321,7 +319,8 @@ class Application(tk.Tk, Funções):
             text_color="white",
             fg_color="#808080",
             hover_color="#A9A9A9",
-            command=lambda: self.enviar_medidas() )
+            command=lambda: self.enviar_medidas(self.musculo_selecionado.get()) # Chama ambas as funções
+        )
         avancar_btn.grid(row=2, column=0, columnspan=2, pady=5)
 
         # Frame inferior (usando CustomTkinter)

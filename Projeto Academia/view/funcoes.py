@@ -1,4 +1,5 @@
 import tkinter as tk
+from time import sleep
 import re
 from tkinter import ttk
 from tkinter import messagebox
@@ -234,22 +235,10 @@ class Funções():
     def get_informacao(self, informacao):
         return getattr(self.informacoes, informacao, None)
     
-    def enviar_medidas(self):
+    def enviar_medidas(self, musculo):
         id_cliente = self.get_informacao("id")
-        
-        novo_peso = self.entry_novo_peso.get() or self.get_informacao("peso")
-        novo_altura = self.entry_novo_peso.get() or self.get_informacao("altura")
-        novo_braco_direito = self.entry_novo_braco_direito.get() or self.get_informacao("braco_direito")
-        novo_braco_esquerdo = self.entry_novo_braco_esquerdo.get() or self.get_informacao("braco_esquerdo")
-        novo_peitoral = self.entry_novo_peitoral.get() or self.get_informacao("peitoral")
-        novo_cintura = self.entry_novo_cintura.get() or self.get_informacao("cintura")
-        novo_quadril = self.entry_novo_quadril.get() or self.get_informacao("quadril")
-        novo_coxa_direita = self.entry_novo_coxa_direita.get() or self.get_informacao("coxa_direita")
-        novo_coxa_esquerda = self.entry_novo_coxa_esquerda.get() or self.get_informacao("coxa_esquerda")
-        novo_panturrilha_direita = self.entry_nova_panturrilha_direita.get() or self.get_informacao("panturrilha_direita")
-        novo_panturrilha_esquerda = self.entry_nova_panturrilha_esquerda.get() or self.get_informacao("panturrilha_esquerda")
-
-        self.controler.atualizar_medidas(id_cliente, novo_peso, novo_altura, novo_braco_direito, novo_braco_esquerdo, novo_peitoral, novo_cintura, novo_quadril, novo_coxa_direita, novo_coxa_esquerda, novo_panturrilha_direita, novo_panturrilha_esquerda)
+        nova_medida = self.entry_musculo.get() or self.get_informacao(musculo)
+        self.controler.atualizar_medidas(id=id_cliente, musculo_selecionado=musculo, medida=nova_medida)
         
     
     def validar_alteracoes(self):
