@@ -2,7 +2,7 @@ import tkinter as tk
 from sqlalchemy import *
 from tkinter import ttk
 import customtkinter as ctk
-from PIL import Image, ImageTk
+from PIL import Image, ImageOps
 from view.funcoes import Funções
 from view.treinos_usuario_view import Treinos
 from controller.controllers import UsuarioController
@@ -145,8 +145,27 @@ class Application(tk.Tk, Funções, Treinos):
         frame.grid(padx=10, pady=10)
 
         # Título
-        title = ctk.CTkLabel(frame, text="Realizar cadastro", text_color="white",font=("Arial", 20))
-        title.grid(row=0, column=1, pady=10)
+        title = ctk.CTkLabel(frame, text="Realizar cadastro", text_color="white", font=("Arial", 20, 'italic'))
+        title.grid(row=0, column=1, pady=(15, 20), padx=(5, 00))
+
+        icon_path = "Projeto Academia\\img\\icons\\halter.png"
+        icon = Image.open(icon_path)
+
+        # Espelhe a imagem horizontalmente
+        imagem_espelhada = ImageOps.mirror(icon)
+
+        # Converta a imagem para um formato compatível com CustomTkinter
+        imagem_ctk = ctk.CTkImage(imagem_espelhada, size=(30, 30))
+
+        logo_image = ctk.CTkImage(light_image=Image.open(icon_path), size=(30, 30))  # Ajuste o tamanho da imagem
+
+        # Halter
+        label_image = ctk.CTkLabel(frame, image=logo_image, text="")
+        label_image.grid(row=0, column=0, pady=10, padx=(90, 00))
+
+        #halter Invertido
+        label_image = ctk.CTkLabel(frame, image=imagem_ctk, text="")
+        label_image.grid(row=0, column=2, pady=10, padx=(00, 100))
 
         # Nome
         nome_emoji = ctk.CTkLabel(frame, text="👤", text_color="white", font=("Arial", 16))
