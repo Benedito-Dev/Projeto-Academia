@@ -133,14 +133,14 @@ class Application(tk.Tk, Funções, Treinos):
         background_frame.grid_rowconfigure(0, weight=0)  # Para centralizar verticalmente
 
         image_path = "Projeto Academia\\img\\Logo.png"
-        self.logo_image = ctk.CTkImage(light_image=Image.open(image_path), size=(150, 150))  # Ajuste o tamanho da imagem
+        self.logo_image = ctk.CTkImage(light_image=Image.open(image_path), size=(120, 120))  # Ajuste o tamanho da imagem
 
         # Criar um Label para exibir a imagem
         self.label_image = ctk.CTkLabel(background_frame, image=self.logo_image, text="")
-        self.label_image.grid(row=1, column=0, pady=(10, 0))
+        self.label_image.grid(row=1, column=0, pady=(00, 0))
 
         border_frame = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=10)
-        border_frame.grid(row=2, column=0, padx=20, pady=20)
+        border_frame.grid(row=2, column=0, padx=20, pady=00)
         
         # Frame para centralizar o conteúdo
         frame = ctk.CTkFrame(border_frame, fg_color="#313131",corner_radius=10)
