@@ -155,10 +155,14 @@ class Application(tk.Tk, Funções, Treinos):
         self.entry_nome.grid(row=1, column=1, pady=5)
 
         # Email
+        email_emoji = ctk.CTkLabel(frame, text="📧", text_color="white", font=("Arial", 16))
+        email_emoji.grid(row=2, column=0, padx=(60, 00))
         self.entry_email = ctk.CTkEntry(frame, placeholder_text="Email")
         self.entry_email.grid(row=2, column=1, pady=5)
 
         # Senha
+        senha_emoji = ctk.CTkLabel(frame, text="🔒", text_color="white", font=("Arial", 16))
+        senha_emoji.grid(row=3, column=0, padx=(60, 00))
         self.entry_senha = ctk.CTkEntry(frame, show="*", placeholder_text="Senha")
         self.entry_senha.grid(row=3, column=1, pady=5)
 
@@ -195,6 +199,8 @@ class Application(tk.Tk, Funções, Treinos):
         btn_abrir_calendario.grid(row=7, column=2,padx=10)
 
         #Codigo Administrador
+        codigo_emoji = ctk.CTkLabel(frame, text="🔑", text_color="white", font=("Arial", 16))
+        codigo_emoji.grid(row=8, column=0, padx=(60, 00))
         self.entry_codigo_de_administrador = ctk.CTkEntry(frame, placeholder_text="Codigo de Admin")
         self.entry_codigo_de_administrador.grid(row=8, column=1, pady=5)
 
