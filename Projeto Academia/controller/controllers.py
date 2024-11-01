@@ -20,6 +20,8 @@ class UsuarioController:
             if id > 0:
                 if tabela == 'instrutor':
                     messagebox.showinfo("Sucesso",  f"Cadastro realizado com sucesso!, O Codigo Adm do seu intrutor é {id}")
+                elif tabela == "administrador":
+                    messagebox.showinfo("Sucesso", f"Cadastro realizado! O seu código adm é {id}")
                 else:
                     messagebox.showinfo("Sucesso", "Cadastro realizado com sucesso!")
                 return True
@@ -40,6 +42,10 @@ class UsuarioController:
                 elif self.repository.validar_login(nome, senha) == 'instrutor':
                     messagebox.showinfo("Sucesso", "Login Efetuado")
                     return 'instrutor'
+                
+                elif self.repository.validar_login(nome, senha) == 'administrador':
+                    messagebox.showinfo("Sucesso", "Login Efetuado")
+                    return 'administrador'
                 else :
                     messagebox.showerror("Erro", "Login Não encontrado")
             except Exception as e:

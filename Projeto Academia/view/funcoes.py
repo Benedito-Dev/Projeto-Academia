@@ -271,6 +271,12 @@ class Funções():
             self.instrutor = True
             self.after(500, self.Home)
 
+            
+        elif usuario == 'administrador':
+            self.nome_usuario = nome.capitalize()
+            self.senha_usuario = senha.capitalize()
+            self.administrador = True
+            self.after(500, self.Home)
         else:
             pass
     

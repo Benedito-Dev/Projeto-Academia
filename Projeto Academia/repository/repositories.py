@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.exc import SQLAlchemyError
-from model.models import Base, Cliente, Instrutores
+from model.models import Base, Cliente, Instrutores, Administradores
 from config.config import Config
 
 class ClienteRepository():
@@ -44,6 +44,19 @@ class ClienteRepository():
             )
             self.session.add(novo_cliente)
             self.session.commit()
+        if tabela == 'administrador':
+            novo_cliente = Administradores(
+                nome=nome,
+                email=email,
+                senha=senha,
+                telefone=telefone,
+                endereco=endereco,
+                cpf=cpf,
+                data_de_nascimento=data_de_nascimento,
+            )
+            self.session.add(novo_cliente)
+            self.session.commit()
+
         return novo_cliente.id
 
     def validar_login(self, nome, senha):
@@ -51,10 +64,13 @@ class ClienteRepository():
             # Busca o cliente com o nome e senha fornecidos
             cliente = self.session.query(Cliente).filter_by(nome=nome, senha=senha).one_or_none()
             instrutor = self.session.query(Instrutores).filter_by(nome=nome, senha=senha).one_or_none()
+            admin = self.session.query(Administradores).filter_by(nome=nome, senha=senha).one_or_none()
             if cliente:
                 return 'cliente'
             elif instrutor:
                 return 'instrutor'
+            elif admin:
+                return 'administrador'
             else:
                 return False
         except NoResultFound:
@@ -67,6 +83,8 @@ class ClienteRepository():
     # Buscar instrutores
     def obter_instrutores(self):
         return self.session.query(Instrutores).all()
+    def obter_administradores(self):
+        return self.session.query(Administradores).all()
 
     def obter_usuario(self, nome):
         try:
