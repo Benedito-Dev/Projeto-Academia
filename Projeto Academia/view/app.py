@@ -137,7 +137,7 @@ class Application(tk.Tk, Funções, Treinos):
 
         # Criar um Label para exibir a imagem
         self.label_image = ctk.CTkLabel(background_frame, image=self.logo_image, text="")
-        self.label_image.grid(row=1, column=0, pady=(60, 0))
+        self.label_image.grid(row=1, column=0, pady=(10, 0))
 
         border_frame = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=10)
         border_frame.grid(row=2, column=0, padx=20, pady=20)
