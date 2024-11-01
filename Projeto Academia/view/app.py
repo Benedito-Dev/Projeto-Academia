@@ -195,8 +195,8 @@ class Application(tk.Tk, Funções, Treinos):
         self.entry_dataDeNascimento = ctk.CTkEntry(frame, placeholder_text="DD/MM/YYYY")
         self.entry_dataDeNascimento.grid(row=7, column=1, pady=5)
 
-        btn_abrir_calendario = ttk.Button(frame, text="Escolher data", command=self.abrir_calendario)
-        btn_abrir_calendario.grid(row=7, column=2,padx=10)
+        btn_abrir_calendario = ctk.CTkButton(frame, text="Escolher data", command=self.abrir_calendario)
+        btn_abrir_calendario.grid(row=7, column=2, padx=5)
 
         #Codigo Administrador
         codigo_emoji = ctk.CTkLabel(frame, text="🔑", text_color="white", font=("Arial", 16))
@@ -206,21 +206,49 @@ class Application(tk.Tk, Funções, Treinos):
 
         self.tabela = ctk.StringVar(value="usuario")
 
-        Opção_1 = ctk.CTkRadioButton(frame, text="Usuario", variable=self.tabela, value="usuario")
-        Opção_1.grid(row=9, column=0, padx=2, pady=15)
+        # Ajustes estéticos para RadioButton no CustomTkinter
+        Opção_1 = ctk.CTkRadioButton(
+            frame,
+            text="Usuário",
+            variable=self.tabela,
+            value="usuario",
+            font=("Arial", 14),
+            text_color="white",
+            hover_color="#7fd350",  # Cor ao passar o mouse
+            fg_color="#5ce1e6"      # Cor de seleção para contraste com o fundo
+        )
+        Opção_1.grid(row=9, column=0, padx=(10, 10), pady=(10, 10))
 
-        Opção_2 = ctk.CTkRadioButton(frame, text="instrutor", variable=self.tabela, value="instrutor")
-        Opção_2.grid(row=9, column=1, padx=2, pady=15)
+        Opção_2 = ctk.CTkRadioButton(
+            frame,
+            text="Instrutor",
+            variable=self.tabela,
+            value="instrutor",
+            font=("Arial", 14),
+            text_color="white",
+            hover_color="#7fd350",
+            fg_color="#5ce1e6"
+        )
+        Opção_2.grid(row=9, column=1, padx=(10, 10), pady=(10, 10))
 
-        Opção_3 = ctk.CTkRadioButton(frame, text="administrador", variable=self.tabela, value="administrador")
-        Opção_3.grid(row=9, column=2, padx=(2, 15), pady=15)
+        Opção_3 = ctk.CTkRadioButton(
+            frame,
+            text="Administrador",
+            variable=self.tabela,
+            value="administrador",
+            font=("Arial", 14),
+            text_color="white",
+            hover_color="#7fd350",
+            fg_color="#5ce1e6"
+        )
+        Opção_3.grid(row=9, column=2, padx=(10, 10), pady=(10, 10))
         
 
         # Botão Cadastrar-se
-        ctk.CTkButton(frame,text="Cadastrar-se",fg_color="#609746", hover_color="#A9A9A9", command=self.validar_dados).grid(row=10,column=1,pady=10)
+        ctk.CTkButton(frame,text="Cadastrar-se",fg_color="#808080", hover_color="#A9A9A9", font=("Arial", 18), command=self.validar_dados).grid(row=10,column=1,pady=10)
 
         # Botão Voltar
-        ctk.CTkButton(frame, text="Voltar",fg_color="#808080", hover_color="#A9A9A9", command=self.realizar_login).grid(row=11, column=1,pady=10)
+        ctk.CTkButton(frame, text="Voltar",fg_color="#808080", hover_color="#A9A9A9", font=("Arial", 18), command=self.realizar_login).grid(row=11, column=1,pady=10)
 
 
     def Home(self):
