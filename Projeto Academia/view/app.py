@@ -96,19 +96,21 @@ class Application(tk.Tk, Funções, Treinos):
         titulo.grid(row=0, column=0, columnspan=2, pady=10)
 
         # Nome do usuário
-        ctk.CTkLabel(frame, text="Nome:", text_color="white", font=("Arial", 14)).grid(row=1, column=0, sticky="e", padx=10)
+        nome_emoji = ctk.CTkLabel(frame, text="👤", text_color="white", font=("Arial", 16))
+        nome_emoji.grid(row=1, column=0, padx=(10, 00))
         self.entry_nome = ctk.CTkEntry(frame, placeholder_text="Nome")
         self.entry_nome.grid(row=1, column=1, pady=5, padx=20)
 
         # Senha
-        ctk.CTkLabel(frame, text="Senha:", text_color="white", font=("Arial", 14)).grid(row=2, column=0, sticky="e", padx=10)
-        self.entry_senha = ctk.CTkEntry(frame, show="*", placeholder_text="Senha")
+        senha_emoji = ctk.CTkLabel(frame, text="🔒", text_color="white", font=("Arial", 16))
+        senha_emoji.grid(row=2, column=0, padx=(10, 00))
+        self.entry_senha = ctk.CTkEntry(frame, placeholder_text="Senha", show="*")
         self.entry_senha.grid(row=2, column=1, pady=5, padx=20)
 
         # Checkbutton para mostrar senha
         self.check_senha = ctk.IntVar()
         check = ctk.CTkCheckBox(frame, text="Mostrar senha", text_color="white", variable=self.check_senha, command=self.Exibir_senha)
-        check.grid(row=3, column=0, columnspan=2, pady=5)
+        check.grid(row=3, column=1, columnspan=2, pady=5)
 
         # Botão de validar
         ctk.CTkButton(frame, text="Acessar", font=("Arial", 18), width=160, fg_color="#808080", hover_color="#A9A9A9", command=self.validando_login).grid(row=4, column=0, columnspan=2, pady=10)

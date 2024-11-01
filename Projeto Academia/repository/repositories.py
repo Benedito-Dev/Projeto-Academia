@@ -17,19 +17,34 @@ class ClienteRepository():
         Base.metadata.create_all(self.engine)
 
     # Função para cadastrar um novo cliente
-    def cadastrar_cliente(self, nome, email, senha, telefone, endereco, cpf, data_de_nascimento):
-        novo_cliente = Cliente(
-            nome=nome,
-            email=email,
-            senha=senha,
-            telefone=telefone,
-            endereco=endereco,
-            cpf=cpf,
-            data_de_nascimento=data_de_nascimento
-        )
-        self.session.add(novo_cliente)
-        self.session.commit()
-        return True
+    def cadastrar_usuario(self, nome, email, senha, telefone, endereco, cpf, data_de_nascimento, codigo_adm, tabela):
+        if tabela == 'usuario':
+            novo_cliente = Cliente(
+                nome=nome,
+                email=email,
+                senha=senha,
+                telefone=telefone,
+                endereco=endereco,
+                cpf=cpf,
+                data_de_nascimento=data_de_nascimento,
+                instrutor_id = codigo_adm
+            )
+            self.session.add(novo_cliente)
+            self.session.commit()
+        if tabela == 'instrutor':
+            novo_cliente = Instrutores(
+                nome=nome,
+                email=email,
+                senha=senha,
+                telefone=telefone,
+                endereco=endereco,
+                cpf=cpf,
+                data_de_nascimento=data_de_nascimento,
+                administrador_id = codigo_adm
+            )
+            self.session.add(novo_cliente)
+            self.session.commit()
+        return novo_cliente.id
 
     def validar_login(self, nome, senha):
         try:
