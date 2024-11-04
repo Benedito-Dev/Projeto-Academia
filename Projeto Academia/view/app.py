@@ -1095,7 +1095,7 @@ class Application(tk.Tk, Funções):
 
         # Botão de salvar alterações
         botao_salvar = ctk.CTkButton(frame_verde, text="Salvar alterações", fg_color="#000000", text_color="#00ff00", font=botao_font, command=self.validar_alteracoes)
-        botao_salvar.grid(row=8, column=1, pady=15)
+        botao_salvar.grid(row=9, column=1, pady=15)
 
         botao_medidas = ctk.CTkButton(frame_verde,text="Alterar medidas", command=self.Medidas, fg_color="#000000", text_color="#FF0000")
-        botao_medidas.grid(row=7, column=2, pady=15)
+        botao_medidas.grid(row=8, column=1, pady=15)
