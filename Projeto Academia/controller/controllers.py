@@ -10,18 +10,27 @@ class UsuarioController:
         self.repository.init_db()
 
     # Controlador responsável por criar um produto
-    def adicionar_usuario(self, nome, email, senha, telefone, endereco, cpf, data_de_nascimento):
+    def adicionar_usuario(self, nome, email, senha, telefone, endereco, cpf, data_de_nascimento, codigo_adm, tabela):
         # Convertendo data de nascimento para formato Correto
         data_de_nascimento = datetime.strptime(data_de_nascimento, '%d/%m/%Y').date()
         try:
             # Mudado de self.db para self.controler
-            if self.repository.cadastrar_cliente(nome, email, senha, telefone, endereco, cpf, data_de_nascimento):
-                messagebox.showinfo("Sucesso", "Cadastro realizado com sucesso!")
+            id = self.repository.cadastrar_usuario(nome, email, senha, telefone, endereco, cpf, data_de_nascimento, codigo_adm, tabela)
+
+            if id > 0:
+                if tabela == 'instrutor':
+                    messagebox.showinfo("Sucesso",  f"Cadastro realizado com sucesso!, O Codigo Adm do seu intrutor é {id}")
+                elif tabela == "administrador":
+                    messagebox.showinfo("Sucesso", f"Cadastro realizado! O seu código adm é {id}")
+                else:
+                    messagebox.showinfo("Sucesso", "Cadastro realizado com sucesso!")
                 return True
+                
             else:
-                messagebox.showerror("Erro", f"Erro ao cadastrar usuário: {e}")
+                messagebox.showerror("Erro", "Erro ao cadastrar usuário: ID retornado é inválido.")
+
         except Exception as e:
-            messagebox.showerror("Erro", f"Erro ao cadastrar usuário: {e}")
+            messagebox.showerror("Erro", f"Erro ao cadastrar-se usuário: {e}")
 
     def fazer_login(self, nome, senha):
         # Chama a função validar_login do repository
@@ -33,6 +42,10 @@ class UsuarioController:
                 elif self.repository.validar_login(nome, senha) == 'instrutor':
                     messagebox.showinfo("Sucesso", "Login Efetuado")
                     return 'instrutor'
+                
+                elif self.repository.validar_login(nome, senha) == 'administrador':
+                    messagebox.showinfo("Sucesso", "Login Efetuado")
+                    return 'administrador'
                 else :
                     messagebox.showerror("Erro", "Login Não encontrado")
             except Exception as e:
