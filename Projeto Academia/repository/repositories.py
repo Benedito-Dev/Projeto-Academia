@@ -98,9 +98,13 @@ class ClienteRepository():
 
     def consultar_cpf(self, cpf):
         cliente = self.session.query(Cliente).filter_by(cpf=cpf).first()
+        if cliente == False:
+            cliente = self.session.query(Instrutores).filter_by(cpf=cpf).first()
         return cliente  # Retorna o cliente ou None
     
     def consultar_email(self,email):
         cliente = self.session.query(Cliente).filter_by(email=email).first()
+        if cliente == False:
+            cliente = self.session.query(Instrutores).filter_by(email=email).first()
         return cliente
     
