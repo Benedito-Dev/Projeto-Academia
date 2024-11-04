@@ -9,8 +9,6 @@ from tkinter import messagebox
 from tkinter import font
 from controller.controllers import UsuarioController
 
-
-
 # Configurações do CustomTkinter
 ctk.set_appearance_mode("Dark")
 ctk.set_default_color_theme("blue")
@@ -233,7 +231,7 @@ class Application(tk.Tk, Funções):
         self.label_image_perfil.grid(row=0, column=0, pady=0)
 
         # Colocando os botões lado a lado usando grid (CustomTkinter)
-        btn_perfil = ctk.CTkButton(central_frame, text="Perfil", fg_color="#808080", hover_color="#A9A9A9", command=self.Medidas, font=("Arial", 18, "bold"), width=150, height=50)
+        btn_perfil = ctk.CTkButton(central_frame, text="Perfil", fg_color="#808080", hover_color="#A9A9A9", command=self.Perfil_usuario, font=("Arial", 18, "bold"), width=150, height=50)
         btn_perfil.grid(row=0, column=0, pady=(250, 00))
 
 
@@ -1031,10 +1029,16 @@ class Application(tk.Tk, Funções):
         background_frame.grid_columnconfigure(1, weight=1)
         background_frame.grid_rowconfigure(0, weight=1)  # Para centralizar verticalmente
         background_frame.grid_rowconfigure(6, weight=1)  # Espaço na parte inferior
+
+        # frame_superior = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=0, height=30)
+        # frame_superior.pack(side="top", fill="x", pady=10)
         
         # Criando o frame verde
         frame_verde = ctk.CTkFrame(background_frame, fg_color="#313131", corner_radius=10, border_color="green", border_width=7)
         frame_verde.grid(row=1, column=0, columnspan=2, padx=40, pady=40)  # Aumentei o padding
+
+        # frame_inferior = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=0,height=30)
+        # frame_inferior.pack(side="bottom", fill="x", pady=10)
 
         # Criando a fonte Nunito
         nunito_font = ("Nunito", 12)  # Fonte um pouco maior
@@ -1092,3 +1096,6 @@ class Application(tk.Tk, Funções):
         # Botão de salvar alterações
         botao_salvar = ctk.CTkButton(frame_verde, text="Salvar alterações", fg_color="#000000", text_color="#00ff00", font=botao_font, command=self.validar_alteracoes)
         botao_salvar.grid(row=8, column=1, pady=15)
+
+        botao_medidas = ctk.CTkButton(frame_verde,text="Alterar medidas", command=self.Medidas, fg_color="#000000", text_color="#FF0000")
+        botao_medidas.grid(row=7, column=2, pady=15)
