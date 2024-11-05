@@ -541,14 +541,18 @@ class Application(tk.Tk, Funções, Treinos):
         btn_peito.pack(side="right", padx=5)
 
 
+
+    # Novo frame para o botão "Finalizar treino" abaixo dos botões de controle
+        finalizar_frame = ctk.CTkFrame(background_frame, fg_color="#313131")
+        finalizar_frame.pack(pady=10)
+
         def concluir_treino():
-            messagebox.showinfo(" ", "Treino concluído com sucesso!!")
+            messagebox.showinfo(" ", "De hoje tá pago!🦾")
             self.Superiores()
 
-        # Botão Finalizar treino, abaixo da imagem no mesmo frame
-        btn_finalizar = ctk.CTkButton(central_frame, text="Finalizar treino", fg_color="#32CD32", hover_color="#228B22", command=concluir_treino, font=("Arial", 18, "bold"), width=150, height=50)
-        btn_finalizar.grid(column= 1, columnspan= 2, padx=(0,150), pady=30)
-        
+        # Botão Finalizar treino
+        btn_finalizar = ctk.CTkButton(finalizar_frame, text="Finalizar treino", fg_color="#32CD32", hover_color="#228B22", command=concluir_treino, font=("Arial", 18, "bold"), width=150, height=50)
+        btn_finalizar.pack()
 
         # Frame inferior com botão Voltar
         frame_inferior = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=0, height=50)
@@ -606,13 +610,17 @@ class Application(tk.Tk, Funções, Treinos):
         btn_biceps = ctk.CTkButton(btn_frame, text="Bíceps", fg_color="#808080", hover_color="#A9A9A9", command=lambda: self.mudar_exercicios("Treino de Biceps", exercicios_biceps, central_frame), font=("Arial", 18, "bold"))
         btn_biceps.pack(side="right", padx=5)
 
+       # Novo frame para o botão "Finalizar treino" abaixo dos botões de controle
+        finalizar_frame = ctk.CTkFrame(background_frame, fg_color="#313131")
+        finalizar_frame.pack(pady=10)
+
         def concluir_treino():
-            messagebox.showinfo(" ", "Treino concluído com sucesso!!")
+            messagebox.showinfo(" ", "De hoje tá pago!🦾")
             self.Superiores()
 
-        # Botão Finalizar treino, abaixo da imagem no mesmo frame
-        btn_finalizar = ctk.CTkButton(central_frame, text="Finalizar treino", fg_color="#32CD32", hover_color="#228B22", command=concluir_treino, font=("Arial", 18, "bold"), width=150, height=50)
-        btn_finalizar.grid(column= 1, columnspan= 2, padx=(0,150), pady=30)
+        # Botão Finalizar treino
+        btn_finalizar = ctk.CTkButton(finalizar_frame, text="Finalizar treino", fg_color="#32CD32", hover_color="#228B22", command=concluir_treino, font=("Arial", 18, "bold"), width=150, height=50)
+        btn_finalizar.pack()
 
         # Frame inferior com botão Voltar
         frame_inferior = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=0, height=50)
@@ -643,12 +651,12 @@ class Application(tk.Tk, Funções, Treinos):
 
         # Caminhos das imagens do treino
         exercicios_quadriceps = [
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\agachamento_frontal.webp", "nome": "Agachamento Frontal", "series": 3, "repeticoes": 12},
+            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\agachamento_frontal.gif", "nome": "Agachamento Frontal", "series": 3, "repeticoes": 12},
             {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\agachamento_smith.gif", "nome": "Agachamento no Smith", "series": 3, "repeticoes": 10},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\avanco.webp", "nome": "Avanço", "series": 3, "repeticoes": 15},
+            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\avanco.gif", "nome": "Avanço", "series": 3, "repeticoes": 15},
             {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\extensao_pernas.gif", "nome": "Extensão de Pernas", "series": 4, "repeticoes": 12},
             {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\leg_press.gif", "nome": "Leg Press", "series": 4, "repeticoes": 10},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\step_up.webp", "nome": "Step Up", "series": 3, "repeticoes": 12}
+            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\step_up.gif", "nome": "Step Up", "series": 3, "repeticoes": 12}
         ]
 
         # Inicializar o carrossel de imagens
@@ -658,7 +666,7 @@ class Application(tk.Tk, Funções, Treinos):
 
         # Função para exibir a mensagem de conclusão
         def concluir_treino():
-            messagebox.showinfo(" ", "Treino concluído com sucesso!!")
+            messagebox.showinfo(" ", "De hoje tá pago!🦾")
             self.Inferiores()
 
         # Botão Finalizar treino, abaixo da imagem no mesmo frame
@@ -709,7 +717,7 @@ class Application(tk.Tk, Funções, Treinos):
 
         # Função para exibir a mensagem de conclusão
         def concluir_treino():
-            messagebox.showinfo(" ", "Treino concluído com sucesso!!")
+            messagebox.showinfo(" ", "De hoje tá pago!🦾")
             self.Inferiores()
 
         # Botão Finalizar treino, abaixo da imagem no mesmo frame
