@@ -786,7 +786,7 @@ class Application(tk.Tk, Funções, Treinos):
 
         notificaoes_selecionada = ctk.StringVar(value=notificacoes[0])
 
-        optionmenu_notificacoes = ctk.CTkOptionMenu(frame, variable=notificaoes_selecionada, values=notificacoes)
+        optionmenu_notificacoes = ctk.CTkOptionMenu(frame, variable=notificaoes_selecionada, values=notificacoes, fg_color="#808080")
         optionmenu_notificacoes.grid(row=1, column=1, padx=10)
 
         # Label Idioma
@@ -797,7 +797,7 @@ class Application(tk.Tk, Funções, Treinos):
 
         idioma_selecionado = ctk.StringVar(value=idiomas[0])
 
-        optionmenu_idioma = ctk.CTkOptionMenu(frame,variable=idioma_selecionado,values=idiomas)
+        optionmenu_idioma = ctk.CTkOptionMenu(frame,variable=idioma_selecionado,values=idiomas, fg_color="#808080")
         optionmenu_idioma.grid(row=2, column=1, padx=10)   
 
         # Label Unidade de Medida
@@ -808,7 +808,7 @@ class Application(tk.Tk, Funções, Treinos):
 
         unidade_selecionada = ctk.StringVar(value=unidades[0])
         
-        optionmenu_unidade = ctk.CTkOptionMenu(frame,variable=unidade_selecionada,values=unidades)
+        optionmenu_unidade = ctk.CTkOptionMenu(frame,variable=unidade_selecionada,values=unidades, fg_color="#808080")
         optionmenu_unidade.grid(row=3, column=1, padx=10)
 
         # Label Frequência
@@ -818,7 +818,7 @@ class Application(tk.Tk, Funções, Treinos):
         Frequencias = ["5 Dias na semana", "3 Dias na semana", "4 Dias na semana"]
 
         Frequencia_var = ctk.StringVar(value=Frequencias[0])  
-        optionmenu_frequencia = ctk.CTkOptionMenu(frame,variable=Frequencia_var, values=Frequencias)
+        optionmenu_frequencia = ctk.CTkOptionMenu(frame,variable=Frequencia_var, values=Frequencias, fg_color="#808080")
         optionmenu_frequencia.grid(row=4, column=1, padx=10)
 
         # Label Meta
@@ -828,14 +828,14 @@ class Application(tk.Tk, Funções, Treinos):
         Metas = ["Ganho de Massa", "Hipertrofia", "Perda de Peso"]
 
         Meta_var = ctk.StringVar(value=Metas[0])  
-        optionmenu_meta = ctk.CTkOptionMenu(frame, variable=Meta_var, values=Metas)
+        optionmenu_meta = ctk.CTkOptionMenu(frame, variable=Meta_var, values=Metas, fg_color="#808080")
         optionmenu_meta.grid(row=5, column=1, padx=10)
 
         # Botão Cadastrar-se
-        ctk.CTkButton(frame, text="Salvar Alterações",fg_color="#696767", command=self.Home).grid(row=6, column=0, columnspan=5, pady=10, padx=20)
+        ctk.CTkButton(frame, text="Salvar Alterações",fg_color="#696767", hover_color="#A9A9A9", command=self.Home).grid(row=6, column=0, columnspan=5, pady=10, padx=20)
         
         # Botão Voltar
-        ctk.CTkButton(frame, text="Voltar", fg_color="#696767",command=self.Home).grid(row=7, column=0, columnspan=5, pady=10)
+        ctk.CTkButton(frame, text="Voltar", fg_color="#696767", hover_color="#A9A9A9", command=self.Home).grid(row=7, column=0, columnspan=5, pady=10)
 
 
     def Perfil_usuario(self):

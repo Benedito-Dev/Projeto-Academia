@@ -90,33 +90,6 @@ class Funções():
         # Reinicia o carrossel de imagens
         self.iniciar_carrossel_imagens(titulo, central_frame, self.exercicios_atual, 200, 200)
 
-
-
-    def iniciar_carrossel_imagens_gif(self, nome, frame, exercicios, largura, altura):
-        exercicio = exercicios[self.indice_atual]
-        caminho_imagem = exercicio["imagem"]
-
-        # Carrega a imagem
-        img = Image.open(caminho_imagem)
-
-        # Verifica se a imagem é um GIF
-        if caminho_imagem.endswith(".gif"):
-            # Armazena os quadros do GIF
-            self.frames = [CTkImage(img.copy().resize((largura, altura))) for img in ImageSequence.Iterator(img)]
-
-            # Certifique-se de que a label já foi criada e empacotada
-            self.image_label.pack()
-
-            # Função para atualizar o GIF
-            def update_gif(frame_index=0):
-                self.image_label.configure(image=self.frames[frame_index])
-                self.after(100, update_gif, (frame_index + 1) % len(self.frames))
-
-            update_gif()  # Inicia a animação
-        else:
-            # Se não for um GIF, use a lógica da função original
-            self.iniciar_carrossel_imagens(nome, frame, exercicios, largura, altura)
-
             
     def carregar_perfis(self):
         try:
