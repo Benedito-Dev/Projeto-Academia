@@ -2,7 +2,7 @@ import tkinter as tk
 import re
 from tkinter import ttk
 from customtkinter import CTkLabel, CTkButton, CTkFrame
-from PIL import Image, ImageTk
+from PIL import Image, ImageTk, ImageSequence
 from tkinter import messagebox
 from tkcalendar import Calendar
 from datetime import datetime, date
@@ -27,13 +27,14 @@ class Funções():
         # Carrega as imagens e informações dos exercícios
         imagens_carregadas = [
             {
-                "imagem": ImageTk.PhotoImage(Image.open(ex["imagem"]).resize((largura, altura))),
+                "imagem": [ImageTk.PhotoImage(frame.copy().resize((largura, altura))) for frame in ImageSequence.Iterator(Image.open(ex["imagem"]))],
                 "nome": ex["nome"],
                 "series": ex["series"],
                 "repeticoes": ex["repeticoes"]
             } for ex in exercicios
         ]
         index = 0
+        frame_index = 0  # Índice do quadro atual do GIF
 
         #Label para exibir titulo do exericios
         label_titulo = CTkLabel(frame, text=titulo, text_color="white", font=("Arial", 22, 'bold'))
@@ -42,7 +43,7 @@ class Funções():
         border_frame = CTkFrame(frame, fg_color="#7fd350", corner_radius=10)
         border_frame.grid(row=1, column=1)
 
-        # Label para exibir a imagem no carrossel
+        # Label para exibir o GIF no carrossel
         label_imagem = CTkLabel(border_frame, text="")
         label_imagem.grid(row=0, column=1, padx=10, pady=10)
 
@@ -50,11 +51,22 @@ class Funções():
         label_texto = CTkLabel(frame, text="", text_color="white", font=("Arial", 16, 'bold'))
         label_texto.grid(row=3, column=1, pady=10)
 
+        # Função para atualizar o GIF
+        def atualizar_gif():
+            nonlocal frame_index
+            exercicio_atual = imagens_carregadas[index]
+            label_imagem.configure(image=exercicio_atual["imagem"][frame_index])
+            frame_index = (frame_index + 1) % len(exercicio_atual["imagem"])
+            self.after(100, atualizar_gif)  # Atualiza o GIF a cada 100ms (ajuste conforme necessário)
+
+
         # Função para exibir a imagem e o texto atual
         def exibir_imagem():
+            nonlocal frame_index
+            frame_index = 0  # Reseta o quadro ao mudar de exercício
             exercicio_atual = imagens_carregadas[index]
-            label_imagem.configure(image=exercicio_atual["imagem"])
             label_texto.configure(text=f"{exercicio_atual['nome']}: {exercicio_atual['series']} séries de {exercicio_atual['repeticoes']} repetições")
+            atualizar_gif()
 
         # Funções para controle do carrossel
         def mostrar_proximo():

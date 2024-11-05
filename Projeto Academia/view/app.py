@@ -704,10 +704,10 @@ class Application(tk.Tk, Funções, Treinos):
         # Caminhos das imagens do treino
         exercicios_pernas = [
             {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\afundo_halteres.gif", "nome": "Afundo com Halteres", "series": 3, "repeticoes": 12},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\agachamento_sumo.webp", "nome": "Agachamento Sumo", "series": 3, "repeticoes": 10},
+            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\agachamento_sumo.gif", "nome": "Agachamento Sumo", "series": 3, "repeticoes": 10},
             {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\levantamento_quadril.gif", "nome": "Levantamento de Quadril", "series": 4, "repeticoes": 12},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\pernas-na-maquina.webp", "nome": "Pernas na Máquina", "series": 3, "repeticoes": 10},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\stiff.webp", "nome": "Stiff", "series": 3, "repeticoes": 12}
+            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\pernas-na-maquina.gif", "nome": "Pernas na Máquina", "series": 3, "repeticoes": 10},
+            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\stiff.gif", "nome": "Stiff", "series": 3, "repeticoes": 12}
         ]
 
         # Inicializar o carrossel de imagens
