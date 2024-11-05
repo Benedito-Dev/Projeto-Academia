@@ -29,6 +29,9 @@ class Application(tk.Tk, Funções, Treinos):
         for widget in self.winfo_children():
             widget.destroy()
         
+        self.instrutor = False
+        self.administrador = False
+        
         background_frame = ctk.CTkFrame(self, fg_color="#313131", corner_radius=0)
         background_frame.pack(fill='both', expand=True)
 
@@ -65,9 +68,10 @@ class Application(tk.Tk, Funções, Treinos):
         # Remove widgets existentes
         for widget in self.winfo_children():
             widget.destroy()
-        
-        self.instrutor = False
 
+        self.instrutor = False
+        self.administrador = False
+        
         # Criação do frame de fundo
         background_frame = ctk.CTkFrame(self, fg_color="#313131", corner_radius=0)
         background_frame.pack(fill='both', expand=True)
@@ -118,10 +122,6 @@ class Application(tk.Tk, Funções, Treinos):
         ctk.CTkButton(frame, text="Voltar", font=("Arial", 18), width=160, fg_color="#808080", hover_color="#A9A9A9", command=self.menu_inicial).grid(row=6, column=0, columnspan=2, pady=10)
 
 
-    
-      
-
-
     def Home(self):
         for widget in self.winfo_children():
             widget.destroy()
@@ -162,26 +162,20 @@ class Application(tk.Tk, Funções, Treinos):
         btn_perfil.grid(row=0, column=0, pady=(250, 00))
 
 
-        image_path = "D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Home\\Treinos.png"
-
-        self.logo_image_treinos = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
-
-        # Criar um Label para exibir a imagem
-        self.label_image_treinos = ctk.CTkLabel(central_frame, image=self.logo_image_treinos, text="")
-        self.label_image_treinos.grid(row=0, column=1, pady=0)
-        image_path = "D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Cadastrar\\btn_cadastrar.png"
-        self.label_image_cadastrar = ctk.CTkImage(light_image=Image.open(image_path), size=(210, 198))
-        self.label_image_cadastrar = ctk.CTkLabel(central_frame, image=self.label_image_cadastrar, text="")
-        self.label_image_cadastrar.grid(row=0, column=3, pady=0)
-        
-        if self.administrador:
+        if self.instrutor or self.administrador:
             # Botão de criar conta
+            image_path = "D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Cadastrar\\btn_cadastrar.png"
+            self.label_image_cadastrar = ctk.CTkImage(light_image=Image.open(image_path), size=(210, 198))
+            self.label_image_cadastrar = ctk.CTkLabel(central_frame, image=self.label_image_cadastrar, text="")
+            self.label_image_cadastrar.grid(row=0, column=3, pady=0)
             ctk.CTkButton(central_frame, text="Cadastrar", font=("Arial", 18), width=160, height=50, fg_color="#808080",  hover_color="#A9A9A9", command=self.cadastrar_cliente).grid(row=0, column=3, pady=(250, 00))
-        
-        if self.instrutor:
-            btn_treinos = ctk.CTkButton(central_frame, text="Treinos", fg_color="#808080", hover_color="#A9A9A9", command=self.Treinos_instrutor, font=("Arial", 18, "bold"), width=150, height=50)
-            btn_treinos.grid(row=0, column=1, pady=(250, 00))
+
         else:
+
+            image_path = "D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Home\\Treinos.png"
+            self.logo_image_treinos = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
+            self.label_image_treinos = ctk.CTkLabel(central_frame, image=self.logo_image_treinos, text="")
+            self.label_image_treinos.grid(row=0, column=1, pady=0)
             btn_treinos = ctk.CTkButton(central_frame, text="Treinos", fg_color="#808080", hover_color="#A9A9A9", command=self.Treinos, font=("Arial", 18, "bold"), width=150, height=50)
             btn_treinos.grid(row=0, column=1, pady=(250, 00))
 
@@ -306,50 +300,65 @@ class Application(tk.Tk, Funções, Treinos):
         self.entry_codigo_de_administrador.grid(row=8, column=1, pady=5)
 
         self.tabela = ctk.StringVar(value="usuario")
-
-        # Ajustes estéticos para RadioButton no CustomTkinter
-        Opção_1 = ctk.CTkRadioButton(
-            frame,
-            text="Usuário",
-            variable=self.tabela,
-            value="usuario",
-            font=("Arial", 14),
-            text_color="white",
-            hover_color="#7fd350",  # Cor ao passar o mouse
-            fg_color="#5ce1e6"      # Cor de seleção para contraste com o fundo
+        print(self.instrutor)
+        if self.instrutor:                
+            # Ajustes estéticos para RadioButton no CustomTkinter
+            Opção_1 = ctk.CTkRadioButton(
+                frame,
+                text="Usuário",
+                variable=self.tabela,
+                value="usuario",
+                font=("Arial", 14),
+                text_color="white",
+                hover_color="#7fd350",  # Cor ao passar o mouse
+                fg_color="#5ce1e6"      # Cor de seleção para contraste com o fundo
         )
-        Opção_1.grid(row=9, column=0, padx=(10, 10), pady=(10, 10))
-
-        Opção_2 = ctk.CTkRadioButton(
-            frame,
-            text="Instrutor",
-            variable=self.tabela,
-            value="instrutor",
-            font=("Arial", 14),
-            text_color="white",
-            hover_color="#7fd350",
-            fg_color="#5ce1e6"
+            Opção_1.grid(row=9, column=1, padx=(10, 10), pady=(10, 10))
+        else:
+            # Ajustes estéticos para RadioButton no CustomTkinter
+            Opção_1 = ctk.CTkRadioButton(
+                frame,
+                text="Usuário",
+                variable=self.tabela,
+                value="usuario",
+                font=("Arial", 14),
+                text_color="white",
+                hover_color="#7fd350",  # Cor ao passar o mouse
+                fg_color="#5ce1e6"      # Cor de seleção para contraste com o fundo
         )
-        Opção_2.grid(row=9, column=1, padx=(10, 10), pady=(10, 10))
+            Opção_1.grid(row=9, column=0, padx=(10, 10), pady=(10, 10))     
 
-        Opção_3 = ctk.CTkRadioButton(
-            frame,
-            text="Administrador",
-            variable=self.tabela,
-            value="administrador",
-            font=("Arial", 14),
-            text_color="white",
-            hover_color="#7fd350",
-            fg_color="#5ce1e6"
-        )
-        Opção_3.grid(row=9, column=2, padx=(10, 10), pady=(10, 10))
+
+            Opção_2 = ctk.CTkRadioButton(
+                frame,
+                text="Instrutor",
+                variable=self.tabela,
+                value="instrutor",
+                font=("Arial", 14),
+                text_color="white",
+                hover_color="#7fd350",
+                fg_color="#5ce1e6"
+            )
+            Opção_2.grid(row=9, column=1, padx=(10, 10), pady=(10, 10))
+
+            Opção_3 = ctk.CTkRadioButton(
+                frame,
+                text="Administrador",
+                variable=self.tabela,
+                value="administrador",
+                font=("Arial", 14),
+                text_color="white",
+                hover_color="#7fd350",
+                fg_color="#5ce1e6"
+            )
+            Opção_3.grid(row=9, column=2, padx=(10, 10), pady=(10, 10))
         
 
         # Botão Cadastrar-se
         ctk.CTkButton(frame,text="Cadastrar-se",fg_color="#808080", hover_color="#A9A9A9", font=("Arial", 18), command=self.validar_dados).grid(row=10,column=1,pady=10)
 
         # Botão Voltar
-        ctk.CTkButton(frame, text="Voltar",fg_color="#808080", hover_color="#A9A9A9", font=("Arial", 18), command=self.realizar_login).grid(row=11, column=1,pady=10)
+        ctk.CTkButton(frame, text="Voltar",fg_color="#808080", hover_color="#A9A9A9", font=("Arial", 18), command=self.Home).grid(row=11, column=1,pady=10)
 
     def Treinos_instrutor(self):
         for widget in self.winfo_children():
