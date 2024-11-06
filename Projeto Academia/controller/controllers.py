@@ -48,6 +48,9 @@ class UsuarioController:
 
     def obter_usuario_por_nome(self, nome):
         return self.repository.obter_usuario(nome)
+    
+    def obter_musculatura(self, nome):
+        return self.repository.registros_musculatura(nome=nome)
 
     # Controlador responsável por atualizar um produto
     def atualizar_usuario(self, id, nome, data_de_nascimento, endereco, telefone, email, senha):
@@ -63,6 +66,13 @@ class UsuarioController:
 
         except Exception as e:
             raise Exception(f"Erro ao atualizar usuário: {e}")
+        
+    def atualizar_medidas(self, id, musculo_selecionado, medida):
+        try:
+            if self.repository.enviando_medidas(id=id, musculo=musculo_selecionado, medida=medida):
+                messagebox.showinfo("Sucesso", f"Medida atualizada com sucesso")
+        except Exception as e:
+            messagebox.showerror("Erro", f"O erro e {e}")
 
     # Controlador responsável por deletar um produto
     def deletar_usuario(self, usuario_id):
