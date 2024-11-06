@@ -502,23 +502,23 @@ class Application(tk.Tk, Funções, Treinos):
 
         # Exercícios de Peito para o carrossel
         exercicios_peito = [
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\supino reto.jpg", "nome": "Supino Reto", "series": 3, "repeticoes": 15},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\crucifixo inclinado.jpg", "nome": "Crucifixo Inclinado", "series": 3, "repeticoes": 15},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\crossover-musculos-.jpg", "nome": "Crossover", "series": 3, "repeticoes": 12}
+            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\supino reto.gif", "nome": "Supino Reto", "series": 3, "repeticoes": 15},
+            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\crucifixo inclinado.gif", "nome": "Crucifixo Inclinado", "series": 3, "repeticoes": 15},
+            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\crossover-musculos.gif", "nome": "Crossover", "series": 3, "repeticoes": 12}
         ]
 
         # Exercícios de Ombros para o carrossel
         exercicios_ombros = [
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\elevacao_lateral.jpg", "nome": "Elevação Lateral", "series": 3, "repeticoes": 12},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\desenvolvimento_halteres.jpg", "nome": "Desenvolvimento com Halteres", "series": 3, "repeticoes": 12},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\remada_alta_barra.jpg", "nome": "Remada Alta", "series": 3, "repeticoes": 12}
+            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\elevacao_lateral.gif", "nome": "Elevação Lateral", "series": 3, "repeticoes": 12},
+            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\desenvolvimento_halteres.gif", "nome": "Desenvolvimento com Halteres", "series": 3, "repeticoes": 12},
+            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\remada_alta_barra.gif", "nome": "Remada Alta", "series": 3, "repeticoes": 12}
         ]
 
         # Exercícios de Triceps para o carrossel
         exercicios_triceps = [
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\mergulho_bancos.jpg", "nome": "Mergulho Bancos", "series": 3, "repeticoes": 15},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\triceps_polia.jfif", "nome": "triceps polia", "series": 3, "repeticoes": 15},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\triceps_testa.png", "nome": "triceps testa", "series": 3, "repeticoes": 12}
+            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\mergulho_bancos.gif", "nome": "Mergulho Banco", "series": 3, "repeticoes": 15},
+            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\triceps_polia.gif", "nome": "Tríceps Polia", "series": 3, "repeticoes": 15},
+            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\triceps_testa.gif", "nome": "Tríceps Testa", "series": 3, "repeticoes": 12}
         ]
 
         # Inicializar o carrossel de imagens com título "Treino de Peito e Ombros"
@@ -583,15 +583,15 @@ class Application(tk.Tk, Funções, Treinos):
 
         # Caminhos das imagens do treino
         exercicios_costas = [
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Costas\\puxada.png", "nome": "Puxada", "series": 3, "repeticoes": 12},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Costas\\remada_curvada.jpg", "nome": "Remada Curvada", "series": 3, "repeticoes": 10},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Costas\\levantamento_terra.jpg", "nome": "Levantamento Terra", "series": 4, "repeticoes": 8}
+            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Costas\\puxada.gif", "nome": "Puxada", "series": 3, "repeticoes": 12},
+            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Costas\\remada_curvada.gif", "nome": "Remada Curvada", "series": 3, "repeticoes": 10},
+            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Costas\\levantamento_terra.gif", "nome": "Levantamento Terra", "series": 4, "repeticoes": 8}
         ]
 
         exercicios_biceps = [
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_concentrada.jfif", "nome": "Rosca Concentrada", "series": 3, "repeticoes": 12},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_direta_barra.png", "nome": "Rosca Direta", "series": 3, "repeticoes": 10},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_martelo.jfif", "nome": "Rosca", "series": 4, "repeticoes": 8}
+            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_concentrada.gif", "nome": "Rosca Concentrada", "series": 3, "repeticoes": 12},
+            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_direta_barra.gif", "nome": "Rosca Direta", "series": 3, "repeticoes": 10},
+            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_martelo.gif", "nome": "Rosca Martelo", "series": 4, "repeticoes": 8}
         ]
 
         # Inicializar o carrossel de imagens
@@ -704,7 +704,7 @@ class Application(tk.Tk, Funções, Treinos):
         # Caminhos das imagens do treino
         exercicios_pernas = [
             {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\afundo_halteres.gif", "nome": "Afundo com Halteres", "series": 3, "repeticoes": 12},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\agachamento_sumo.gif", "nome": "Agachamento Sumo", "series": 3, "repeticoes": 10},
+            {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\agachamento_sumo.gif", "nome": "Agachamento Sumô", "series": 3, "repeticoes": 10},
             {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\levantamento_quadril.gif", "nome": "Levantamento de Quadril", "series": 4, "repeticoes": 12},
             {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\pernas-na-maquina.gif", "nome": "Pernas na Máquina", "series": 3, "repeticoes": 10},
             {"imagem": r"D:\\Users\\Aluno\\Documents\\Mika\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\stiff.gif", "nome": "Stiff", "series": 3, "repeticoes": 12}
