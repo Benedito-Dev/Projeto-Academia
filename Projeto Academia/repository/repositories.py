@@ -59,6 +59,29 @@ class ClienteRepository():
         except SQLAlchemyError as e:
             print(f"Erro ao buscar usuário: {e}")
 
+    def registros_musculatura(self, nome):
+        # Fazendo a consulta para obter as colunas de musculatura do primeiro cliente como exemplo
+        cliente = self.session.query(Cliente).filter_by(nome=nome).first()
+        
+        # Obter apenas as colunas de musculatura
+        if cliente:
+            lista_musculos = [
+                Cliente.braco_direito,
+                Cliente.braco_esquerdo,
+                Cliente.peitoral,
+                Cliente.cintura,
+                Cliente.quadril,
+                Cliente.coxa_direita,
+                Cliente.coxa_esquerda,
+                Cliente.panturrilha_direita,
+                Cliente.panturrilha_esquerda
+            ]
+            return lista_musculos
+        else:
+            return []
+    
+       
+
     # Função para atualizar um cliente
     def atualizar_cliente(self, cliente_id, nome, email, senha, telefone, endereco, data_de_nascimento):
         cliente = self.session.query(Cliente).get(cliente_id)
@@ -71,8 +94,21 @@ class ClienteRepository():
             if not data_de_nascimento:
                 raise ValueError("Data de nascimento não pode estar vazia")
             cliente.data_de_nascimento = data_de_nascimento
-        
-            self.session.commit()
+
+    def enviando_medidas(self, id, musculo, medida):
+        cliente = self.session.query(Cliente).filter_by(id=id).first()
+        if cliente:
+            try:
+                # Use setattr para atualizar o atributo dinamicamente
+                setattr(cliente, musculo, medida)
+                self.session.commit()  # Salvar as alterações no banco de dados
+                return True
+            except Exception as e:
+                self.session.rollback()  # Reverter em caso de erro
+                print(f"Erro: {e}")
+        else:
+            print("Cliente não encontrado")
+            
 
     # Função para deletar um cliente
     def deletar_cliente(self, cliente_id):

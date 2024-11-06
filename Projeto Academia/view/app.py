@@ -9,8 +9,6 @@ from tkinter import messagebox
 from tkinter import font
 from controller.controllers import UsuarioController
 
-
-
 # Configurações do CustomTkinter
 ctk.set_appearance_mode("Dark")
 ctk.set_default_color_theme("blue")
@@ -261,6 +259,70 @@ class Application(tk.Tk, Funções):
 
         # Frame inferior (usando CustomTkinter)
         frame_inferior = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=0,height=30)
+        frame_inferior.pack(side="bottom", fill="x", pady=10)
+
+    def Medidas(self):
+        for widget in self.winfo_children():
+            widget.destroy()
+
+        self.puxar_informacoes()
+
+       # Criando Fundo com CustomTkinter
+        background_frame = ctk.CTkFrame(self, fg_color="#313131", corner_radius=0)
+        background_frame.pack(fill="both", expand=True)
+
+        # Frame superior com o título e plano (usando CustomTkinter)
+        frame_superior = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=0, height=30)
+        frame_superior.pack(side="top", fill="x", pady=10)
+
+        title = ctk.CTkLabel(frame_superior, text="4 FITNESS", text_color="white", fg_color="#7fd350", font=("Arial", 18, 'bold'))
+        title.pack(side="left", padx=20)
+
+        home_button = ctk.CTkButton(frame_superior, text="🏠 Home", font=("Arial", 14, 'bold'), text_color="white", height=20 ,command=self.Home)
+        home_button.pack(side="right", padx=10)
+
+        plano_label = ctk.CTkLabel(frame_superior, text=f"Plano Intermediário, Olá Instrutor {self.nome_usuario}", text_color="white", fg_color="#7fd350", font=("Arial", 18, 'bold'))
+        plano_label.pack(side="top")
+
+        # Obter a lista de musculaturas do banco de dados
+        lista_musculos = ['peso','altura','braco_direito','braco_esquerdo','peitoral','cintura','quadril','coxa_direita','coxa_esquerda','panturrilha_direita','panturrilha_esquerda']
+
+        # Frame central para os botões (usando CustomTkinter)
+        central_frame = ctk.CTkFrame(background_frame, fg_color="#313131")
+        central_frame.place(relx=0.5, rely=0.45, anchor=ctk.CENTER)  # Centralizando o frame
+
+        Musculos = ctk.CTkLabel(central_frame, text="Músculos:", text_color="white", font=('Arial', 14))
+        Musculos.grid(row=1, column=0, pady=10, padx=10)
+
+        # Exibindo a lista de músculos no OptionMenu
+        if lista_musculos:
+            self.musculo_selecionado = ctk.StringVar(value=str(lista_musculos[0]))
+            optionmenu_alunos = ctk.CTkOptionMenu(central_frame, variable=self.musculo_selecionado, values=[str(m) for m in lista_musculos])
+            optionmenu_alunos.grid(row=1, column=1, padx=10)
+            self.entry_musculo = ctk.CTkEntry(central_frame, placeholder_text="Medida do Musculo", text_color="white")
+            self.entry_musculo.grid(row=1, column=2)
+
+            def update_placeholder(*args):
+                self.entry_musculo.configure(placeholder_text=self.get_informacao(self.musculo_selecionado.get()))
+
+            # Conectando a função à StringVar para que seja chamada sempre que o valor mudar
+            self.musculo_selecionado.trace_add("write", update_placeholder)
+        else:
+            vazio_label = ctk.CTkLabel(central_frame, text="Nenhuma musculatura encontrada", text_color="red", font=('Arial', 14))
+            vazio_label.grid(row=1, column=1, padx=10)
+
+        avancar_btn = ctk.CTkButton(
+            central_frame,
+            text="Avançar",
+            text_color="white",
+            fg_color="#808080",
+            hover_color="#A9A9A9",
+            command=lambda: self.enviar_medidas(self.musculo_selecionado.get()) # Chama ambas as funções
+        )
+        avancar_btn.grid(row=2, column=0, columnspan=2, pady=5)
+
+        # Frame inferior (usando CustomTkinter)
+        frame_inferior = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=0, height=30)
         frame_inferior.pack(side="bottom", fill="x", pady=10)
 
 
@@ -967,10 +1029,16 @@ class Application(tk.Tk, Funções):
         background_frame.grid_columnconfigure(1, weight=1)
         background_frame.grid_rowconfigure(0, weight=1)  # Para centralizar verticalmente
         background_frame.grid_rowconfigure(6, weight=1)  # Espaço na parte inferior
+
+        # frame_superior = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=0, height=30)
+        # frame_superior.pack(side="top", fill="x", pady=10)
         
         # Criando o frame verde
         frame_verde = ctk.CTkFrame(background_frame, fg_color="#313131", corner_radius=10, border_color="green", border_width=7)
         frame_verde.grid(row=1, column=0, columnspan=2, padx=40, pady=40)  # Aumentei o padding
+
+        # frame_inferior = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=0,height=30)
+        # frame_inferior.pack(side="bottom", fill="x", pady=10)
 
         # Criando a fonte Nunito
         nunito_font = ("Nunito", 12)  # Fonte um pouco maior
@@ -1027,4 +1095,7 @@ class Application(tk.Tk, Funções):
 
         # Botão de salvar alterações
         botao_salvar = ctk.CTkButton(frame_verde, text="Salvar alterações", fg_color="#000000", text_color="#00ff00", font=botao_font, command=self.validar_alteracoes)
-        botao_salvar.grid(row=8, column=1, pady=15)
+        botao_salvar.grid(row=9, column=1, pady=15)
+
+        botao_medidas = ctk.CTkButton(frame_verde,text="Alterar medidas", command=self.Medidas, fg_color="#000000", text_color="#FF0000")
+        botao_medidas.grid(row=8, column=1, pady=15)

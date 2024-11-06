@@ -1,4 +1,5 @@
 import tkinter as tk
+from time import sleep
 import re
 from tkinter import ttk
 from tkinter import messagebox
@@ -234,6 +235,12 @@ class Funções():
     def get_informacao(self, informacao):
         return getattr(self.informacoes, informacao, None)
     
+    def enviar_medidas(self, musculo):
+        id_cliente = self.get_informacao("id")
+        nova_medida = self.entry_musculo.get() or self.get_informacao(musculo)
+        self.controler.atualizar_medidas(id=id_cliente, musculo_selecionado=musculo, medida=nova_medida)
+        
+    
     def validar_alteracoes(self):
         id_cliente = self.get_informacao("id")  # Renomeado para id_cliente para maior clareza
 
@@ -277,7 +284,7 @@ class Funções():
 
         # Chamada para salvar alterações
         self.salvar_alterações(id_cliente, novo_nome, novo_email, nova_senha, novo_telefone, novo_endereco, nova_data_de_nascimento)
-
+    
     def salvar_alterações(self, id, nome, email, senha, telefone, endereco, data_de_nascimento):
         if not data_de_nascimento:
             messagebox.showerror("Erro", "Data de nascimento inválida")
