@@ -229,7 +229,7 @@ class Application(tk.Tk, Funções, Treinos):
 
         # Frame central para os botões (usando CustomTkinter)
         central_frame = ctk.CTkFrame(background_frame, fg_color="#313131")
-        central_frame.place(relx=0.5, rely=0.45, anchor=ctk.CENTER)  # Centralizando o frame
+        central_frame.place(relx=0.50, rely=0.45, anchor=ctk.CENTER)  # Centralizando o frame
 
         #Imagem Perfil
 
@@ -248,8 +248,8 @@ class Application(tk.Tk, Funções, Treinos):
 
         if self.instrutor or self.administrador:
             # Botão de criar conta
-            image_path = "Projeto Academia\\img\\Cadastrar\\btn_cadastrar.png"
-            self.label_image_cadastrar = ctk.CTkImage(light_image=Image.open(image_path), size=(210, 198))
+            image_path = "Projeto Academia\\img\\Home\\btn_cadastrar.png"
+            self.label_image_cadastrar = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))
             self.label_image_cadastrar = ctk.CTkLabel(central_frame, image=self.label_image_cadastrar, text="")
             self.label_image_cadastrar.grid(row=0, column=3, pady=0)
             ctk.CTkButton(central_frame, text="Cadastrar", font=("Arial", 18), width=160, height=50, fg_color="#808080",  hover_color="#A9A9A9", command=self.cadastrar_cliente).grid(row=0, column=3, pady=(250, 00))
