@@ -15,6 +15,8 @@ class Funções():
     def __init__(self):
         self.controler = UsuarioController()
 
+    def pre_cadastramento_administrador(self):
+        self.controler.pre_cadastrando_admin()
 
     def Exibir_senha(self):
         if self.check_senha.get() == 1:
@@ -287,6 +289,11 @@ class Funções():
             self.instrutor = True
             self.after(500, self.Home)
 
+        elif usuario == 'administrador':
+            self.nome_usuario = nome.capitalize()
+            self.senha_usuario = senha.capitalize()
+            self.administrador = True
+            self.after(500, self.Home)
         else:
             pass
     

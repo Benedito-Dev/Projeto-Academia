@@ -32,6 +32,11 @@ class Application(tk.Tk, Funções, Treinos):
         for widget in self.winfo_children():
             widget.destroy()
         
+        self.pre_cadastramento_administrador()
+
+        self.instrutor = False
+        self.administrador = False
+        
         background_frame = ctk.CTkFrame(self, fg_color="#313131", corner_radius=0)
         background_frame.pack(fill='both', expand=True)
 
@@ -204,7 +209,7 @@ class Application(tk.Tk, Funções, Treinos):
     def Home(self):
         for widget in self.winfo_children():
             widget.destroy()
-
+        
         # Criando Fundo com CustomTkinter
         background_frame = ctk.CTkFrame(self, fg_color="#313131", corner_radius=0)
         background_frame.pack(fill="both", expand=True)
@@ -241,16 +246,22 @@ class Application(tk.Tk, Funções, Treinos):
         btn_perfil.grid(row=0, column=0, pady=(250, 00))
 
 
-        image_path = "Projeto Academia\\img\\Home\\Treinos.png"
+        if self.instrutor or self.administrador:
+            # Botão de criar conta
+            image_path = "Projeto Academia\\img\\Cadastrar\\btn_cadastrar.png"
+            self.label_image_cadastrar = ctk.CTkImage(light_image=Image.open(image_path), size=(210, 198))
+            self.label_image_cadastrar = ctk.CTkLabel(central_frame, image=self.label_image_cadastrar, text="")
+            self.label_image_cadastrar.grid(row=0, column=3, pady=0)
+            ctk.CTkButton(central_frame, text="Cadastrar", font=("Arial", 18), width=160, height=50, fg_color="#808080",  hover_color="#A9A9A9", command=self.cadastrar_cliente).grid(row=0, column=3, pady=(250, 00))
 
-        self.logo_image_treinos = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
+        else:
 
-        # Criar um Label para exibir a imagem
-        self.label_image_treinos = ctk.CTkLabel(central_frame, image=self.logo_image_treinos, text="")
-        self.label_image_treinos.grid(row=0, column=1, pady=0)
-
-        btn_treinos = ctk.CTkButton(central_frame, text="Treinos", fg_color="#808080", hover_color="#A9A9A9", command=self.Musculação, font=("Arial", 18, "bold"), width=150, height=50)
-        btn_treinos.grid(row=0, column=1, pady=(250, 00))
+            image_path = "Projeto Academia\\img\\Home\\Treinos.png"
+            self.logo_image_treinos = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
+            self.label_image_treinos = ctk.CTkLabel(central_frame, image=self.logo_image_treinos, text="")
+            self.label_image_treinos.grid(row=0, column=1, pady=0)
+            btn_treinos = ctk.CTkButton(central_frame, text="Treinos", fg_color="#808080", hover_color="#A9A9A9", command=self.Treinos, font=("Arial", 18, "bold"), width=150, height=50)
+            btn_treinos.grid(row=0, column=1, pady=(250, 00))
 
         image_path = "Projeto Academia\\img\\Home\\Ajustes.png"
 

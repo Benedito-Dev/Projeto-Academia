@@ -8,6 +8,9 @@ class UsuarioController:
 
     def inicar_banco(self):
         self.repository.init_db()
+    
+    def pre_cadastrando_admin(self):
+        self.repository.pre_cadastrar_administrador()
 
     # Controlador responsável por criar um produto
     def adicionar_usuario(self, nome, email, senha, telefone, endereco, cpf, data_de_nascimento):
@@ -33,6 +36,10 @@ class UsuarioController:
                 elif self.repository.validar_login(nome, senha) == 'instrutor':
                     messagebox.showinfo("Sucesso", "Login Efetuado")
                     return 'instrutor'
+
+                elif self.repository.validar_login(nome, senha) == 'administrador':
+                    messagebox.showinfo("Sucesso", "Login Efetuado")
+                    return 'administrador'
                 else :
                     messagebox.showerror("Erro", "Login Não encontrado")
             except Exception as e:

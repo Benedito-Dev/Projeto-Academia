@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.exc import SQLAlchemyError
-from model.models import Base, Cliente, Instrutores
+from model.models import Base, Cliente, Instrutores, Administradores
 from config.config import Config
 
 class ClienteRepository():
@@ -15,6 +15,32 @@ class ClienteRepository():
     # Função para inicializar o banco de dados
     def init_db(self):
         Base.metadata.create_all(self.engine)
+    
+    def pre_cadastrar_administrador(self):
+        try:
+            # Verifica se já existe um administrador com nome 'admin' e senha 'admin'
+            administrador_existe = self.session.query(
+                self.session.query(Administradores).filter_by(nome='ADMIN', senha='admin').exists()
+            ).scalar()
+
+            if not administrador_existe:
+                # Se não existir, cria o pré-cadastro do administrador
+                novo_administrador = Administradores(
+                    nome='ADMIN',
+                    email='admin@exemplo.com',
+                    senha='admin',
+                    telefone='0000-0000',
+                    endereco='Endereço padrão',
+                    cpf='000.000.000-00',
+                    data_de_nascimento=None
+                )
+                self.session.add(novo_administrador)
+                self.session.commit()
+                print("Administrador pré-cadastrado com sucesso!")
+            else:
+                print("Administrador já existe. Nenhum novo cadastro foi feito.")
+        except Exception as e:
+            print(f"Erro ao tentar pré-cadastrar administrador: {e}")
 
     # Função para cadastrar um novo cliente
     def cadastrar_cliente(self, nome, email, senha, telefone, endereco, cpf, data_de_nascimento):
@@ -36,10 +62,13 @@ class ClienteRepository():
             # Busca o cliente com o nome e senha fornecidos
             cliente = self.session.query(Cliente).filter_by(nome=nome, senha=senha).one_or_none()
             instrutor = self.session.query(Instrutores).filter_by(nome=nome, senha=senha).one_or_none()
+            administrador = self.session.query(Administradores).filter_by(nome=nome, senha=senha).one_or_none()
             if cliente:
                 return 'cliente'
             elif instrutor:
                 return 'instrutor'
+            elif administrador:
+                return 'administrador'
             else:
                 return False
         except NoResultFound:
