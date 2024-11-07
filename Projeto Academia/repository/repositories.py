@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.exc import SQLAlchemyError
-from model.models import Base, Cliente
+from model.models import Base, Cliente, Instrutores
 from config.config import Config
 
 class ClienteRepository():
@@ -34,14 +34,24 @@ class ClienteRepository():
     def validar_login(self, nome, senha):
         try:
             # Busca o cliente com o nome e senha fornecidos
-            cliente = self.session.query(Cliente).filter_by(nome=nome, senha=senha).one()
-            return True  # Login válido
+            cliente = self.session.query(Cliente).filter_by(nome=nome, senha=senha).one_or_none()
+            instrutor = self.session.query(Instrutores).filter_by(nome=nome, senha=senha).one_or_none()
+            if cliente:
+                return 'cliente'
+            elif instrutor:
+                return 'instrutor'
+            else:
+                return False
         except NoResultFound:
             return False 
 
     # Função para obter todos os clientes
     def obter_usuarios(self):
         return self.session.query(Cliente).all()
+    
+    # Buscar instrutores
+    def obter_instrutores(self):
+        return self.session.query(Instrutores).all()
 
     def obter_usuario(self, nome):
         try:

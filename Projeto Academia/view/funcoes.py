@@ -1,6 +1,8 @@
 import tkinter as tk
 import re
 from tkinter import ttk
+from customtkinter import CTkLabel, CTkButton, CTkFrame
+from PIL import Image, ImageTk, ImageSequence
 from tkinter import messagebox
 from tkcalendar import Calendar
 from datetime import datetime, date
@@ -13,18 +15,6 @@ class Funções():
     def __init__(self):
         self.controler = UsuarioController()
 
-    # Funções para acrescentar placeholder
-    def on_entry_click(self, event):
-        if len(entry.get()) > 0:  # type: ignore # Texto do placeholder
-            entry.delete(0, tk.END)  # type: ignore # Limpa o placeholder
-            entry.configure(fg_color='white')  # type: ignore # Muda a cor de fundo para branco
-            entry.configure(fg='black')  # type: ignore # Muda a cor do texto
-
-    def on_focusout(self, event):
-        if entry.get() == '':  # type: ignore # Se o campo estiver vazio
-            entry.insert(0, 'Digite aqui...')  # type: ignore # Reinsere o placeholder
-            entry.configure(fg_color='grey')  # type: ignore # Muda a cor de fundo para cinza
-            entry.configure(fg='grey')  # type: ignore # Muda a cor do texto
 
     def Exibir_senha(self):
         if self.check_senha.get() == 1:
@@ -33,21 +23,128 @@ class Funções():
             self.entry_senha.configure(show="*")
 
 
+    def iniciar_carrossel_imagens(self, titulo, frame, exercicios, largura, altura):
+        # Carrega as imagens e informações dos exercícios
+        imagens_carregadas = [
+            {
+                "imagem": [ImageTk.PhotoImage(frame.copy().resize((largura, altura))) for frame in ImageSequence.Iterator(Image.open(ex["imagem"]))],
+                "nome": ex["nome"],
+                "series": ex["series"],
+                "repeticoes": ex["repeticoes"]
+            } for ex in exercicios
+        ]
+        index = 0
+        frame_index = 0  # Índice do quadro atual do GIF
+
+        #Label para exibir titulo do exericios
+        label_titulo = CTkLabel(frame, text=titulo, text_color="white", font=("Arial", 22, 'bold'))
+        label_titulo.grid(row=0, column=0, columnspan=3, pady=20)
+
+        border_frame = CTkFrame(frame, fg_color="#7fd350", corner_radius=10)
+        border_frame.grid(row=1, column=1)
+
+        # Label para exibir o GIF no carrossel
+        label_imagem = CTkLabel(border_frame, text="")
+        label_imagem.grid(row=0, column=1, padx=10, pady=10)
+
+        # Label para exibir o texto do exercício
+        label_texto = CTkLabel(frame, text="", text_color="white", font=("Arial", 16, 'bold'))
+        label_texto.grid(row=3, column=1, pady=10)
+
+        # Função para atualizar o GIF
+        def atualizar_gif():
+            nonlocal frame_index
+            exercicio_atual = imagens_carregadas[index]
+            label_imagem.configure(image=exercicio_atual["imagem"][frame_index])
+            frame_index = (frame_index + 1) % len(exercicio_atual["imagem"])
+            self.after(100, atualizar_gif)  # Atualiza o GIF a cada 100ms (ajuste conforme necessário)
+
+
+        # Função para exibir a imagem e o texto atual
+        def exibir_imagem():
+            nonlocal frame_index
+            frame_index = 0  # Reseta o quadro ao mudar de exercício
+            exercicio_atual = imagens_carregadas[index]
+            label_texto.configure(text=f"{exercicio_atual['nome']}: {exercicio_atual['series']} séries de {exercicio_atual['repeticoes']} repetições")
+            atualizar_gif()
+
+        # Funções para controle do carrossel
+        def mostrar_proximo():
+            nonlocal index
+            index = (index + 1) % len(imagens_carregadas)
+            exibir_imagem()
+
+        def mostrar_anterior():
+            nonlocal index
+            index = (index - 1) % len(imagens_carregadas)
+            exibir_imagem()
+
+        # Botões de controle
+        btn_anterior = CTkButton(frame, text="⟵ Anterior", fg_color="#808080", hover_color="#A9A9A9", command=mostrar_anterior)
+        btn_anterior.grid(row=1, column=0, padx=5, pady=5)
+
+        btn_proximo = CTkButton(frame, text="Próximo ⟶", fg_color="#808080", hover_color="#A9A9A9", command=mostrar_proximo)
+        btn_proximo.grid(row=1, column=2, padx=5, pady=5)
+
+        # Exibe a primeira imagem e texto
+        exibir_imagem()
+
+
+    def mudar_exercicios(self, titulo, novos_exercicios, central_frame):
+
+        """Muda os exercícios exibidos para o carrossel."""
+        self.exercicios_atual = novos_exercicios
+        self.indice_atual = 0
+        # Limpa o frame central, exceto o botão finalizador
+        for widget in central_frame.winfo_children():
+            widget.destroy()
+
+        # Reinicia o carrossel de imagens
+        self.iniciar_carrossel_imagens(titulo, central_frame, self.exercicios_atual, 200, 200)
+
+            
     def carregar_perfis(self):
         try:
             # Obtendo os dados da tabela através do controlador
             users = self.controler.listar_usuarios()
+
+            instrutores = self.controler.listar_instrutores()
 
             # Inserindo os dados na ordem correta no TreeView
             for user in users:
                 id = user.id  # Acessando o atributo 'id'
                 nome = user.nome  # Acessando o atributo 'nome'
                 email = user.email  # Acessando o atributo 'email'
-                telefone = user.telefone  # Acessando o atributo 'telefone' # Acessando o atributo 'endereco'
-                self.tree.insert('', tk.END, values=(id, nome, email, telefone))
+                nome_instrutor = 'Teste'
+
+                for instrutor in instrutores:
+                    if instrutor.id == user.instrutor_id:
+                        nome_instrutor = instrutor.nome
+                self.tree.insert('', tk.END, values=(id, nome, email, nome_instrutor))
 
         except Exception as e:
             messagebox.showerror("Erro", f"Erro ao carregar perfis: {e}")
+
+    
+    def obter_alunos_por_instrutor(self):
+        try:
+            # Obtendo os dados da tabela através do controlador
+            instrutores = self.controler.listar_instrutores()
+            users = self.controler.listar_usuarios()
+            alunos = []
+
+            for instrutor in instrutores:
+                if instrutor.nome.upper() == self.nome_usuario.upper():
+                    instrutor_atual = instrutor.id
+            
+            for user in users:
+                if user.instrutor_id == instrutor_atual:
+                    alunos.append(user.nome)
+            
+            return alunos
+        
+        except Exception as e:
+            messagebox.showerror("Erro", f"Erro ao Obter alunos: {e}")
 
 
     def validar_dados(self):
@@ -111,8 +208,6 @@ class Funções():
         if self.controler.adicionar_usuario(nome.upper(), email, senha, telefone, endereco, cpf, data_de_nascimento):
             self.after(500, self.menu_inicial)
 
-            
-    from datetime import datetime, date
 
     def validar_data(self, data_nascimento_str):
         try:
@@ -169,12 +264,21 @@ class Funções():
     def validando_login(self):
         nome = self.entry_nome.get().strip()
         senha = self.entry_senha.get().strip()
+
+        usuario = self.controler.fazer_login(nome.upper(), senha)
         
         # Chama o método do controlador para validar o login
-        if self.controler.fazer_login(nome.upper(), senha) :
+        if usuario == 'cliente':
             self.nome_usuario = nome.capitalize()
             self.senha_usuario = senha
             self.after(500, self.Home)
+        
+        elif usuario == 'instrutor':
+            self.nome_usuario = nome.capitalize()
+            self.senha_usuario = senha
+            self.instrutor = True
+            self.after(500, self.Home)
+
         else:
             pass
     
