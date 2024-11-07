@@ -6,7 +6,7 @@ class UsuarioController:
     def __init__(self):
         self.repository = ClienteRepository()  # Instancia o repositório de clientes
 
-    def inicar_banco(self):
+    def iniciar_banco(self):
         self.repository.init_db()
     
     def pre_cadastrando_admin(self):

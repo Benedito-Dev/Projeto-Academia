@@ -22,6 +22,7 @@ class Application(tk.Tk, Funções, Treinos):
         self.geometry("800x600")
         self.current_page = 0
         self.controler = UsuarioController()
+        self.Treinos = Treinos()
         self.state('zoomed')
         self.menu_inicial()
 
@@ -332,7 +333,7 @@ class Application(tk.Tk, Funções, Treinos):
             self.logo_image_treinos = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
             self.label_image_treinos = ctk.CTkLabel(central_frame, image=self.logo_image_treinos, text="")
             self.label_image_treinos.grid(row=0, column=1, pady=0)
-            btn_treinos = ctk.CTkButton(central_frame, text="Treinos", fg_color="#808080", hover_color="#A9A9A9", command=self.Treinos_instrutor, font=("Arial", 18, "bold"), width=150, height=50)
+            btn_treinos = ctk.CTkButton(central_frame, text="Treinos", fg_color="#808080", hover_color="#A9A9A9", command=self.Treinos.Modalidades, font=("Arial", 18, "bold"), width=150, height=50)
             btn_treinos.grid(row=0, column=1, pady=(250, 00))
 
         image_path = "D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Home\\Ajustes.png"
