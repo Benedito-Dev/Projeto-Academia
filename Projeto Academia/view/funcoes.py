@@ -36,6 +36,9 @@ class Funções():
         index = 0
         frame_index = 0  # Índice do quadro atual do GIF
 
+        # Variável de controle para a chamada do `after`
+        atualizacao_id = None  # Esta variável irá armazenar o id da função `after` para cancelamento futuro
+
         #Label para exibir titulo do exericios
         label_titulo = CTkLabel(frame, text=titulo, text_color="white", font=("Arial", 22, 'bold'))
         label_titulo.grid(row=0, column=0, columnspan=3, pady=20)
@@ -53,12 +56,17 @@ class Funções():
 
         # Função para atualizar o GIF
         def atualizar_gif():
-            nonlocal frame_index
+            nonlocal frame_index, atualizacao_id
             exercicio_atual = imagens_carregadas[index]
             label_imagem.configure(image=exercicio_atual["imagem"][frame_index])
             frame_index = (frame_index + 1) % len(exercicio_atual["imagem"])
-            self.after(100, atualizar_gif)  # Atualiza o GIF a cada 100ms (ajuste conforme necessário)
+                
+                # Cancelar a atualização anterior, se houver
+            if atualizacao_id is not None:
+                    self.after_cancel(atualizacao_id)
 
+            # Agendar a próxima atualização
+            atualizacao_id = self.after(200, atualizar_gif)  # Atualiza o GIF a cada 300ms (ajustado para mais devagar)
 
         # Função para exibir a imagem e o texto atual
         def exibir_imagem():
