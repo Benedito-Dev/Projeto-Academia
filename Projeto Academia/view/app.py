@@ -44,7 +44,7 @@ class Application(tk.Tk, Funções, Treinos):
         background_frame.grid_rowconfigure(0, weight=0) 
 
 
-        image_path = "Projeto Academia\\img\\Logo.png"
+        image_path = "D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Logo.png"
         self.logo_image = ctk.CTkImage(light_image=Image.open(image_path), size=(150, 150))  # Ajuste o tamanho da imagem
 
         # Criar um Label para exibir a imagem
@@ -63,9 +63,7 @@ class Application(tk.Tk, Funções, Treinos):
         titulo.grid(row=0, column=0, columnspan=2, pady=20)
 
         #Botoes
-        ctk.CTkButton(frame, text="Login", font=("Arial", 18), width=160, fg_color="#808080", hover_color="#A9A9A9", command=self.realizar_login).grid(row=1, column=0, columnspan=2, pady=30, padx=60)
-
-        ctk.CTkButton(frame, text="Gerenciar Perfis", font=("Arial", 18), width=160, fg_color="#808080", hover_color="#A9A9A9", command=self.Exibir_perfis).grid(row=2, column=0, columnspan=2, pady=30, padx=60)
+        ctk.CTkButton(frame, text="Menu Login", font=("Arial", 18), width=160, fg_color="#808080", hover_color="#A9A9A9", command=self.realizar_login).grid(row=1, column=0, columnspan=2, pady=30, padx=60)
         
         ctk.CTkButton(frame, text="Encerrar Programa", font=("Arial", 18), width=160, fg_color="#808080",  hover_color="#A9A9A9", command=self.Encerrar_programa).grid(row=3, column=0, columnspan=2, pady=30, padx=60)
 
@@ -84,7 +82,7 @@ class Application(tk.Tk, Funções, Treinos):
         background_frame.grid_rowconfigure(0, weight=0)  # Para centralizar verticalmente
         # Imagem
 
-        image_path = "Projeto Academia\\img\\Logo.png"
+        image_path = "D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Logo.png"
 
         self.logo_image = ctk.CTkImage(light_image=Image.open(image_path), size=(150, 150))  # Ajuste o tamanho da imagem
 
@@ -122,9 +120,6 @@ class Application(tk.Tk, Funções, Treinos):
         # Botão de validar
         ctk.CTkButton(frame, text="Acessar", font=("Arial", 18), width=160, fg_color="#808080", hover_color="#A9A9A9", command=self.validando_login).grid(row=4, column=0, columnspan=2, pady=10)
 
-        # Botão de criar conta
-        ctk.CTkButton(frame, text="Cadastrar", font=("Arial", 18), width=160, fg_color="#808080",  hover_color="#A9A9A9", command=self.cadastrar_cliente).grid(row=5, column=0, columnspan=2, pady=10)
-
         # Botão de voltar
         ctk.CTkButton(frame, text="Voltar", font=("Arial", 18), width=160, fg_color="#808080", hover_color="#A9A9A9", command=self.menu_inicial).grid(row=6, column=0, columnspan=2, pady=10)
 
@@ -141,7 +136,7 @@ class Application(tk.Tk, Funções, Treinos):
         background_frame.grid_columnconfigure(0, weight=1)
         background_frame.grid_rowconfigure(0, weight=0)  # Para centralizar verticalmente
 
-        image_path = "Projeto Academia\\img\\Logo.png"
+        image_path = "D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Logo.png"
         self.logo_image = ctk.CTkImage(light_image=Image.open(image_path), size=(120, 120))  # Ajuste o tamanho da imagem
 
         # Criar um Label para exibir a imagem
@@ -159,24 +154,24 @@ class Application(tk.Tk, Funções, Treinos):
         title = ctk.CTkLabel(frame, text="Realizar cadastro", text_color="white", font=("Arial", 20, 'italic'))
         title.grid(row=0, column=1, pady=(15, 20), padx=(5, 00))
 
-        icon_path = "Projeto Academia\\img\\icons\\halter.png"
-        icon = Image.open(icon_path)
+        # icon_path = "D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\icons\\halter.png"
+        # icon = Image.open(icon_path)
 
-        # Espelhe a imagem horizontalmente
-        imagem_espelhada = ImageOps.mirror(icon)
+        # # Espelhe a imagem horizontalmente
+        # imagem_espelhada = ImageOps.mirror(icon)
 
-        # Converta a imagem para um formato compatível com CustomTkinter
-        imagem_ctk = ctk.CTkImage(imagem_espelhada, size=(30, 30))
+        # # Converta a imagem para um formato compatível com CustomTkinter
+        # imagem_ctk = ctk.CTkImage(imagem_espelhada, size=(30, 30))
 
-        logo_image = ctk.CTkImage(light_image=Image.open(icon_path), size=(30, 30))  # Ajuste o tamanho da imagem
+        # logo_image = ctk.CTkImage(light_image=Image.open(icon_path), size=(30, 30))  # Ajuste o tamanho da imagem
 
-        # Halter
-        label_image = ctk.CTkLabel(frame, image=logo_image, text="")
-        label_image.grid(row=0, column=0, pady=10, padx=(90, 00))
+        # # Halter
+        # label_image = ctk.CTkLabel(frame, image=logo_image, text="")
+        # label_image.grid(row=0, column=0, pady=10, padx=(90, 00))
 
-        #halter Invertido
-        label_image = ctk.CTkLabel(frame, image=imagem_ctk, text="")
-        label_image.grid(row=0, column=2, pady=10, padx=(00, 100))
+        # #halter Invertido
+        # label_image = ctk.CTkLabel(frame, image=imagem_ctk, text="")
+        # label_image.grid(row=0, column=2, pady=10, padx=(00, 100))
 
         # Nome
         nome_emoji = ctk.CTkLabel(frame, text="👤", text_color="white", font=("Arial", 16))
@@ -323,7 +318,7 @@ class Application(tk.Tk, Funções, Treinos):
 
         #Imagem Perfil
 
-        image_path = "Projeto Academia\\img\\Home\\Perfil.png"
+        image_path = "D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Home\\Perfil.png"
 
         self.logo_image_perfil = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
@@ -338,22 +333,27 @@ class Application(tk.Tk, Funções, Treinos):
 
         if self.instrutor or self.administrador:
             # Botão de criar conta
-            image_path = "Projeto Academia\\img\\Home\\btn_cadastrar.png"
+            image_path = "D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Home\\btn_cadastrar.png"
             self.label_image_cadastrar = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))
             self.label_image_cadastrar = ctk.CTkLabel(central_frame, image=self.label_image_cadastrar, text="")
             self.label_image_cadastrar.grid(row=0, column=3, pady=0)
             ctk.CTkButton(central_frame, text="Cadastrar", font=("Arial", 18), width=160, height=50, fg_color="#808080",  hover_color="#A9A9A9", command=self.cadastrar_cliente).grid(row=0, column=3, pady=(250, 00))
+            image_path = "D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\admin\\Perfis.webp"
+            self.label_image_cadastrar = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))
+            self.label_image_cadastrar = ctk.CTkLabel(central_frame, image=self.label_image_cadastrar, text="")
+            self.label_image_cadastrar.grid(row=0, column=4, pady=0)
+            ctk.CTkButton(central_frame, text="Gerenciar Perfis", font=("Arial", 18), width=160, height=50, fg_color="#808080",  hover_color="#A9A9A9", command=self.Exibir_perfis).grid(row=0, column=4, pady=(250, 00))
 
         else:
 
-            image_path = "Projeto Academia\\img\\Home\\Treinos.png"
+            image_path = "D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Home\\Treinos.png"
             self.logo_image_treinos = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
             self.label_image_treinos = ctk.CTkLabel(central_frame, image=self.logo_image_treinos, text="")
             self.label_image_treinos.grid(row=0, column=1, pady=0)
-            btn_treinos = ctk.CTkButton(central_frame, text="Treinos", fg_color="#808080", hover_color="#A9A9A9", command=self.Treinos, font=("Arial", 18, "bold"), width=150, height=50)
+            btn_treinos = ctk.CTkButton(central_frame, text="Treinos", fg_color="#808080", hover_color="#A9A9A9", command=self.Treinos_instrutor, font=("Arial", 18, "bold"), width=150, height=50)
             btn_treinos.grid(row=0, column=1, pady=(250, 00))
 
-        image_path = "Projeto Academia\\img\\Home\\Ajustes.png"
+        image_path = "D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Home\\Ajustes.png"
 
         self.logo_image_ajustes = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
@@ -438,7 +438,7 @@ class Application(tk.Tk, Funções, Treinos):
         self.carregar_perfis()
 
         ctk.CTkButton(background_frame, text="Deletar Perfil", command=self.deletar_perfil).pack(pady=10)
-        ctk.CTkButton(background_frame, text="Voltar", command=self.menu_inicial).pack(pady=10)
+        ctk.CTkButton(background_frame, text="Voltar", command=self.Home).pack(pady=10)
 
 
     def Ajustes(self):

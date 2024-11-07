@@ -84,7 +84,17 @@ class ClienteRepository():
 
     def obter_usuario(self, nome):
         try:
-             return self.session.query(Cliente).filter_by(nome=nome).first()
+            cliente = self.session.query(Cliente).filter_by(nome=nome).one_or_none()
+            instrutor = self.session.query(Instrutores).filter_by(nome=nome).one_or_none()
+            administrador = self.session.query(Administradores).filter_by(nome=nome).one_or_none()
+            if cliente:
+                return cliente
+            elif instrutor:
+                return instrutor
+            elif administrador:
+                return administrador
+            else:
+                return False
         except SQLAlchemyError as e:
             print(f"Erro ao buscar usuário: {e}")
 
