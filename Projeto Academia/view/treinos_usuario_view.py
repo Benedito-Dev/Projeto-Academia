@@ -63,7 +63,6 @@ class Treinos():
         frame_inferior = ctk.CTkFrame(background_frame, fg_color="#5ce1e6", corner_radius=0,height=30)
         frame_inferior.pack(side="bottom", fill="x", pady=10)
 
-
     def Musculação(self):
         for widget in self.winfo_children():
             widget.destroy()
@@ -120,7 +119,6 @@ class Treinos():
         frame_inferior = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=0,height=30)
         frame_inferior.pack(side="bottom", fill="x", pady=10)
 
-
     def Artes_marciais(self):
         for widget in self.winfo_children():
             widget.destroy()
@@ -163,7 +161,6 @@ class Treinos():
 
         btn_voltar = ctk.CTkButton(frame_inferior, text="Voltar", fg_color="#808080", hover_color="#A9A9A9", command=self.Modalidades, font=("Arial", 18, "bold"), width=150, height=50)
         btn_voltar.pack(pady=10)
-
 
     def Karate(self):
         for widget in self.winfo_children():
@@ -213,8 +210,7 @@ class Treinos():
 
         btn_voltar = ctk.CTkButton(frame_inferior, text="Voltar", fg_color="#808080", hover_color="#A9A9A9", command=self.Artes_marciais, font=("Arial", 18, "bold"), width=150, height=50)
         btn_voltar.pack(pady=10)
-
-        
+ 
     def Superiores(self):
         for widget in self.winfo_children():
             widget.destroy()
@@ -269,7 +265,6 @@ class Treinos():
         # Frame inferior (usando CustomTkinter)
         frame_inferior = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=0,height=30)
         frame_inferior.pack(side="bottom", fill="x", pady=10)
-
 
     def Inferiores(self):
         for widget in self.winfo_children():
@@ -328,7 +323,6 @@ class Treinos():
         # Frame inferior (usando CustomTkinter)
         frame_inferior = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=0,height=30)
         frame_inferior.pack(side="bottom", fill="x", pady=10)
-
 
     def Peito(self):
         # Limpar a janela
@@ -410,7 +404,6 @@ class Treinos():
         btn_voltar = ctk.CTkButton(frame_inferior, text="Voltar", fg_color="#808080", hover_color="#A9A9A9", command=self.Superiores, font=("Arial", 18, "bold"), width=150, height=50)
         btn_voltar.pack(pady=10)
 
-
     def Costas(self):
         # Limpar a janela
         for widget in self.winfo_children():
@@ -478,7 +471,6 @@ class Treinos():
         btn_voltar = ctk.CTkButton(frame_inferior, text="Voltar", fg_color="#808080", hover_color="#A9A9A9", command=self.Superiores, font=("Arial", 18, "bold"), width=150, height=50)
         btn_voltar.pack(pady=10)
 
-
     def Quadriceps(self):
         # Limpar a janela
         for widget in self.winfo_children():
@@ -528,8 +520,6 @@ class Treinos():
 
         btn_voltar = ctk.CTkButton(frame_inferior, text="Voltar", fg_color="#808080", hover_color="#A9A9A9", command=self.Inferiores, font=("Arial", 18, "bold"), width=150, height=50)
         btn_voltar.pack(pady=10)
-
-
 
     def Perna(self):
         # Limpar a janela

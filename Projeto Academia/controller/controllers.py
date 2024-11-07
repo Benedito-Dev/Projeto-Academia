@@ -18,7 +18,7 @@ class UsuarioController:
         data_de_nascimento = datetime.strptime(data_de_nascimento, '%d/%m/%Y').date()
         try:
             # Mudado de self.db para self.controler
-            id = self.repository.cadastrar_usuario(nome, email, senha, telefone, endereco, cpf, data_de_nascimento, codigo_adm, tabela)
+            id = self.repository.cadastrar_cliente(nome, email, senha, telefone, endereco, cpf, data_de_nascimento, codigo_adm, tabela)
 
             if id > 0:
                 if tabela == 'instrutor':
@@ -85,14 +85,15 @@ class UsuarioController:
         self.repository.deletar_cliente(usuario_id)
 
     def validar_cpf(self, cpf):
-        cliente = self.repository.consultar_cpf(cpf)
-        if cliente:
-            return False  # CPF já está cadastrado
+        # Consultar CPF nas três tabelas
+        if self.repository.consultar_cpf(cpf):
+            return False  # CPF já está cadastrado em alguma tabela
+        
         return True  # CPF não cadastrado, pode prosseguir
     
-    def validar_email(self,email):
-        cliente = self.repository.consultar_email(email)
-        if cliente:
-            return False # Email já está cadastrado
-        return True # Email não cadastrado, pode prosseguir
+    def validar_email(self, email):
+        # Consultar email nas três tabelas
+        if self.repository.consultar_email(email):
+            return False  # E-mail já está cadastrado em alguma tabela
         
+        return True  # E-mail não cadastrado, pode prosseguir

@@ -154,25 +154,7 @@ class Application(tk.Tk, Funções, Treinos):
         title = ctk.CTkLabel(frame, text="Realizar cadastro", text_color="white", font=("Arial", 20, 'italic'))
         title.grid(row=0, column=1, pady=(15, 20), padx=(5, 00))
 
-        # icon_path = "D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\icons\\halter.png"
-        # icon = Image.open(icon_path)
-
-        # # Espelhe a imagem horizontalmente
-        # imagem_espelhada = ImageOps.mirror(icon)
-
-        # # Converta a imagem para um formato compatível com CustomTkinter
-        # imagem_ctk = ctk.CTkImage(imagem_espelhada, size=(30, 30))
-
-        # logo_image = ctk.CTkImage(light_image=Image.open(icon_path), size=(30, 30))  # Ajuste o tamanho da imagem
-
-        # # Halter
-        # label_image = ctk.CTkLabel(frame, image=logo_image, text="")
-        # label_image.grid(row=0, column=0, pady=10, padx=(90, 00))
-
-        # #halter Invertido
-        # label_image = ctk.CTkLabel(frame, image=imagem_ctk, text="")
-        # label_image.grid(row=0, column=2, pady=10, padx=(00, 100))
-
+       
         # Nome
         nome_emoji = ctk.CTkLabel(frame, text="👤", text_color="white", font=("Arial", 16))
         nome_emoji.grid(row=1, column=0, padx=(60, 00))
@@ -427,13 +409,12 @@ class Application(tk.Tk, Funções, Treinos):
         title = tk.Label(background_frame, text="Perfis dos Clientes", fg="white", bg="#313131", font=("Arial", 20))
         title.pack(pady=20)
 
-        colunas = ("ID", "Nome", "Email", "Telefone", "Endereço") 
+        colunas = ("ID", "Nome", "Email", "Nome Instrutor")
         self.tree = ttk.Treeview(background_frame, columns=colunas, show='headings')
         self.tree.heading("ID", text="ID")
         self.tree.heading("Nome", text="Nome")
         self.tree.heading("Email", text="Email")
-        self.tree.heading("Telefone", text="Telefone")
-        self.tree.heading("Endereço", text="Endereço")
+        self.tree.heading("Nome Instrutor", text="Nome Do instrutor")
         self.tree.pack(pady=0, fill=tk.BOTH, expand=True)
         self.carregar_perfis()
 
