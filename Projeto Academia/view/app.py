@@ -3,7 +3,7 @@ from sqlalchemy import *
 from tkinter import ttk
 import customtkinter as ctk
 from tkinter import messagebox
-from PIL import Image, ImageTk
+from PIL import Image, ImageTk, ImageOps
 from view.funcoes import Funções
 from view.treinos_usuario_view import Treinos
 from controller.controllers import UsuarioController
@@ -130,80 +130,170 @@ class Application(tk.Tk, Funções, Treinos):
 
 
     def cadastrar_cliente(self):
-        # Remove widgets existentes
+          # Remove widgets existentes
         for widget in self.winfo_children():
             widget.destroy()
 
-        backgorund_frame = ctk.CTkFrame(self, fg_color="#313131", corner_radius=0)
-        backgorund_frame.pack(fill="both", expand=True)
+        background_frame = ctk.CTkFrame(self, fg_color="#313131", corner_radius=0)
+        background_frame.pack(fill="both", expand=True)
 
-        # Configurações da janela para centralização
-        backgorund_frame.grid_columnconfigure(0, weight=1)
-        backgorund_frame.grid_columnconfigure(1, weight=1)
-        backgorund_frame.grid_rowconfigure(0, weight=1)  # Para centralizar verticalmente
-        backgorund_frame.grid_rowconfigure(6, weight=1)  # Espaço na parte inferior
-        
-        border_frame = ctk.CTkFrame(backgorund_frame,fg_color="#7fd350",corner_radius=10)
-        border_frame.grid(row=0,column=0,columnspan=2,padx=20,pady=20)
-        
+        # Configuração de colunas e linhas para centralizar
+        background_frame.grid_columnconfigure(0, weight=1)
+        background_frame.grid_rowconfigure(0, weight=0)  # Para centralizar verticalmente
+
+        image_path = "Projeto Academia\\img\\Logo.png"
+        self.logo_image = ctk.CTkImage(light_image=Image.open(image_path), size=(120, 120))  # Ajuste o tamanho da imagem
+
+        # Criar um Label para exibir a imagem
+        self.label_image = ctk.CTkLabel(background_frame, image=self.logo_image, text="")
+        self.label_image.grid(row=1, column=0, pady=(00, 0))
+
+        border_frame = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=10)
+        border_frame.grid(row=2, column=0, padx=20, pady=00)
         
         # Frame para centralizar o conteúdo
         frame = ctk.CTkFrame(border_frame, fg_color="#313131",corner_radius=10)
-        frame.grid(padx=10,pady=10)
+        frame.grid(padx=10, pady=10)
 
         # Título
-        title = ctk.CTkLabel(frame,text="Realizar cadastro", text_color="white",font=("Arial", 20))
-        title.grid(row=0,column=1,pady=10)
+        title = ctk.CTkLabel(frame, text="Realizar cadastro", text_color="white", font=("Arial", 20, 'italic'))
+        title.grid(row=0, column=1, pady=(15, 20), padx=(5, 00))
+
+        icon_path = "Projeto Academia\\img\\icons\\halter.png"
+        icon = Image.open(icon_path)
+
+        # Espelhe a imagem horizontalmente
+        imagem_espelhada = ImageOps.mirror(icon)
+
+        # Converta a imagem para um formato compatível com CustomTkinter
+        imagem_ctk = ctk.CTkImage(imagem_espelhada, size=(30, 30))
+
+        logo_image = ctk.CTkImage(light_image=Image.open(icon_path), size=(30, 30))  # Ajuste o tamanho da imagem
+
+        # Halter
+        label_image = ctk.CTkLabel(frame, image=logo_image, text="")
+        label_image.grid(row=0, column=0, pady=10, padx=(90, 00))
+
+        #halter Invertido
+        label_image = ctk.CTkLabel(frame, image=imagem_ctk, text="")
+        label_image.grid(row=0, column=2, pady=10, padx=(00, 100))
 
         # Nome
-        ctk.CTkLabel(frame, text="Nome:",text_color="white", font=("Arial", 14)).grid(row=1, column=0, sticky="e", padx=10)
-        self.entry_nome = ctk.CTkEntry(frame)
+        nome_emoji = ctk.CTkLabel(frame, text="👤", text_color="white", font=("Arial", 16))
+        nome_emoji.grid(row=1, column=0, padx=(60, 00))
+        self.entry_nome = ctk.CTkEntry(frame, placeholder_text="Nome do Usuario")
         self.entry_nome.grid(row=1, column=1, pady=5)
 
         # Email
-        ctk.CTkLabel(frame, text="Email:", text_color="white", font=("Arial", 14)).grid(row=2, column=0, sticky="e", padx=10)
-        self.entry_email = ctk.CTkEntry(frame)
+        email_emoji = ctk.CTkLabel(frame, text="📧", text_color="white", font=("Arial", 16))
+        email_emoji.grid(row=2, column=0, padx=(60, 00))
+        self.entry_email = ctk.CTkEntry(frame, placeholder_text="Email")
         self.entry_email.grid(row=2, column=1, pady=5)
 
         # Senha
-        ctk.CTkLabel(frame, text="Senha:", text_color="white", font=("Arial", 14)).grid(row=3, column=0, sticky="e", padx=10)
-        self.entry_senha = ctk.CTkEntry(frame, show="*")
+        senha_emoji = ctk.CTkLabel(frame, text="🔒", text_color="white", font=("Arial", 16))
+        senha_emoji.grid(row=3, column=0, padx=(60, 00))
+        self.entry_senha = ctk.CTkEntry(frame, show="*", placeholder_text="Senha")
         self.entry_senha.grid(row=3, column=1, pady=5)
 
         # Checkbutton para mostrar senha
         self.check_senha = ctk.IntVar()
         check_button = ctk.CTkCheckBox(frame, text="Mostrar senha", text_color="white", variable=self.check_senha, command=self.Exibir_senha)
-        check_button.grid(row=4, column=1, sticky="w", padx=10)  # Posicionando à esquerda
+        check_button.grid(row=3, column=2, sticky="w", padx=10)  # Posicionando à esquerda
 
         # Telefone
-        ctk.CTkLabel(frame, text="Telefone:", text_color="white", font=("Arial", 14)).grid(row=5, column=0, sticky="e", padx=10)
-        self.entry_telefone = ctk.CTkEntry(frame)
-        self.entry_telefone.grid(row=5, column=1, pady=5)
+        telefone_emoji = ctk.CTkLabel(frame, text="📞", text_color="white", font=("Arial", 16))
+        telefone_emoji.grid(row=4, column=0, padx=(60, 00))
+        self.entry_telefone = ctk.CTkEntry(frame, placeholder_text="Telefone")
+        self.entry_telefone.grid(row=4, column=1, pady=5)
 
         # Endereço
-        ctk.CTkLabel(frame, text="Endereço:", text_color="white", font=("Arial", 14)).grid(row=6, column=0, sticky="e", padx=10)
-        self.entry_endereco = ctk.CTkEntry(frame)
-        self.entry_endereco.grid(row=6, column=1, pady=5)
+        endereco_emoji = ctk.CTkLabel(frame, text="🏠", text_color="white", font=("Arial", 16))
+        endereco_emoji.grid(row=5, column=0, padx=(60, 0))
+        self.entry_endereco = ctk.CTkEntry(frame, placeholder_text="Endereço")
+        self.entry_endereco.grid(row=5, column=1, pady=5)
 
-        #CPF 
-        ctk.CTkLabel(frame, text="CPF", text_color="white", font=("Arial", 14)).grid(row=7, column=0, sticky="e",padx=10)
-        self.entry_cpf = ctk.CTkEntry(frame)
-        self.entry_cpf.grid(row=7,column=1, pady=5)
+        #CPF
+        cpf_emoji = ctk.CTkLabel(frame, text="🆔", text_color="white", font=("Arial", 16))
+        cpf_emoji.grid(row=6, column=0, padx=(60, 00)) 
+        self.entry_cpf = ctk.CTkEntry(frame, placeholder_text="CPF")
+        self.entry_cpf.grid(row=6,column=1, pady=5)
         
         #Data de nascimento 
-        ctk.CTkLabel(frame, text="Data de nascimento", text_color="white", font=("Arial", 14)).grid(row=8,column=0, sticky="e", padx=10)
-        
-        self.entry_dataDeNascimento = ctk.CTkEntry(frame)
-        self.entry_dataDeNascimento.grid(row=8,column=1,pady=5)
+        btn_abrir_calendario = ctk.CTkButton(frame, text="🗓️", font=("Arial", 16, 'bold'), fg_color="#313131", hover_color="#313131", width=15, command=self.abrir_calendario)
+        btn_abrir_calendario.grid(row=7, column=0, padx=(83, 0))
+        self.entry_dataDeNascimento = ctk.CTkEntry(frame, placeholder_text="DD/MM/YYYY")
+        self.entry_dataDeNascimento.grid(row=7, column=1, pady=5)
 
-        btn_abrir_calendario = ttk.Button(frame, text="Escolher data", command=self.abrir_calendario)
-        btn_abrir_calendario.grid(row=8, column=2,padx=10)
+        btn_abrir_calendario = ctk.CTkButton(frame, text="Escolher data", command=self.abrir_calendario)
+        btn_abrir_calendario.grid(row=7, column=2, padx=5)
+
+        #Codigo Administrador
+        codigo_emoji = ctk.CTkLabel(frame, text="🔑", text_color="white", font=("Arial", 16))
+        codigo_emoji.grid(row=8, column=0, padx=(60, 00))
+        self.entry_codigo_de_administrador = ctk.CTkEntry(frame, placeholder_text="Codigo de Admin")
+        self.entry_codigo_de_administrador.grid(row=8, column=1, pady=5)
+
+        self.tabela = ctk.StringVar(value="usuario")
+        print(self.instrutor)
+        if self.instrutor:                
+            # Ajustes estéticos para RadioButton no CustomTkinter
+            Opção_1 = ctk.CTkRadioButton(
+                frame,
+                text="Usuário",
+                variable=self.tabela,
+                value="usuario",
+                font=("Arial", 14),
+                text_color="white",
+                hover_color="#7fd350",  # Cor ao passar o mouse
+                fg_color="#5ce1e6"      # Cor de seleção para contraste com o fundo
+        )
+            Opção_1.grid(row=9, column=1, padx=(10, 10), pady=(10, 10))
+        else:
+            # Ajustes estéticos para RadioButton no CustomTkinter
+            Opção_1 = ctk.CTkRadioButton(
+                frame,
+                text="Usuário",
+                variable=self.tabela,
+                value="usuario",
+                font=("Arial", 14),
+                text_color="white",
+                hover_color="#7fd350",  # Cor ao passar o mouse
+                fg_color="#5ce1e6"      # Cor de seleção para contraste com o fundo
+        )
+            Opção_1.grid(row=9, column=0, padx=(10, 10), pady=(10, 10))     
+
+
+            Opção_2 = ctk.CTkRadioButton(
+                frame,
+                text="Instrutor",
+                variable=self.tabela,
+                value="instrutor",
+                font=("Arial", 14),
+                text_color="white",
+                hover_color="#7fd350",
+                fg_color="#5ce1e6"
+            )
+            Opção_2.grid(row=9, column=1, padx=(10, 10), pady=(10, 10))
+
+            Opção_3 = ctk.CTkRadioButton(
+                frame,
+                text="Administrador",
+                variable=self.tabela,
+                value="administrador",
+                font=("Arial", 14),
+                text_color="white",
+                hover_color="#7fd350",
+                fg_color="#5ce1e6"
+            )
+            Opção_3.grid(row=9, column=2, padx=(10, 10), pady=(10, 10))
+        
 
         # Botão Cadastrar-se
-        ctk.CTkButton(frame,text="Cadastrar-se",fg_color="#609746", hover_color="#A9A9A9", command=self.validar_dados).grid(row=9,column=1,pady=10)
+        ctk.CTkButton(frame,text="Cadastrar-se",fg_color="#808080", hover_color="#A9A9A9", font=("Arial", 18), command=self.validar_dados).grid(row=10,column=1,pady=10)
 
         # Botão Voltar
-        ctk.CTkButton(frame, text="Voltar",fg_color="#808080", hover_color="#A9A9A9", command=self.realizar_login).grid(row=10, column=1,pady=10)
+        ctk.CTkButton(frame, text="Voltar",fg_color="#808080", hover_color="#A9A9A9", font=("Arial", 18), command=self.Home).grid(row=11, column=1,pady=10)
 
 
     def Home(self):
