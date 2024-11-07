@@ -29,6 +29,8 @@ class Application(tk.Tk, Funções, Treinos):
         for widget in self.winfo_children():
             widget.destroy()
         
+        self.pre_cadastramento()
+        
         self.instrutor = False
         self.administrador = False
         
@@ -38,7 +40,7 @@ class Application(tk.Tk, Funções, Treinos):
         background_frame.grid_columnconfigure(0, weight=1)
         background_frame.grid_rowconfigure(0, weight=0) 
 
-        image_path = "D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Logo.png"
+        image_path = "Projeto Academia\\img\\Logo.png"
         self.logo_image = ctk.CTkImage(light_image=Image.open(image_path), size=(150, 150))  # Ajuste o tamanho da imagem
 
         # Criar um Label para exibir a imagem
@@ -81,7 +83,7 @@ class Application(tk.Tk, Funções, Treinos):
         background_frame.grid_rowconfigure(0, weight=0)  # Para centralizar verticalmente
         
         # Imagem
-        image_path = "D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Logo.png"
+        image_path = "Projeto Academia\\img\\Logo.png"
         self.logo_image = ctk.CTkImage(light_image=Image.open(image_path), size=(150, 150))  # Ajuste o tamanho da imagem
 
         # Criar um Label para exibir a imagem
@@ -149,7 +151,7 @@ class Application(tk.Tk, Funções, Treinos):
 
         #Imagem Perfil
 
-        image_path = "D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Home\\Perfil.png"
+        image_path = "Projeto Academia\\img\\Home\\Perfil.png"
 
         self.logo_image_perfil = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
@@ -164,7 +166,7 @@ class Application(tk.Tk, Funções, Treinos):
 
         if self.instrutor or self.administrador:
             # Botão de criar conta
-            image_path = "D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Cadastrar\\btn_cadastrar.png"
+            image_path = "Projeto Academia\\img\\Cadastrar\\btn_cadastrar.png"
             self.label_image_cadastrar = ctk.CTkImage(light_image=Image.open(image_path), size=(210, 198))
             self.label_image_cadastrar = ctk.CTkLabel(central_frame, image=self.label_image_cadastrar, text="")
             self.label_image_cadastrar.grid(row=0, column=3, pady=0)
@@ -172,14 +174,14 @@ class Application(tk.Tk, Funções, Treinos):
 
         else:
 
-            image_path = "D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Home\\Treinos.png"
+            image_path = "Projeto Academia\\img\\Home\\Treinos.png"
             self.logo_image_treinos = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
             self.label_image_treinos = ctk.CTkLabel(central_frame, image=self.logo_image_treinos, text="")
             self.label_image_treinos.grid(row=0, column=1, pady=0)
             btn_treinos = ctk.CTkButton(central_frame, text="Treinos", fg_color="#808080", hover_color="#A9A9A9", command=self.Treinos, font=("Arial", 18, "bold"), width=150, height=50)
             btn_treinos.grid(row=0, column=1, pady=(250, 00))
 
-        image_path = "D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Home\\Ajustes.png"
+        image_path = "Projeto Academia\\img\\Home\\Ajustes.png"
 
         self.logo_image_ajustes = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
@@ -206,7 +208,7 @@ class Application(tk.Tk, Funções, Treinos):
         background_frame.grid_columnconfigure(0, weight=1)
         background_frame.grid_rowconfigure(0, weight=0)  # Para centralizar verticalmente
 
-        image_path = "D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Logo.png"
+        image_path = "Projeto Academia\\img\\Logo.png"
         self.logo_image = ctk.CTkImage(light_image=Image.open(image_path), size=(120, 120))  # Ajuste o tamanho da imagem
 
         # Criar um Label para exibir a imagem
@@ -224,7 +226,7 @@ class Application(tk.Tk, Funções, Treinos):
         title = ctk.CTkLabel(frame, text="Realizar cadastro", text_color="white", font=("Arial", 20, 'italic'))
         title.grid(row=0, column=1, pady=(15, 20), padx=(5, 00))
 
-        icon_path = "D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\icons\\halter.png"
+        icon_path = "Projeto Academia\\img\\icons\\halter.png"
         icon = Image.open(icon_path)
 
         # Espelhe a imagem horizontalmente
@@ -429,7 +431,7 @@ class Application(tk.Tk, Funções, Treinos):
         central_frame.place(relx=0.5, rely=0.45, anchor=ctk.CENTER)  # Centralizando o frame
 
 
-        image_path = "D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Menu-Treinos\\Puxador.png"
+        image_path = "Projeto Academia\\img\\Treinos\\Menu-Treinos\\Puxador.png"
 
         self.logo_image_treinos = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
@@ -440,7 +442,7 @@ class Application(tk.Tk, Funções, Treinos):
         btn_superiores = ctk.CTkButton(central_frame, text="Superiores", fg_color="#808080", hover_color="#A9A9A9", command=self.Superiores, font=("Arial", 18, "bold"), width=150, height=50)
         btn_superiores.grid(row=0, column=0, pady=(250, 00))
 
-        image_path = "D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Menu-Treinos\\Leg-press.png"
+        image_path = "Projeto Academia\\img\\Treinos\\Menu-Treinos\\Leg-press.png"
 
         self.logo_image_ajustes = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
@@ -484,7 +486,7 @@ class Application(tk.Tk, Funções, Treinos):
         central_frame = ctk.CTkFrame(background_frame, fg_color="#313131")
         central_frame.place(relx=0.5, rely=0.45, anchor=ctk.CENTER)  # Centralizando o frame
 
-        image_path = "D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Superiores\\Peito.png"
+        image_path = "Projeto Academia\\img\\Treinos\\Superiores\\Peito.png"
 
         self.logo_image_treinos = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
@@ -495,7 +497,7 @@ class Application(tk.Tk, Funções, Treinos):
         btn_Peito = ctk.CTkButton(central_frame, text="Peito", fg_color="#808080", hover_color="#A9A9A9", command=self.Peito, font=("Arial", 18, "bold"), width=150, height=50)
         btn_Peito.grid(row=0, column=0, pady=(250, 00))
 
-        image_path = "D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Superiores\\Costas.png"
+        image_path = "Projeto Academia\\img\\Treinos\\Superiores\\Costas.png"
 
         self.logo_image_ajustes = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
@@ -539,9 +541,9 @@ class Application(tk.Tk, Funções, Treinos):
         central_frame = ctk.CTkFrame(background_frame, fg_color="#313131")
         central_frame.place(relx=0.5, rely=0.45, anchor=ctk.CENTER)  # Centralizando o frame
 
-        image_path = "D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Inferiores\\Perna.png"
+        image_path = "Projeto Academia\\img\\Treinos\\Inferiores\\Perna.png"
 
-        image_path = "D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Inferiores\\Perna.png"
+        image_path = "Projeto Academia\\img\\Treinos\\Inferiores\\Perna.png"
         self.logo_image_treinos = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
         # Criar um Label para exibir a imagem
@@ -552,7 +554,7 @@ class Application(tk.Tk, Funções, Treinos):
         btn_Perna.grid(row=0, column=0, pady=(250, 00))
 
 
-        image_path = "D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps.png"
+        image_path = "Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps.png"
 
         self.logo_image_ajustes = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
@@ -594,23 +596,23 @@ class Application(tk.Tk, Funções, Treinos):
 
         # Exercícios de Peito para o carrossel
         exercicios_peito = [
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\supino reto.jpg", "nome": "Supino Reto", "series": 3, "repeticoes": 15},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\crucifixo inclinado.jpg", "nome": "Crucifixo Inclinado", "series": 3, "repeticoes": 15},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\crossover-musculos-.jpg", "nome": "Crossover", "series": 3, "repeticoes": 12}
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Peito\\supino reto.jpg", "nome": "Supino Reto", "series": 3, "repeticoes": 15},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Peito\\crucifixo inclinado.jpg", "nome": "Crucifixo Inclinado", "series": 3, "repeticoes": 15},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Peito\\crossover-musculos-.jpg", "nome": "Crossover", "series": 3, "repeticoes": 12}
         ]
 
         # Exercícios de Ombros para o carrossel
         exercicios_ombros = [
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\elevacao_lateral.jpg", "nome": "Elevação Lateral", "series": 3, "repeticoes": 12},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\desenvolvimento_halteres.jpg", "nome": "Desenvolvimento com Halteres", "series": 3, "repeticoes": 12},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\remada_alta_barra.jpg", "nome": "Remada Alta", "series": 3, "repeticoes": 12}
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Peito\\elevacao_lateral.jpg", "nome": "Elevação Lateral", "series": 3, "repeticoes": 12},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Peito\\desenvolvimento_halteres.jpg", "nome": "Desenvolvimento com Halteres", "series": 3, "repeticoes": 12},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Peito\\remada_alta_barra.jpg", "nome": "Remada Alta", "series": 3, "repeticoes": 12}
         ]
 
         # Exercícios de Triceps para o carrossel
         exercicios_triceps = [
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\mergulho_bancos.jpg", "nome": "Mergulho Bancos", "series": 3, "repeticoes": 15},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\triceps_polia.jfif", "nome": "triceps polia", "series": 3, "repeticoes": 15},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\triceps_testa.png", "nome": "triceps testa", "series": 3, "repeticoes": 12}
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Peito\\mergulho_bancos.jpg", "nome": "Mergulho Bancos", "series": 3, "repeticoes": 15},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Peito\\triceps_polia.jfif", "nome": "triceps polia", "series": 3, "repeticoes": 15},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Peito\\triceps_testa.png", "nome": "triceps testa", "series": 3, "repeticoes": 12}
         ]
 
         # Inicializar o carrossel de imagens com título "Treino de Peito e Ombros"
@@ -661,15 +663,15 @@ class Application(tk.Tk, Funções, Treinos):
 
         # Caminhos das imagens do treino
         exercicios_costas = [
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Superiores\\Costas\\puxada.png", "nome": "Puxada", "series": 3, "repeticoes": 12},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Superiores\\Costas\\remada_curvada.jpg", "nome": "Remada Curvada", "series": 3, "repeticoes": 10},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Superiores\\Costas\\levantamento_terra.jpg", "nome": "Levantamento Terra", "series": 4, "repeticoes": 8}
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Costas\\puxada.png", "nome": "Puxada", "series": 3, "repeticoes": 12},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Costas\\remada_curvada.jpg", "nome": "Remada Curvada", "series": 3, "repeticoes": 10},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Costas\\levantamento_terra.jpg", "nome": "Levantamento Terra", "series": 4, "repeticoes": 8}
         ]
 
         exercicios_biceps = [
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_concentrada.jfif", "nome": "Rosca Concentrada", "series": 3, "repeticoes": 12},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_direta_barra.png", "nome": "Rosca Direta", "series": 3, "repeticoes": 10},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_martelo.jfif", "nome": "Rosca", "series": 4, "repeticoes": 8}
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_concentrada.jfif", "nome": "Rosca Concentrada", "series": 3, "repeticoes": 12},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_direta_barra.png", "nome": "Rosca Direta", "series": 3, "repeticoes": 10},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_martelo.jfif", "nome": "Rosca", "series": 4, "repeticoes": 8}
         ]
 
         # Inicializar o carrossel de imagens
@@ -716,12 +718,12 @@ class Application(tk.Tk, Funções, Treinos):
 
         # Caminhos das imagens do treino
         exercicios_quadriceps = [
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\agachamento_frontal.webp", "nome": "Agachamento Frontal", "series": 3, "repeticoes": 12},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\agachamento_smith.gif", "nome": "Agachamento no Smith", "series": 3, "repeticoes": 10},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\avanco.webp", "nome": "Avanço", "series": 3, "repeticoes": 15},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\extensao_pernas.gif", "nome": "Extensão de Pernas", "series": 4, "repeticoes": 12},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\leg_press.gif", "nome": "Leg Press", "series": 4, "repeticoes": 10},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\step_up.webp", "nome": "Step Up", "series": 3, "repeticoes": 12}
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\agachamento_frontal.webp", "nome": "Agachamento Frontal", "series": 3, "repeticoes": 12},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\agachamento_smith.gif", "nome": "Agachamento no Smith", "series": 3, "repeticoes": 10},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\avanco.webp", "nome": "Avanço", "series": 3, "repeticoes": 15},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\extensao_pernas.gif", "nome": "Extensão de Pernas", "series": 4, "repeticoes": 12},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\leg_press.gif", "nome": "Leg Press", "series": 4, "repeticoes": 10},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\step_up.webp", "nome": "Step Up", "series": 3, "repeticoes": 12}
         ]
 
         # Inicializar o carrossel de imagens
@@ -758,12 +760,12 @@ class Application(tk.Tk, Funções, Treinos):
 
         # Caminhos das imagens do treino
         exercicios_pernas = [
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\afundo_halteres.gif", "nome": "Afundo com Halteres", "series": 3, "repeticoes": 12},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\agachamento_sumo.webp", "nome": "Agachamento Sumo", "series": 3, "repeticoes": 10},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\elevacao_panturrilha.webp", "nome": "Elevação de Panturrilha", "series": 4, "repeticoes": 15},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\levantamento_quadril.gif", "nome": "Levantamento de Quadril", "series": 4, "repeticoes": 12},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\pernas-na-maquina.webp", "nome": "Pernas na Máquina", "series": 3, "repeticoes": 10},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\stiff.webp", "nome": "Stiff", "series": 3, "repeticoes": 12}
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\afundo_halteres.gif", "nome": "Afundo com Halteres", "series": 3, "repeticoes": 12},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\agachamento_sumo.webp", "nome": "Agachamento Sumo", "series": 3, "repeticoes": 10},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\elevacao_panturrilha.webp", "nome": "Elevação de Panturrilha", "series": 4, "repeticoes": 15},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\levantamento_quadril.gif", "nome": "Levantamento de Quadril", "series": 4, "repeticoes": 12},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\pernas-na-maquina.webp", "nome": "Pernas na Máquina", "series": 3, "repeticoes": 10},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\stiff.webp", "nome": "Stiff", "series": 3, "repeticoes": 12}
         ]
 
         # Inicializar o carrossel de imagens

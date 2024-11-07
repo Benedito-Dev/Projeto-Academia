@@ -16,6 +16,33 @@ class ClienteRepository():
     def init_db(self):
         Base.metadata.create_all(self.engine)
 
+    def pre_cadastrar_administrador(self):
+        try:
+            # Verifica se já existe um administrador com nome 'admin' e senha 'admin'
+            administrador_existe = self.session.query(
+                self.session.query(Administradores).filter_by(nome='ADMIN', senha='admin').exists()
+            ).scalar()
+
+            if not administrador_existe:
+                # Se não existir, cria o pré-cadastro do administrador
+                novo_administrador = Administradores(
+                    nome='ADMIN',
+                    email='admin@exemplo.com',
+                    senha='admin',
+                    telefone='0000-0000',
+                    endereco='Endereço padrão',
+                    cpf='000.000.000-00',
+                    data_de_nascimento=None
+                )
+                self.session.add(novo_administrador)
+                self.session.commit()
+                print("Administrador pré-cadastrado com sucesso!")
+            else:
+                print("Administrador já existe. Nenhum novo cadastro foi feito.")
+        except Exception as e:
+            print(f"Erro ao tentar pré-cadastrar administrador: {e}")
+
+
     # Função para cadastrar um novo cliente
     def cadastrar_usuario(self, nome, email, senha, telefone, endereco, cpf, data_de_nascimento, codigo_adm, tabela):
         if tabela == 'usuario':

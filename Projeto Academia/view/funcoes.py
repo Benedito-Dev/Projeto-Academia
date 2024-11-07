@@ -15,6 +15,8 @@ class Funções():
     def __init__(self):
         self.controler = UsuarioController()
 
+    def pre_cadastramento(self):
+        self.controler.pre_cadastrando_usuario()
 
     def Exibir_senha(self):
         if self.check_senha.get() == 1:

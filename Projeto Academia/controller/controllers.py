@@ -8,6 +8,9 @@ class UsuarioController:
 
     def inicar_banco(self):
         self.repository.init_db()
+    
+    def pre_cadastrando_usuario(self):
+        self.repository.pre_cadastrar_administrador()
 
     # Controlador responsável por criar um produto
     def adicionar_usuario(self, nome, email, senha, telefone, endereco, cpf, data_de_nascimento, codigo_adm, tabela):
