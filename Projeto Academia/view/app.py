@@ -328,7 +328,6 @@ class Application(tk.Tk, Funções, Treinos):
             ctk.CTkButton(central_frame, text="Gerenciar Perfis", font=("Arial", 18), width=160, height=50, fg_color="#808080",  hover_color="#A9A9A9", command=self.Exibir_perfis).grid(row=0, column=4, pady=(250, 00))
 
         else:
-
             image_path = "Projeto Academia\\img\\Home\\Treinos.png"
             self.logo_image_treinos = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
             self.label_image_treinos = ctk.CTkLabel(central_frame, image=self.logo_image_treinos, text="")
@@ -350,6 +349,12 @@ class Application(tk.Tk, Funções, Treinos):
         # Frame inferior (usando CustomTkinter)
         frame_inferior = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=0,height=30)
         frame_inferior.pack(side="bottom", fill="x", pady=10)
+
+        if self.administrador:
+            pass
+        else:
+            feedback_btn = ctk.CTkButton(frame_inferior, text="Feedback", fg_color="#808080", hover_color="#A9A9A9", command=self.Feedback, font=("Arial", 18, "bold"))
+            feedback_btn.pack(side='right', padx=10, pady=10)
 
 
     def Treinos_instrutor(self):
@@ -421,6 +426,50 @@ class Application(tk.Tk, Funções, Treinos):
 
         ctk.CTkButton(background_frame, text="Deletar Perfil", command=self.deletar_perfil).pack(pady=10)
         ctk.CTkButton(background_frame, text="Voltar", command=self.Home).pack(pady=10)
+    
+    def Feedback(self):
+
+        for widget in self.winfo_children():
+            widget.destroy()
+
+        background_frame = ctk.CTkFrame(self, fg_color="#313131", corner_radius=0)
+        background_frame.pack(fill='both', expand=True)
+
+        # Frame superior com o título e plano (usando CustomTkinter)
+        frame_superior = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=0, height=30)
+        frame_superior.pack(side="top", fill="x", pady=10)
+
+        image_path = "Projeto Academia\\img\\Logo.png"
+        self.logo_image = ctk.CTkImage(light_image=Image.open(image_path), size=(150, 150))  # Ajuste o tamanho da imagem
+
+        # Criar um Label para exibir a imagem
+        self.label_image = ctk.CTkLabel(background_frame, image=self.logo_image, text="")
+        self.label_image.pack(pady=10)
+
+        title = ctk.CTkLabel(frame_superior, text="4 FITNESS", text_color="white", fg_color="#7fd350", font=("Arial", 18, 'bold'))
+        title.pack(side="left", padx=20)
+
+        log_out = ctk.CTkButton(frame_superior, text=" ⬅ Log Out", text_color="white", fg_color='#ED1B24', hover_color='#242424', font=("Arial", 14, 'bold'), height=20, command=self.realizar_login)
+        log_out.pack(side="right", padx=10)
+
+        plano_label = ctk.CTkLabel(frame_superior, text=f"Plano Intermediário, Olá {self.nome_usuario}", text_color="white", fg_color="#7fd350", font=("Arial", 18, 'bold'))
+        plano_label.pack(side="top")
+
+        title_feedback = ctk.CTkLabel(background_frame, text="Seu Feedback", text_color="white", fg_color="#313131", font=("Arial", 18, 'italic'))
+        title_feedback.pack(side="top", pady=20)
+
+        border_frame = ctk.CTkFrame(background_frame, fg_color="green", corner_radius=10)
+        border_frame.pack(padx=10, pady=(40, 20))
+
+        self.feedback_text = ctk.CTkTextbox(border_frame, width=400, height=200, fg_color="#454545", text_color="white")
+        self.feedback_text.pack(pady=10, padx=10)
+
+        submit_button = ctk.CTkButton(background_frame, text="Enviar Feedback", fg_color="#808080", hover_color="#A9A9A9", command=self.submit_feedback)
+        submit_button.pack(pady=20)
+
+        btn_voltar = ctk.CTkButton(background_frame, text="Voltar", fg_color="#808080", hover_color="#A9A9A9", command=self.Home, font=("Arial", 18))
+        btn_voltar.pack(pady=30)
+
 
 
     def Ajustes(self):

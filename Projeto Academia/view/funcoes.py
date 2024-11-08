@@ -23,6 +23,14 @@ class Funções():
             self.entry_senha.configure(show="")
         else:
             self.entry_senha.configure(show="*")
+    
+    def submit_feedback(self):
+
+        feedback = self.feedback_text.get("1.0", "end-1c")
+
+        messagebox.showinfo("Sucesso", f"Feedback enviado: {feedback}.")
+
+        self.feedback_text.delete("1.0", "end")
 
 
     def iniciar_carrossel_imagens(self, titulo, frame, exercicios, largura, altura):
