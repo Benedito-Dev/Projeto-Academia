@@ -1,5 +1,6 @@
 from controller.controllers import UsuarioController
 from tkinter import messagebox
+from tkinter import ttk
 import customtkinter as ctk
 from PIL import Image
 
@@ -34,7 +35,7 @@ class Treinos():
         central_frame.place(relx=0.5, rely=0.45, anchor=ctk.CENTER)  # Centralizando o frame
 
 
-        image_path = "D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Menu-Treinos\\Artes Marciais.png"
+        image_path = "Projeto Academia\\img\\Treinos\\Menu-Treinos\\Artes Marciais.png"
 
         self.logo_image_treinos = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
@@ -45,7 +46,7 @@ class Treinos():
         btn_artesMarciais = ctk.CTkButton(central_frame, text="Artes Marciais", fg_color="#808080", hover_color="#A9A9A9", command=self.Artes_marciais, font=("Arial", 18, "bold"), width=150, height=50)
         btn_artesMarciais.grid(row=0, column=0, pady=(250, 00))
 
-        image_path = "D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Menu-Treinos\\Musculação-Menu.png"
+        image_path = "Projeto Academia\\img\\Treinos\\Menu-Treinos\\Musculação-Menu.png"
 
         self.logo_image_ajustes = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
@@ -90,7 +91,7 @@ class Treinos():
         central_frame.place(relx=0.5, rely=0.45, anchor=ctk.CENTER)  # Centralizando o frame
 
 
-        image_path = "D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Menu-Treinos\\Puxador.png"
+        image_path = "Projeto Academia\\img\\Treinos\\Menu-Treinos\\Puxador.png"
 
         self.logo_image_treinos = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
@@ -101,7 +102,7 @@ class Treinos():
         btn_superiores = ctk.CTkButton(central_frame, text="Superiores", fg_color="#808080", hover_color="#A9A9A9", command=self.Superiores, font=("Arial", 18, "bold"), width=150, height=50)
         btn_superiores.grid(row=0, column=0, pady=(250, 00))
 
-        image_path = "D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Menu-Treinos\\Leg-press.png"
+        image_path = "Projeto Academia\\img\\Treinos\\Menu-Treinos\\Leg-press.png"
 
         self.logo_image_ajustes = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
@@ -144,7 +145,7 @@ class Treinos():
         central_frame = ctk.CTkFrame(background_frame, fg_color="#313131")
         central_frame.place(relx=0.5, rely=0.45, anchor=ctk.CENTER)
 
-        image_path = "D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Menu-Treinos\\Karate.png"
+        image_path = "Projeto Academia\\img\\Treinos\\Menu-Treinos\\Karate.png"
 
         logo_image_treinos = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
@@ -237,7 +238,7 @@ class Treinos():
         central_frame = ctk.CTkFrame(background_frame, fg_color="#313131")
         central_frame.place(relx=0.5, rely=0.45, anchor=ctk.CENTER)  # Centralizando o frame
 
-        image_path = "D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito.png"
+        image_path = "Projeto Academia\\img\\Treinos\\Superiores\\Peito.png"
 
         self.logo_image_treinos = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
@@ -248,7 +249,7 @@ class Treinos():
         btn_Peito = ctk.CTkButton(central_frame, text="Peito", fg_color="#808080", hover_color="#A9A9A9", command=self.Peito, font=("Arial", 18, "bold"), width=150, height=50)
         btn_Peito.grid(row=0, column=0, pady=(250, 00))
 
-        image_path = "D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Costas.png"
+        image_path = "Projeto Academia\\img\\Treinos\\Superiores\\Costas.png"
 
         self.logo_image_ajustes = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
@@ -291,9 +292,9 @@ class Treinos():
         central_frame = ctk.CTkFrame(background_frame, fg_color="#313131")
         central_frame.place(relx=0.5, rely=0.45, anchor=ctk.CENTER)  # Centralizando o frame
 
-        image_path = "D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Perna.png"
+        image_path = "Projeto Academia\\img\\Treinos\\Inferiores\\Perna.png"
 
-        image_path = "D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Perna.png"
+        image_path = "Projeto Academia\\img\\Treinos\\Inferiores\\Perna.png"
         self.logo_image_treinos = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
         # Criar um Label para exibir a imagem
@@ -304,7 +305,7 @@ class Treinos():
         btn_Perna.grid(row=0, column=0, pady=(250, 00))
 
 
-        image_path = "D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps.png"
+        image_path = "Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps.png"
 
         self.logo_image_ajustes = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
@@ -345,23 +346,23 @@ class Treinos():
 
         # Exercícios de Peito para o carrossel
         exercicios_peito = [
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\supino reto.gif", "nome": "Supino Reto", "series": 3, "repeticoes": 15},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\crucifixo inclinado.gif", "nome": "Crucifixo Inclinado", "series": 3, "repeticoes": 15},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\crossover-musculos.gif", "nome": "Crossover", "series": 3, "repeticoes": 12}
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Peito\\supino reto.gif", "nome": "Supino Reto", "series": 3, "repeticoes": 15},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Peito\\crucifixo inclinado.gif", "nome": "Crucifixo Inclinado", "series": 3, "repeticoes": 15},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Peito\\crossover-musculos.gif", "nome": "Crossover", "series": 3, "repeticoes": 12}
         ]
 
         # Exercícios de Ombros para o carrossel
         exercicios_ombros = [
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\elevacao_lateral.gif", "nome": "Elevação Lateral", "series": 3, "repeticoes": 12},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\desenvolvimento_halteres.gif", "nome": "Desenvolvimento com Halteres", "series": 3, "repeticoes": 12},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\remada_alta_barra.gif", "nome": "Remada Alta", "series": 3, "repeticoes": 12}
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Peito\\elevacao_lateral.gif", "nome": "Elevação Lateral", "series": 3, "repeticoes": 12},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Peito\\desenvolvimento_halteres.gif", "nome": "Desenvolvimento com Halteres", "series": 3, "repeticoes": 12},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Peito\\remada_alta_barra.gif", "nome": "Remada Alta", "series": 3, "repeticoes": 12}
         ]
 
         # Exercícios de Triceps para o carrossel
         exercicios_triceps = [
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\mergulho_bancos.gif", "nome": "Mergulho Banco", "series": 3, "repeticoes": 15},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\triceps_polia.gif", "nome": "Tríceps Polia", "series": 3, "repeticoes": 15},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Peito\\triceps_testa.gif", "nome": "Tríceps Testa", "series": 3, "repeticoes": 12}
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Peito\\mergulho_bancos.gif", "nome": "Mergulho Banco", "series": 3, "repeticoes": 15},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Peito\\triceps_polia.gif", "nome": "Tríceps Polia", "series": 3, "repeticoes": 15},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Peito\\triceps_testa.gif", "nome": "Tríceps Testa", "series": 3, "repeticoes": 12}
         ]
 
         # Inicializar o carrossel de imagens com título "Treino de Peito e Ombros"
@@ -425,15 +426,15 @@ class Treinos():
 
         # Caminhos das imagens do treino
         exercicios_costas = [
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Costas\\puxada.gif", "nome": "Puxada", "series": 3, "repeticoes": 12},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Costas\\remada_curvada.gif", "nome": "Remada Curvada", "series": 3, "repeticoes": 10},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Costas\\levantamento_terra.gif", "nome": "Levantamento Terra", "series": 4, "repeticoes": 8}
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Costas\\puxada.gif", "nome": "Puxada", "series": 3, "repeticoes": 12},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Costas\\remada_curvada.gif", "nome": "Remada Curvada", "series": 3, "repeticoes": 10},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Costas\\levantamento_terra.gif", "nome": "Levantamento Terra", "series": 4, "repeticoes": 8}
         ]
 
         exercicios_biceps = [
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_concentrada.gif", "nome": "Rosca Concentrada", "series": 3, "repeticoes": 12},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_direta_barra.gif", "nome": "Rosca Direta", "series": 3, "repeticoes": 10},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_martelo.gif", "nome": "Rosca Martelo", "series": 4, "repeticoes": 8}
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_concentrada.gif", "nome": "Rosca Concentrada", "series": 3, "repeticoes": 12},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_direta_barra.gif", "nome": "Rosca Direta", "series": 3, "repeticoes": 10},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Superiores\\Costas\\rosca_martelo.gif", "nome": "Rosca Martelo", "series": 4, "repeticoes": 8}
         ]
 
         # Inicializar o carrossel de imagens
@@ -492,12 +493,12 @@ class Treinos():
 
         # Caminhos das imagens do treino
         exercicios_quadriceps = [
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\agachamento_frontal.gif", "nome": "Agachamento Frontal", "series": 3, "repeticoes": 12},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\agachamento_smith.gif", "nome": "Agachamento no Smith", "series": 3, "repeticoes": 10},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\avanco.gif", "nome": "Avanço", "series": 3, "repeticoes": 15},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\extensao_pernas.gif", "nome": "Extensão de Pernas", "series": 4, "repeticoes": 12},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\leg_press.gif", "nome": "Leg Press", "series": 4, "repeticoes": 10},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\step_up.gif", "nome": "Step Up", "series": 3, "repeticoes": 12}
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\agachamento_frontal.gif", "nome": "Agachamento Frontal", "series": 3, "repeticoes": 12},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\agachamento_smith.gif", "nome": "Agachamento no Smith", "series": 3, "repeticoes": 10},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\avanco.gif", "nome": "Avanço", "series": 3, "repeticoes": 15},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\extensao_pernas.gif", "nome": "Extensão de Pernas", "series": 4, "repeticoes": 12},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\leg_press.gif", "nome": "Leg Press", "series": 4, "repeticoes": 10},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Inferiores\\Quadriceps\\step_up.gif", "nome": "Step Up", "series": 3, "repeticoes": 12}
         ]
 
         # Inicializar o carrossel de imagens
@@ -542,11 +543,11 @@ class Treinos():
 
         # Caminhos das imagens do treino
         exercicios_pernas = [
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\afundo_halteres.gif", "nome": "Afundo com Halteres", "series": 3, "repeticoes": 12},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\agachamento_sumo.gif", "nome": "Agachamento Sumô", "series": 3, "repeticoes": 10},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\levantamento_quadril.gif", "nome": "Levantamento de Quadril", "series": 4, "repeticoes": 12},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\pernas-na-maquina.gif", "nome": "Pernas na Máquina", "series": 3, "repeticoes": 10},
-            {"imagem": r"D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\stiff.gif", "nome": "Stiff", "series": 3, "repeticoes": 12}
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\afundo_halteres.gif", "nome": "Afundo com Halteres", "series": 3, "repeticoes": 12},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\agachamento_sumo.gif", "nome": "Agachamento Sumô", "series": 3, "repeticoes": 10},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\levantamento_quadril.gif", "nome": "Levantamento de Quadril", "series": 4, "repeticoes": 12},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\pernas-na-maquina.gif", "nome": "Pernas na Máquina", "series": 3, "repeticoes": 10},
+            {"imagem": r"Projeto Academia\\img\\Treinos\\Inferiores\\Pernas\\stiff.gif", "nome": "Stiff", "series": 3, "repeticoes": 12}
         ]
 
         # Inicializar o carrossel de imagens
