@@ -428,23 +428,16 @@ class Application(tk.Tk, Funções, Treinos):
         ctk.CTkButton(background_frame, text="Voltar", command=self.Home).pack(pady=10)
     
     def Feedback(self):
-
         for widget in self.winfo_children():
             widget.destroy()
 
+        # Criando Fundo com CustomTkinter
         background_frame = ctk.CTkFrame(self, fg_color="#313131", corner_radius=0)
-        background_frame.pack(fill='both', expand=True)
+        background_frame.pack(fill="both", expand=True)
 
-        # Frame superior com o título e plano (usando CustomTkinter)
+        # Frame superior com o título e plano
         frame_superior = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=0, height=30)
         frame_superior.pack(side="top", fill="x", pady=10)
-
-        image_path = "Projeto Academia\\img\\Logo.png"
-        self.logo_image = ctk.CTkImage(light_image=Image.open(image_path), size=(150, 150))  # Ajuste o tamanho da imagem
-
-        # Criar um Label para exibir a imagem
-        self.label_image = ctk.CTkLabel(background_frame, image=self.logo_image, text="")
-        self.label_image.pack(pady=10)
 
         title = ctk.CTkLabel(frame_superior, text="4 FITNESS", text_color="white", fg_color="#7fd350", font=("Arial", 18, 'bold'))
         title.pack(side="left", padx=20)
@@ -455,22 +448,31 @@ class Application(tk.Tk, Funções, Treinos):
         plano_label = ctk.CTkLabel(frame_superior, text=f"Plano Intermediário, Olá {self.nome_usuario}", text_color="white", fg_color="#7fd350", font=("Arial", 18, 'bold'))
         plano_label.pack(side="top")
 
-        title_feedback = ctk.CTkLabel(background_frame, text="Seu Feedback", text_color="white", fg_color="#313131", font=("Arial", 18, 'italic'))
-        title_feedback.pack(side="top", pady=20)
+        # Adicionando a imagem
+        image_path = "Projeto Academia\\img\\Logo.png"
+        self.logo_image = ctk.CTkImage(light_image=Image.open(image_path), size=(150, 150))
+        self.label_image = ctk.CTkLabel(background_frame, image=self.logo_image, text="")
+        self.label_image.pack(pady=10)
 
-        border_frame = ctk.CTkFrame(background_frame, fg_color="green", corner_radius=10)
-        border_frame.pack(padx=10, pady=(40, 20))
+        # Frame para o conteúdo central, usando .grid para os elementos abaixo
+        central_frame = ctk.CTkFrame(background_frame, fg_color="#313131", bg_color="#313131")
+        central_frame.pack(pady=(10, 20))
+
+        # Elementos organizados com .grid
+        title_feedback = ctk.CTkLabel(central_frame, text="Seu Feedback", text_color="white", fg_color="#313131", font=("Arial", 18, 'italic'))
+        title_feedback.grid(row=0, column=0, columnspan=2, pady=(0, 20))
+
+        border_frame = ctk.CTkFrame(central_frame, fg_color="green", corner_radius=10)
+        border_frame.grid(row=1, column=0, columnspan=2, padx=10, pady=(20, 10))
 
         self.feedback_text = ctk.CTkTextbox(border_frame, width=400, height=200, fg_color="#454545", text_color="white")
         self.feedback_text.pack(pady=10, padx=10)
 
-        submit_button = ctk.CTkButton(background_frame, text="Enviar Feedback", fg_color="#808080", hover_color="#A9A9A9", command=self.submit_feedback)
-        submit_button.pack(pady=20)
+        submit_button = ctk.CTkButton(central_frame, text="Enviar Feedback", fg_color="#808080", hover_color="#A9A9A9", command=self.submit_feedback)
+        submit_button.grid(row=2, column=0, pady=20)
 
-        btn_voltar = ctk.CTkButton(background_frame, text="Voltar", fg_color="#808080", hover_color="#A9A9A9", command=self.Home, font=("Arial", 18))
-        btn_voltar.pack(pady=30)
-
-
+        btn_voltar = ctk.CTkButton(central_frame, text="Voltar", fg_color="#808080", hover_color="#A9A9A9", command=self.Home, font=("Arial", 18))
+        btn_voltar.grid(row=2, column=1, pady=20)
 
     def Ajustes(self):
         for widget in self.winfo_children():
