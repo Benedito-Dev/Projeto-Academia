@@ -103,10 +103,10 @@ class Application(tk.Tk, Funções, Treinos):
         titulo = ctk.CTkLabel(frame, text="Realizar login", text_color="white", font=("Arial", 20))
         titulo.grid(row=0, column=0, columnspan=2, pady=10)
 
-        # Nome do usuário
-        ctk.CTkLabel(frame, text="Nome:", text_color="white", font=("Arial", 14)).grid(row=1, column=0, sticky="e", padx=10)
-        self.entry_nome = ctk.CTkEntry(frame, placeholder_text="Nome")
-        self.entry_nome.grid(row=1, column=1, pady=5, padx=20)
+        # Email do usuário
+        ctk.CTkLabel(frame, text="Email:", text_color="white", font=("Arial", 14)).grid(row=1, column=0, sticky="e", padx=10)
+        self.entry_email = ctk.CTkEntry(frame, placeholder_text="Email")
+        self.entry_email.grid(row=1, column=1, pady=5, padx=20)
 
         # Senha
         ctk.CTkLabel(frame, text="Senha:", text_color="white", font=("Arial", 14)).grid(row=2, column=0, sticky="e", padx=10)
@@ -278,6 +278,9 @@ class Application(tk.Tk, Funções, Treinos):
         for widget in self.winfo_children():
             widget.destroy()
         
+        self.puxar_informacoes()
+        self.nome_usuario = self.get_informacao('nome')
+        
         # Criando Fundo com CustomTkinter
         background_frame = ctk.CTkFrame(self, fg_color="#313131", corner_radius=0)
         background_frame.pack(fill="both", expand=True)
@@ -292,7 +295,7 @@ class Application(tk.Tk, Funções, Treinos):
         log_out = ctk.CTkButton(frame_superior, text=" ⬅ Log Out", text_color="white", fg_color='#ED1B24', hover_color='#242424', font=("Arial", 14, 'bold'), height=20, command=self.realizar_login)
         log_out.pack(side="right", padx=10)
 
-        plano_label = ctk.CTkLabel(frame_superior, text=f"Plano Intermediário, Olá {self.nome_usuario}", text_color="white", fg_color="#7fd350", font=("Arial", 18, 'bold'))
+        plano_label = ctk.CTkLabel(frame_superior, text=f"Plano Intermediário, Olá {self.nome_usuario.lower().capitalize()}", text_color="white", fg_color="#7fd350", font=("Arial", 18, 'bold'))
         plano_label.pack(side="top")
 
         # Frame central para os botões (usando CustomTkinter)
@@ -563,8 +566,6 @@ class Application(tk.Tk, Funções, Treinos):
         # Remove todos os widgets existentes
         for widget in self.winfo_children():
             widget.destroy()
-
-        self.puxar_informacoes()
         
         background_frame = ctk.CTkFrame(self, fg_color="#313131", corner_radius=0)
         background_frame.pack(fill="both", expand=True)

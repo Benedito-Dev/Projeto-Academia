@@ -35,18 +35,18 @@ class UsuarioController:
         except Exception as e:
             messagebox.showerror("Erro", f"Erro ao cadastrar-se usuário: {e}")
 
-    def fazer_login(self, nome, senha):
+    def fazer_login(self, email, senha):
         # Chama a função validar_login do repository
             try:
-                if self.repository.validar_login(nome, senha) == 'cliente':
+                if self.repository.validar_login(email, senha) == 'cliente':
                     messagebox.showinfo("Sucesso", "Login Efetuado")
                     return 'cliente'
                 
-                elif self.repository.validar_login(nome, senha) == 'instrutor':
+                elif self.repository.validar_login(email, senha) == 'instrutor':
                     messagebox.showinfo("Sucesso", "Login Efetuado")
                     return 'instrutor'
 
-                elif self.repository.validar_login(nome, senha) == 'administrador':
+                elif self.repository.validar_login(email, senha) == 'administrador':
                     messagebox.showinfo("Sucesso", "Login Efetuado")
                     return 'administrador'
                 else :
@@ -62,8 +62,8 @@ class UsuarioController:
     def listar_instrutores(self):
         return self.repository.obter_instrutores()
 
-    def obter_usuario_por_nome(self, nome):
-        return self.repository.obter_usuario(nome)
+    def obter_usuario_por_email(self, email):
+        return self.repository.obter_usuario(email)
 
     # Controlador responsável por atualizar um produto
     def atualizar_usuario(self, id, nome, data_de_nascimento, endereco, telefone, email, senha):

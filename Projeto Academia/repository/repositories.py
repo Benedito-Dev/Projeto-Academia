@@ -85,12 +85,12 @@ class ClienteRepository():
 
         return novo_cliente.id
 
-    def validar_login(self, nome, senha):
+    def validar_login(self, email, senha):
         try:
             # Busca o cliente com o nome e senha fornecidos
-            cliente = self.session.query(Cliente).filter_by(nome=nome, senha=senha).one_or_none()
-            instrutor = self.session.query(Instrutores).filter_by(nome=nome, senha=senha).one_or_none()
-            administrador = self.session.query(Administradores).filter_by(nome=nome, senha=senha).one_or_none()
+            cliente = self.session.query(Cliente).filter_by(email=email, senha=senha).one_or_none()
+            instrutor = self.session.query(Instrutores).filter_by(email=email, senha=senha).one_or_none()
+            administrador = self.session.query(Administradores).filter_by(email=email, senha=senha).one_or_none()
             if cliente:
                 return 'cliente'
             elif instrutor:
@@ -110,11 +110,11 @@ class ClienteRepository():
     def obter_instrutores(self):
         return self.session.query(Instrutores).all()
 
-    def obter_usuario(self, nome):
+    def obter_usuario(self, email):
         try:
-            cliente = self.session.query(Cliente).filter_by(nome=nome).one_or_none()
-            instrutor = self.session.query(Instrutores).filter_by(nome=nome).one_or_none()
-            administrador = self.session.query(Administradores).filter_by(nome=nome).one_or_none()
+            cliente = self.session.query(Cliente).filter_by(email=email).one_or_none()
+            instrutor = self.session.query(Instrutores).filter_by(email=email).one_or_none()
+            administrador = self.session.query(Administradores).filter_by(email=email).one_or_none()
             if cliente:
                 return cliente
             elif instrutor:

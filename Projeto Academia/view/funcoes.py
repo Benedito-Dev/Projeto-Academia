@@ -219,8 +219,9 @@ class Funções():
             messagebox.showerror("Erro", "Insira uma data valida por favor")
             return
         
-        if not codigo or codigo.isnumeric() == False:
-            messagebox.showerror("Digite o codigo de maneira correta")
+        if tabela != "Administrador":
+            if not codigo or codigo.isnumeric() == False:
+                messagebox.showerror("Erro", "Digite o codigo de maneira correta")
 
         # Se todos os dados estiverem válidos, prosseguir com a lógica de envio
         self.enviar_dados(nome=nome, email=email, senha=senha, telefone=telefone, endereco=endereco, cpf=cpf, data_de_nascimento=data_de_nascimento, codigo_adm=codigo, tabela=tabela)
@@ -285,25 +286,25 @@ class Funções():
         btn_selecionar_data.pack(pady=10)
 
     def validando_login(self):
-        nome = self.entry_nome.get().strip()
+        email = self.entry_email.get().strip()
         senha = self.entry_senha.get().strip()
 
-        usuario = self.controler.fazer_login(nome.upper(), senha)
+        usuario = self.controler.fazer_login(email, senha)
         
         # Chama o método do controlador para validar o login
         if usuario == 'cliente':
-            self.nome_usuario = nome.capitalize()
+            self.email = email
             self.senha_usuario = senha
             self.after(500, self.Home)
         
         elif usuario == 'instrutor':
-            self.nome_usuario = nome.capitalize()
+            self.email = email
             self.senha_usuario = senha
             self.instrutor = True
             self.after(500, self.Home)
 
         elif usuario == 'administrador':
-            self.nome_usuario = nome.capitalize()
+            self.email = email
             self.senha_usuario = senha.capitalize()
             self.administrador = True
             self.after(500, self.Home)
@@ -311,15 +312,14 @@ class Funções():
             pass
     
     def puxar_informacoes(self):
-        user_name = self.nome_usuario.strip().upper()
+        user_email = self.email.strip()
 
         try:
-            user = self.controler.obter_usuario_por_nome(user_name)
+            user = self.controler.obter_usuario_por_email(user_email)
 
 
             if user:
                 self.informacoes = user
-
 
             else:
                 messagebox.showinfo("Info", "Usuario não encontrado")
@@ -380,7 +380,6 @@ class Funções():
             return
 
         try:
-            self.nome_usuario = nome
             self.controler.atualizar_usuario(id=id, nome=nome, data_de_nascimento=data_de_nascimento, endereco=endereco, telefone=telefone, email=email, senha=senha)
             self.after(500, self.Home)
 
