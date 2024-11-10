@@ -7,6 +7,7 @@ from PIL import Image, ImageTk, ImageOps
 from view.funcoes import Funções
 from view.treinos_usuario_view import Treinos
 from controller.controllers import UsuarioController
+from controller.enviando_email import EnviandoEmail
 
 
 
@@ -22,6 +23,7 @@ class Application(tk.Tk, Funções, Treinos):
         self.geometry("800x600")
         self.current_page = 0
         self.controler = UsuarioController()
+        self.emails = EnviandoEmail()
         self.Treinos = Treinos()
         self.state('zoomed')
         self.menu_inicial()
@@ -73,6 +75,7 @@ class Application(tk.Tk, Funções, Treinos):
         
         self.instrutor = False
         self.administrador = False
+        self.primeira_vez_home = True
 
         # Criação do frame de fundo
         background_frame = ctk.CTkFrame(self, fg_color="#313131", corner_radius=0)
@@ -280,6 +283,10 @@ class Application(tk.Tk, Funções, Treinos):
         
         self.puxar_informacoes()
         self.nome_usuario = self.get_informacao('nome')
+
+        if self.primeira_vez_home:
+            self.emails.enviar_email(destinatario=self.get_informacao('email'), nome=self.nome_usuario.lower().capitalize())
+            self.primeira_vez_home = False
         
         # Criando Fundo com CustomTkinter
         background_frame = ctk.CTkFrame(self, fg_color="#313131", corner_radius=0)
