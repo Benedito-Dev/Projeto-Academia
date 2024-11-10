@@ -4,7 +4,7 @@ from view.app import Application
 def main():
     # Inicializar o banco de dados
     controlador = UsuarioController()
-    controlador.inicar_banco()
+    controlador.iniciar_banco()
 
     # Inicializar a interface gráfica
     app = Application()
