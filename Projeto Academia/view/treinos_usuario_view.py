@@ -3,12 +3,17 @@ from tkinter import messagebox
 from tkinter import ttk
 import customtkinter as ctk
 from PIL import Image
+import tkinter as tk
 
-class Treinos():
-    def __init__(self):
+
+class Treinos(tk.Frame):
+    def __init__(self, master=None):
         self.controler = UsuarioController()
+        super().__init__(master)
+        self.master = master
+        self.pack()
     
-    
+  
     def Modalidades(self):
         for widget in self.winfo_children():
             widget.destroy()
@@ -425,7 +430,7 @@ class Treinos():
         central_frame.grid_rowconfigure(1, weight=2)  # Se houver uma segunda linha para o carrossel
 
         # Caminhos das imagens do treino
-        exercicios_costas = [
+        self.exercicios_costas = [
             {"imagem": r"D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Logo.png\\Projeto Academia\\img\\Treinos\\Superiores\\Costas\\puxada.gif", "nome": "Puxada", "series": 3, "repeticoes": 12},
             {"imagem": r"D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Logo.png\\Projeto Academia\\img\\Treinos\\Superiores\\Costas\\remada_curvada.gif", "nome": "Remada Curvada", "series": 3, "repeticoes": 10},
             {"imagem": r"D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Logo.png\\Projeto Academia\\img\\Treinos\\Superiores\\Costas\\levantamento_terra.gif", "nome": "Levantamento Terra", "series": 4, "repeticoes": 8}
@@ -438,7 +443,7 @@ class Treinos():
         ]
 
         # Inicializar o carrossel de imagens
-        self.exercicios_atual = exercicios_costas
+        self.exercicios_atual = self.exercicios_costas
         self.indice_atual = 0
         self.iniciar_carrossel_imagens("Treino de Costas", central_frame, self.exercicios_atual, 200, 200)
 
@@ -447,7 +452,7 @@ class Treinos():
         btn_frame.pack(pady=30)
 
         # Botões para alternar entre os grupos de exercícios
-        btn_costas = ctk.CTkButton(btn_frame, text="Costas", fg_color="#808080", hover_color="#A9A9A9", command=lambda: self.mudar_exercicios("Treino de Costas", exercicios_costas, central_frame), font=("Arial", 18, "bold"))
+        btn_costas = ctk.CTkButton(btn_frame, text="Costas", fg_color="#808080", hover_color="#A9A9A9", command=lambda: self.mudar_exercicios("Treino de Costas", self.exercicios_costas, central_frame), font=("Arial", 18, "bold"))
         btn_costas.pack(side="left", padx=5)
 
         btn_biceps = ctk.CTkButton(btn_frame, text="Bíceps", fg_color="#808080", hover_color="#A9A9A9", command=lambda: self.mudar_exercicios("Treino de Biceps", exercicios_biceps, central_frame), font=("Arial", 18, "bold"))

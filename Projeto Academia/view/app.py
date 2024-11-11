@@ -8,9 +8,6 @@ from view.funcoes import Funções
 from view.treinos_usuario_view import Treinos
 from controller.controllers import UsuarioController
 
-
-
-
 # Configurações do CustomTkinter
 ctk.set_appearance_mode("Dark")
 ctk.set_default_color_theme("blue")
@@ -22,7 +19,8 @@ class Application(tk.Tk, Funções, Treinos):
         self.geometry("800x600")
         self.current_page = 0
         self.controler = UsuarioController()
-        self.Treinos = Treinos()
+        root = tk.Tk()
+        self.treinos = Treinos(master=root)
         self.state('zoomed')
         self.menu_inicial()
 
@@ -314,7 +312,10 @@ class Application(tk.Tk, Funções, Treinos):
         btn_perfil = ctk.CTkButton(central_frame, text="Perfil", fg_color="#808080", hover_color="#A9A9A9", command=self.Perfil_usuario, font=("Arial", 18, "bold"), width=150, height=50)
         btn_perfil.grid(row=0, column=0, pady=(250, 00))
 
-
+        if self.instrutor:
+            print(self.treinos.Costas())
+            btn_printar_treinos = ctk.CTkButton(central_frame, text="Listar Treinos", fg_color="#808080", hover_color="#A9A9A9", command=self.listar_treinos(self.exercicios_costas), font=("Arial", 18, "bold"), width=150, height=50)
+            btn_printar_treinos.grid(row=0, column=5, pady=(250, 00))
         if self.instrutor or self.administrador:
             # Botão de criar conta
             image_path = "D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Home\\btn_cadastrar.png"
@@ -333,7 +334,7 @@ class Application(tk.Tk, Funções, Treinos):
             self.logo_image_treinos = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
             self.label_image_treinos = ctk.CTkLabel(central_frame, image=self.logo_image_treinos, text="")
             self.label_image_treinos.grid(row=0, column=1, pady=0)
-            btn_treinos = ctk.CTkButton(central_frame, text="Treinos", fg_color="#808080", hover_color="#A9A9A9", command=self.Treinos.Modalidades, font=("Arial", 18, "bold"), width=150, height=50)
+            btn_treinos = ctk.CTkButton(central_frame, text="Treinos", fg_color="#808080", hover_color="#A9A9A9", command=self.treinos.Modalidades, font=("Arial", 18, "bold"), width=150, height=50)
             btn_treinos.grid(row=0, column=1, pady=(250, 00))
 
         image_path = "D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Home\\Ajustes.png"
@@ -393,7 +394,7 @@ class Application(tk.Tk, Funções, Treinos):
         optionmenu_alunos = ctk.CTkOptionMenu(central_frame, variable=self.aluno_selecionado, values=alunos)
         optionmenu_alunos.grid(row=1, column=1, padx=10)
 
-        avancar_btn = ctk.CTkButton(central_frame, text="Avançar", text_color="white", fg_color="#808080", hover_color="#A9A9A9", command=self.Treinos)
+        avancar_btn = ctk.CTkButton(central_frame, text="Avançar", text_color="white", fg_color="#808080", hover_color="#A9A9A9", command=self.treinos)
         avancar_btn.grid(row=2, column=0, columnspan=2, pady=5)
 
         # Frame inferior (usando CustomTkinter)

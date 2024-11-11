@@ -231,6 +231,14 @@ class Funções():
     def enviar_dados(self, nome, email, senha, telefone, endereco, cpf, data_de_nascimento, codigo_adm, tabela):
         if self.controler.adicionar_usuario(nome.upper(), email, senha, telefone, endereco, cpf, data_de_nascimento, codigo_adm, tabela):
             self.after(500, self.menu_inicial)
+        
+    def listar_treinos(exercicios_costa):
+        
+        for exercicio in exercicios_costa:
+            print(f"Nome: {exercicio['nome']}")
+            print(f"Séries: {exercicio['series']}")
+            print(f"Repetições: {exercicio['repeticoes']}\n")
+
 
 
     def validar_data(self, data_nascimento_str):
