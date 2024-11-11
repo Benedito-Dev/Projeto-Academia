@@ -283,10 +283,6 @@ class Application(tk.Tk, Funções, Treinos):
         
         self.puxar_informacoes()
         self.nome_usuario = self.get_informacao('nome')
-
-        if self.primeira_vez_home:
-            self.emails.enviar_email(destinatario=self.get_informacao('email'), nome=self.nome_usuario.lower().capitalize())
-            self.primeira_vez_home = False
         
         # Criando Fundo com CustomTkinter
         background_frame = ctk.CTkFrame(self, fg_color="#313131", corner_radius=0)

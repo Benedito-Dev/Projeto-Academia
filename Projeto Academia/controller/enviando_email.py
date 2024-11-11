@@ -24,8 +24,8 @@ class EnviandoEmail():
         mensagem_html = f"""
         <html>
             <body>
-                <h1 style="color: #7fd350;">Obrigado por logar conosco novamente, {nome}!</h1>
-                <p>Estamos felizes por tê-lo de volta. Se precisar de qualquer ajuda, nossa equipe está à disposição.</p>
+                <h1 style="color: #7fd350;">Obrigado por Escolher nossa rede de Academias, {nome}!</h1>
+                <p>Estamos felizes por tê-lo conosco. Se precisar de qualquer ajuda, nossa equipe está à disposição.</p>
             </body>
         </html>
         """
