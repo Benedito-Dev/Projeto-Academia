@@ -3,13 +3,14 @@ import smtplib
 import os
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from config.config import EMAIL_PASS, EMAIL_USER
 
-class EnviandoEmail:
+class EnviandoEmail():
     def __init__(self):
         """Inicializa a classe e carrega as credenciais do usuário diretamente de variáveis de ambiente."""
         # Carrega as credenciais do Gmail
-        self.usuario = os.getenv('EMAIL_USER')
-        self.senha = os.getenv('EMAIL_PASSWORD')
+        self.usuario = EMAIL_USER
+        self.senha = EMAIL_PASS
 
         # Verificar se as credenciais estão configuradas
         if not self.usuario or not self.senha:
