@@ -2,6 +2,8 @@ import tkinter as tk
 from time import sleep
 import re
 from tkinter import ttk
+from customtkinter import CTkLabel, CTkButton, CTkFrame
+from PIL import Image, ImageTk, ImageSequence
 from tkinter import messagebox
 from tkcalendar import Calendar
 from datetime import datetime, date
@@ -14,26 +16,112 @@ class Funções():
     def __init__(self):
         self.controler = UsuarioController()
 
-    # Funções para acrescentar placeholder
-    def on_entry_click(self, event):
-        if len(entry.get()) > 0:  # type: ignore # Texto do placeholder
-            entry.delete(0, tk.END)  # type: ignore # Limpa o placeholder
-            entry.configure(fg_color='white')  # type: ignore # Muda a cor de fundo para branco
-            entry.configure(fg='black')  # type: ignore # Muda a cor do texto
-
-    def on_focusout(self, event):
-        if entry.get() == '':  # type: ignore # Se o campo estiver vazio
-            entry.insert(0, 'Digite aqui...')  # type: ignore # Reinsere o placeholder
-            entry.configure(fg_color='grey')  # type: ignore # Muda a cor de fundo para cinza
-            entry.configure(fg='grey')  # type: ignore # Muda a cor do texto
+    def pre_cadastramento_administrador(self):
+        self.controler.pre_cadastrando_admin()
 
     def Exibir_senha(self):
         if self.check_senha.get() == 1:
             self.entry_senha.configure(show="")
         else:
             self.entry_senha.configure(show="*")
+    
+    def submit_feedback(self):
+
+        feedback = self.feedback_text.get("1.0", "end-1c")
+
+        messagebox.showinfo("Sucesso", f"Feedback enviado: {feedback}.")
+
+        self.feedback_text.delete("1.0", "end")
 
 
+    def iniciar_carrossel_imagens(self, titulo, frame, exercicios, largura, altura):
+        # Carrega as imagens e informações dos exercícios
+        imagens_carregadas = [
+            {
+                "imagem": [ImageTk.PhotoImage(frame.copy().resize((largura, altura))) for frame in ImageSequence.Iterator(Image.open(ex["imagem"]))],
+                "nome": ex["nome"],
+                "series": ex["series"],
+                "repeticoes": ex["repeticoes"]
+            } for ex in exercicios
+        ]
+        index = 0
+        frame_index = 0  # Índice do quadro atual do GIF
+
+        # Variável de controle para a chamada do `after`
+        atualizacao_id = None  # Esta variável irá armazenar o id da função `after` para cancelamento futuro
+
+        #Label para exibir titulo do exericios
+        label_titulo = CTkLabel(frame, text=titulo, text_color="white", font=("Arial", 22, 'bold'))
+        label_titulo.grid(row=0, column=0, columnspan=3, pady=20)
+
+        border_frame = CTkFrame(frame, fg_color="#7fd350", corner_radius=10)
+        border_frame.grid(row=1, column=1)
+
+        # Label para exibir o GIF no carrossel
+        label_imagem = CTkLabel(border_frame, text="")
+        label_imagem.grid(row=0, column=1, padx=10, pady=10)
+
+        # Label para exibir o texto do exercício
+        label_texto = CTkLabel(frame, text="", text_color="white", font=("Arial", 16, 'bold'))
+        label_texto.grid(row=3, column=1, pady=10)
+
+        # Função para atualizar o GIF
+        def atualizar_gif():
+            nonlocal frame_index, atualizacao_id
+            exercicio_atual = imagens_carregadas[index]
+            label_imagem.configure(image=exercicio_atual["imagem"][frame_index])
+            frame_index = (frame_index + 1) % len(exercicio_atual["imagem"])
+                
+                # Cancelar a atualização anterior, se houver
+            if atualizacao_id is not None:
+                    self.after_cancel(atualizacao_id)
+
+            # Agendar a próxima atualização
+            atualizacao_id = self.after(200, atualizar_gif)  # Atualiza o GIF a cada 300ms (ajustado para mais devagar)
+
+        # Função para exibir a imagem e o texto atual
+        def exibir_imagem():
+            nonlocal frame_index
+            frame_index = 0  # Reseta o quadro ao mudar de exercício
+            exercicio_atual = imagens_carregadas[index]
+            label_texto.configure(text=f"{exercicio_atual['nome']}: {exercicio_atual['series']} séries de {exercicio_atual['repeticoes']} repetições")
+            atualizar_gif()
+
+        # Funções para controle do carrossel
+        def mostrar_proximo():
+            nonlocal index
+            index = (index + 1) % len(imagens_carregadas)
+            exibir_imagem()
+
+        def mostrar_anterior():
+            nonlocal index
+            index = (index - 1) % len(imagens_carregadas)
+            exibir_imagem()
+
+        # Botões de controle
+        btn_anterior = CTkButton(frame, text="⟵ Anterior", fg_color="#808080", hover_color="#A9A9A9", command=mostrar_anterior)
+        btn_anterior.grid(row=1, column=0, padx=5, pady=5)
+
+        btn_proximo = CTkButton(frame, text="Próximo ⟶", fg_color="#808080", hover_color="#A9A9A9", command=mostrar_proximo)
+        btn_proximo.grid(row=1, column=2, padx=5, pady=5)
+
+        # Exibe a primeira imagem e texto
+        exibir_imagem()
+
+
+    def mudar_exercicios(self, titulo, novos_exercicios, central_frame):
+
+        """Muda os exercícios exibidos para o carrossel."""
+        self.exercicios_atual = novos_exercicios
+        self.indice_atual = 0
+        # Limpa o frame central, exceto o botão finalizador
+        for widget in central_frame.winfo_children():
+            widget.destroy()
+
+        # Reinicia o carrossel de imagens
+        self.iniciar_carrossel_imagens(titulo, central_frame, self.exercicios_atual, 200, 200)
+
+            
     def carregar_perfis(self):
         try:
             # Obtendo os dados da tabela através do controlador
@@ -86,6 +174,8 @@ class Funções():
         endereco = self.entry_endereco.get().strip()
         cpf = self.entry_cpf.get().strip()
         data_de_nascimento = self.entry_dataDeNascimento.get().strip()
+        codigo = self.entry_codigo_de_administrador.get().strip()
+        tabela = self.tabela.get()
 
         # Validação do nome (mínimo de 3 letras, apenas caracteres alfabéticos)
         if len(nome) < 3 or not nome.isalpha():
@@ -129,18 +219,20 @@ class Funções():
         if self.validar_data(data_de_nascimento):
             messagebox.showerror("Erro", "Insira uma data valida por favor")
             return
+        
+        if tabela != "Administrador":
+            if not codigo or codigo.isnumeric() == False:
+                messagebox.showerror("Erro", "Digite o codigo de maneira correta")
 
         # Se todos os dados estiverem válidos, prosseguir com a lógica de envio
-        self.enviar_dados(nome=nome, email=email, senha=senha, telefone=telefone, endereco=endereco, cpf=cpf, data_de_nascimento=data_de_nascimento)
+        self.enviar_dados(nome=nome, email=email, senha=senha, telefone=telefone, endereco=endereco, cpf=cpf, data_de_nascimento=data_de_nascimento, codigo_adm=codigo, tabela=tabela)
 
     # Função para validar a idade do novo usuário
 
-    def enviar_dados(self, nome, email, senha, telefone, endereco, cpf, data_de_nascimento):
-        if self.controler.adicionar_usuario(nome.upper(), email, senha, telefone, endereco, cpf, data_de_nascimento):
+    def enviar_dados(self, nome, email, senha, telefone, endereco, cpf, data_de_nascimento, codigo_adm, tabela):
+        if self.controler.adicionar_usuario(nome.upper(), email, senha, telefone, endereco, cpf, data_de_nascimento, codigo_adm, tabela):
             self.after(500, self.menu_inicial)
 
-            
-    from datetime import datetime, date
 
     def validar_data(self, data_nascimento_str):
         try:
@@ -195,36 +287,40 @@ class Funções():
         btn_selecionar_data.pack(pady=10)
 
     def validando_login(self):
-        nome = self.entry_nome.get().strip()
+        email = self.entry_email.get().strip()
         senha = self.entry_senha.get().strip()
 
-        usuario = self.controler.fazer_login(nome.upper(), senha)
+        usuario = self.controler.fazer_login(email, senha)
         
         # Chama o método do controlador para validar o login
         if usuario == 'cliente':
-            self.nome_usuario = nome.capitalize()
+            self.email = email
             self.senha_usuario = senha
             self.after(500, self.Home)
         
         elif usuario == 'instrutor':
-            self.nome_usuario = nome.capitalize()
+            self.email = email
             self.senha_usuario = senha
             self.instrutor = True
             self.after(500, self.Home)
 
+        elif usuario == 'administrador':
+            self.email = email
+            self.senha_usuario = senha.capitalize()
+            self.administrador = True
+            self.after(500, self.Home)
         else:
             pass
     
     def puxar_informacoes(self):
-        user_name = self.nome_usuario.strip().upper()
+        user_email = self.email.strip()
 
         try:
-            user = self.controler.obter_usuario_por_nome(user_name)
+            user = self.controler.obter_usuario_por_email(user_email)
 
 
             if user:
                 self.informacoes = user
-
 
             else:
                 messagebox.showinfo("Info", "Usuario não encontrado")
@@ -291,7 +387,6 @@ class Funções():
             return
 
         try:
-            self.nome_usuario = nome
             self.controler.atualizar_usuario(id=id, nome=nome, data_de_nascimento=data_de_nascimento, endereco=endereco, telefone=telefone, email=email, senha=senha)
             self.after(500, self.Home)
 
