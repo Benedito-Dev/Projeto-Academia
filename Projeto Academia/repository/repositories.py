@@ -125,6 +125,16 @@ class ClienteRepository():
                 return False
         except SQLAlchemyError as e:
             print(f"Erro ao buscar usuário: {e}")
+    
+    def obter_aluno(self, nome):
+        try:
+            cliente = self.session.query(Cliente).filter_by(nome=nome).one_or_none()
+            if cliente:
+                return cliente
+            else:
+                return False
+        except SQLAlchemyError as e:
+            print(f"Erro ao buscar usuário: {e}")
 
     def registros_musculatura(self, nome):
         # Fazendo a consulta para obter as colunas de musculatura do primeiro cliente como exemplo

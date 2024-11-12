@@ -65,6 +65,9 @@ class UsuarioController:
     def obter_usuario_por_email(self, email):
         return self.repository.obter_usuario(email)
 
+    def obter_aluno_por_nome(self, nome):
+        return self.repository.obter_aluno(nome)
+
     # Controlador responsável por atualizar um produto
     def atualizar_usuario(self, id, nome, data_de_nascimento, endereco, telefone, email, senha):
         try:

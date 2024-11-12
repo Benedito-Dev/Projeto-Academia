@@ -66,10 +66,6 @@ class Cliente(Base):
     panturrilha_direita = Column(Numeric(precision=4, scale=1))  # Ex.: 40.0 cm
     panturrilha_esquerda = Column(Numeric(precision=4, scale=1))
 
-
-    
-
-    
     # Chave estrangeira que referencia a tabela instrutores
     instrutor_id = Column(Integer, ForeignKey('instrutores.id'))
     

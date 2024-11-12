@@ -164,6 +164,23 @@ class Funções():
         
         except Exception as e:
             messagebox.showerror("Erro", f"Erro ao Obter alunos: {e}")
+    
+    def obter_informacoes_aluno(self, nome):
+        user_nome = nome
+
+        try:
+            user = self.controler.obter_aluno_por_nome(user_nome)
+            if user:
+                self.aluno = user
+                return self.aluno
+            else:
+                messagebox.showinfo("Info", "Usuario não encontrado")
+        
+        except Exception as e:
+            messagebox.showerror("Erro", f"Ao buscar informações : {e}")
+
+    def get_informacao_aluno(self, informacao):
+        return getattr(self.aluno, informacao, None)
 
 
     def validar_dados(self):
