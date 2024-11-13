@@ -22,7 +22,7 @@ class Application(tk.Tk, Funções):
         self.geometry("800x600")
         self.current_page = 0
         self.controler = UsuarioController()
-        self.feedback()
+        self.Home()
   
 # Janelas
 
