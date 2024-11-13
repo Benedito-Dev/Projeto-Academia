@@ -234,9 +234,6 @@ class Application(tk.Tk, Funções, Treinos):
                                    'altura': 1.75,
                                    }
 
-            Musculos = ctk.CTkLabel(frame, text="Músculos:", text_color="white", font=('Arial', 14))
-            Musculos.grid(row=1, column=0, pady=10, padx=10)
-
             # Exibindo a lista de músculos no OptionMenu
             if lista_musculos:
                 self.musculo_selecionado = ctk.StringVar(value=str(lista_musculos[0]))
@@ -249,7 +246,19 @@ class Application(tk.Tk, Funções, Treinos):
                     self.entry_musculo.configure(placeholder_text=self.get_informacao(self.musculo_selecionado.get()))
                 
                 def alterar_dic(self):
-                    dicionario_musculos[optionmenu_alunos.] = self.entry_musculo.get()
+                    chave_selecionada = self.musculo_selecionado.get()  # Obtém a chave selecionada no OptionMenu
+                    novo_valor = self.entry_musculo.get()  # Obtém o valor digitado no Entry
+                    
+                    # Verifica se o valor digitado é um número
+                    try:
+                        novo_valor = float(novo_valor)  # Converte o valor para float
+                    except ValueError:
+                        print("Por favor, insira um número válido.")
+                        return
+                    
+                    # Atualiza o dicionário com o novo valor
+                    dicionario_musculos[chave_selecionada] = novo_valor
+                    print(f"Dicionário atualizado: {dicionario_musculos}")
 
                 # Conectando a função à StringVar para que seja chamada sempre que o valor mudar
                 self.musculo_selecionado.trace_add("write", update_placeholder)
@@ -264,7 +273,7 @@ class Application(tk.Tk, Funções, Treinos):
                 text_color="white",
                 fg_color="#808080",
                 hover_color="#A9A9A9",
-                command=lambda: self.enviar_medidas(self.musculo_selecionado.get()) # Chama ambas as funções
+                command=lambda: alterar_dic()
             )
             btn_medidas.grid(row=8, column=2, pady=5)
 
@@ -281,7 +290,6 @@ class Application(tk.Tk, Funções, Treinos):
                 fg_color="#5ce1e6"      # Cor de seleção para contraste com o fundo
         )
             Opção_1.grid(row=9, column=0, padx=(10, 10), pady=(10, 10))     
-
 
             Opção_2 = ctk.CTkRadioButton(
                 frame,
@@ -313,7 +321,6 @@ class Application(tk.Tk, Funções, Treinos):
 
         # Botão Voltar
         ctk.CTkButton(frame, text="Voltar",fg_color="#808080", hover_color="#A9A9A9", font=("Arial", 18), command=self.Home).grid(row=11, column=1,pady=10)
-
 
     def Home(self):
         for widget in self.winfo_children():
