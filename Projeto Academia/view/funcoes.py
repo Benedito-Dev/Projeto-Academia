@@ -335,6 +335,20 @@ class Funções():
         id_cliente = self.get_informacao("id")
         nova_medida = self.entry_musculo.get() or self.get_informacao(musculo)
         self.controler.atualizar_medidas(id=id_cliente, musculo_selecionado=musculo, medida=nova_medida)
+
+    def alterar_dic(self):
+        chave_selecionada = self.musculo_selecionado.get()  # Obtém a chave selecionada no OptionMenu
+        novo_valor = self.entry_musculo.get()  # Obtém o valor digitado no Entry
+                    
+        # Verifica se o valor digitado é um número
+        try:
+            novo_valor = float(novo_valor)  # Converte o valor para float
+        except ValueError:
+            print("Por favor, insira um número válido.")
+            return
+                    
+                    # Atualiza o dicionário com o novo valor
+        self.dicionario_musculos[chave_selecionada] = novo_valor
         
     
     def validar_alteracoes(self):
