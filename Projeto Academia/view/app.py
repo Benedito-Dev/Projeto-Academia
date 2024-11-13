@@ -50,7 +50,7 @@ class Application(tk.Tk, Funções):
         frame_inferior.pack(side="bottom", fill="x", pady=20)
 
         title = ctk.CTkLabel(frame_superior, text="4 FITNESS", text_color="white", fg_color="#7fd350", font=("Arial", 18, 'bold'))
-        title.pack(side="left", padx=20)
+        title.pack(side="left", padx=20) 
 
         usuario = ctk.CTkLabel(frame_superior, text="Olá usuário", text_color="white", fg_color="#7fd350", font=("Arial", 21, 'bold'))
         usuario.pack(side="top", pady=5)
@@ -58,17 +58,19 @@ class Application(tk.Tk, Funções):
         self.feedback_text = ctk.CTkTextbox(border_frame, width=400, height=200, fg_color="#454545", text_color="white")
         self.feedback_text.pack(pady=10, padx=10)
 
-        submit_button = ctk.CTkButton(background_frame, text="Enviar Feedback", command=self.submit_feedback)
-        submit_button.pack(pady=20)
+        submit_button = ctk.CTkButton(background_frame, text="Enviar Feedback", fg_color="#808080", hover_color="#666666", command=self.submit_feedback)
+        submit_button.pack(pady=20) 
+
+
 
     def submit_feedback(self):
 
-        feedback = self.feedback_text.get("1.0", "end-1c")
+        feedback = self.feedback_text.get("1.0", "end-1c")  
 
         print("Feedback enviado:", feedback)
 
         self.feedback_text.delete("1.0", "end")
-
+ 
 
 
     def menu_inicial(self):
@@ -212,7 +214,7 @@ class Application(tk.Tk, Funções):
         check_button = ctk.CTkCheckBox(frame, text="Mostrar senha", text_color="white", variable=self.check_senha, command=self.Exibir_senha)
         check_button.grid(row=4, column=1, sticky="w", padx=10)  # Posicionando à esquerda
 
-        # Telefone
+        # Telefone 
         ctk.CTkLabel(frame, text="Telefone:", text_color="white", font=("Arial", 14)).grid(row=5, column=0, sticky="e", padx=10)
         self.entry_telefone = ctk.CTkEntry(frame)
         self.entry_telefone.grid(row=5, column=1, pady=5)
@@ -282,7 +284,7 @@ class Application(tk.Tk, Funções):
         btn_perfil.grid(row=0, column=0, pady=(250, 00))
 
 
-        image_path = "Projeto Academia\\img\\Home\\Treinos.png"
+        image_path = "D:\\Users\\Aluno\\Desktop\\kaua\\Senac-UC5\\Projeto Academia\\img\\Home\\Treinos.png"
 
         self.logo_image_treinos = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
@@ -293,7 +295,7 @@ class Application(tk.Tk, Funções):
         btn_treinos = ctk.CTkButton(central_frame, text="Treinos", fg_color="#808080", hover_color="#A9A9A9", command=self.Treinos, font=("Arial", 18, "bold"), width=150, height=50)
         btn_treinos.grid(row=0, column=1, pady=(250, 00))
 
-        image_path = "Projeto Academia\\img\\Home\\Ajustes.png"
+        image_path = "D:\\Users\\Aluno\\Desktop\\kaua\\Senac-UC5\\Projeto Academia\\img\\Home\\Ajustes.png"
 
         self.logo_image_ajustes = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
@@ -304,10 +306,11 @@ class Application(tk.Tk, Funções):
         btn_ajustes = ctk.CTkButton(central_frame, text="Ajustes", fg_color="#808080", hover_color="#A9A9A9", command=self.Ajustes, font=("Arial", 18, "bold"), width=150, height=50)
         btn_ajustes.grid(row=0, column=2, pady=(250, 00))
 
-        # Frame inferior (usando CustomTkinter)
+        # Frame inferior (usando CustomTkinter) 
         frame_inferior = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=0,height=30)
         frame_inferior.pack(side="bottom", fill="x", pady=10)
-
+    
+        
 
     def Treinos(self):
         for widget in self.winfo_children():
@@ -363,6 +366,11 @@ class Application(tk.Tk, Funções):
         # Frame inferior (usando CustomTkinter)
         frame_inferior = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=0,height=30)
         frame_inferior.pack(side="bottom", fill="x", pady=10)
+
+
+
+
+
 
 
     def Superiores(self):
