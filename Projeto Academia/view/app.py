@@ -39,7 +39,7 @@ class Application(tk.Tk, Funções, Treinos):
         background_frame.grid_rowconfigure(0, weight=0) 
 
 
-        image_path = "Projeto Academia\\img\\Logo.png"
+        image_path = "D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Logo.png"
         self.logo_image = ctk.CTkImage(light_image=Image.open(image_path), size=(150, 150))  # Ajuste o tamanho da imagem
 
         # Criar um Label para exibir a imagem
@@ -80,7 +80,7 @@ class Application(tk.Tk, Funções, Treinos):
         background_frame.grid_rowconfigure(0, weight=0)  # Para centralizar verticalmente
         # Imagem
 
-        image_path = "Projeto Academia\\img\\Logo.png"
+        image_path = "D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Logo.png"
 
         self.logo_image = ctk.CTkImage(light_image=Image.open(image_path), size=(150, 150))  # Ajuste o tamanho da imagem
 
@@ -134,7 +134,7 @@ class Application(tk.Tk, Funções, Treinos):
         background_frame.grid_columnconfigure(0, weight=1)
         background_frame.grid_rowconfigure(0, weight=0)  # Para centralizar verticalmente
 
-        image_path = "Projeto Academia\\img\\Logo.png"
+        image_path = "D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Logo.png"
         self.logo_image = ctk.CTkImage(light_image=Image.open(image_path), size=(120, 120))  # Ajuste o tamanho da imagem
 
         # Criar um Label para exibir a imagem
@@ -301,7 +301,7 @@ class Application(tk.Tk, Funções, Treinos):
 
         #Imagem Perfil
 
-        image_path = "Projeto Academia\\img\\Home\\Perfil.png"
+        image_path = "D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Home\\Perfil.png"
 
         self.logo_image_perfil = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
@@ -316,26 +316,26 @@ class Application(tk.Tk, Funções, Treinos):
 
         if self.instrutor or self.administrador:
             # Botão de criar conta
-            image_path = "Projeto Academia\\img\\Home\\btn_cadastrar.png"
+            image_path = "D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Home\\btn_cadastrar.png"
             self.label_image_cadastrar = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))
             self.label_image_cadastrar = ctk.CTkLabel(central_frame, image=self.label_image_cadastrar, text="")
             self.label_image_cadastrar.grid(row=0, column=3, pady=0)
             ctk.CTkButton(central_frame, text="Cadastrar", font=("Arial", 18), width=160, height=50, fg_color="#808080",  hover_color="#A9A9A9", command=self.cadastrar_cliente).grid(row=0, column=3, pady=(250, 00))
-            image_path = "Projeto Academia\\img\\admin\\Gerenciamento.webp"
+            image_path = "D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\admin\\Gerenciamento.webp"
             self.label_image_cadastrar = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))
             self.label_image_cadastrar = ctk.CTkLabel(central_frame, image=self.label_image_cadastrar, text="")
             self.label_image_cadastrar.grid(row=0, column=4, pady=0)
             ctk.CTkButton(central_frame, text="Gerenciar Perfis", font=("Arial", 18), width=160, height=50, fg_color="#808080",  hover_color="#A9A9A9", command=self.Gerenciamento).grid(row=0, column=4, pady=(250, 00))
 
         else:
-            image_path = "Projeto Academia\\img\\Home\\Treinos.png"
+            image_path = "D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Home\\Treinos.png"
             self.logo_image_treinos = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
             self.label_image_treinos = ctk.CTkLabel(central_frame, image=self.logo_image_treinos, text="")
             self.label_image_treinos.grid(row=0, column=1, pady=0)
             btn_treinos = ctk.CTkButton(central_frame, text="Treinos", fg_color="#808080", hover_color="#A9A9A9", command=self.Musculação, font=("Arial", 18, "bold"), width=150, height=50)
             btn_treinos.grid(row=0, column=1, pady=(250, 00))
 
-        image_path = "Projeto Academia\\img\\Home\\Ajustes.png"
+        image_path = "D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Home\\Ajustes.png"
 
         self.logo_image_ajustes = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
@@ -497,7 +497,7 @@ class Application(tk.Tk, Funções, Treinos):
         central_frame = ctk.CTkFrame(background_frame, fg_color="#313131")
         central_frame.place(relx=0.5, rely=0.45, anchor=ctk.CENTER)  # Centralizando o frame
 
-        image_path = "Projeto Academia\\img\\admin\\Alunos.png"
+        image_path = "D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\admin\\Alunos.png"
 
         self.logo_image_treinos = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
@@ -508,7 +508,7 @@ class Application(tk.Tk, Funções, Treinos):
         btn_gerenciar_aluno = ctk.CTkButton(central_frame, text="Gerenciar Alunos", fg_color="#808080", hover_color="#A9A9A9", command=self.tela_instrutor, font=("Arial", 18, "bold"), width=150, height=50)
         btn_gerenciar_aluno.grid(row=0, column=0, pady=(250, 00))
 
-        image_path = "Projeto Academia\\img\\admin\\Perfis.png"
+        image_path = "D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\admin\\Perfis.png"
 
         self.logo_image_ajustes = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
@@ -551,7 +551,7 @@ class Application(tk.Tk, Funções, Treinos):
         self.carregar_perfis()
 
         ctk.CTkButton(background_frame, text="Deletar Perfil", command=self.deletar_perfil).pack(pady=10)
-        ctk.CTkButton(background_frame, text="Voltar", command=self.Home).pack(pady=10)
+        ctk.CTkButton(background_frame, text="Voltar", command=self.Gerenciamento).pack(pady=10)
     
     def Feedback(self):
         for widget in self.winfo_children():
@@ -575,7 +575,7 @@ class Application(tk.Tk, Funções, Treinos):
         plano_label.pack(side="top")
 
         # Adicionando a imagem
-        image_path = "Projeto Academia\\img\\Logo.png"
+        image_path = "D:\\Users\\Aluno\\Documents\\Benedito-Dev\\Senac-UC5\\Projeto Academia\\img\\Logo.png"
         self.logo_image = ctk.CTkImage(light_image=Image.open(image_path), size=(150, 150))
         self.label_image = ctk.CTkLabel(background_frame, image=self.logo_image, text="")
         self.label_image.pack(pady=10)
