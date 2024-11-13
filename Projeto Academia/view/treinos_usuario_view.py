@@ -147,14 +147,26 @@ class Treinos():
 
         image_path = "D:\\Users\\Aluno\\Documents\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Menu-Treinos\\Karate.png"
 
-        logo_image_treinos = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
+        logo_image_karate = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
 
         # Criar um Label para exibir a imagem
-        label_image_treinos = ctk.CTkLabel(central_frame, image=logo_image_treinos, text="", height=200)
-        label_image_treinos.grid(row=0, column=0)
+        label_image_karate = ctk.CTkLabel(central_frame, image=logo_image_karate, text="", height=200)
+        label_image_karate.grid(row=0, column=0)
 
         btn_karate = ctk.CTkButton(central_frame, text="Karate", fg_color="#808080", hover_color="#A9A9A9", command=self.Karate, font=("Arial", 18, "bold"), width=150, height=50)
         btn_karate.grid(row=0, column=0, pady=(250, 00))
+
+        image_path = "D:\\Users\\Aluno\\Documents\\GUILPROGIT\\Projeto-Academia\\Projeto Academia\\img\\Treinos\\Menu-Treinos\\muaythai_menu.png"
+        logo_image_muaythai = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))
+        label_image_karate = ctk.CTkLabel(central_frame, image=logo_image_muaythai, text="", height=200)
+        label_image_karate.grid(row=0, column=1)
+
+        btn_MuayThai = ctk.CTkButton(central_frame, text="Muay Thai", fg_color="#808080", hover_color="#A9A9A9", command=self.MuayThai, font=("Arial", 18, "bold"), width=150, height=50)
+        btn_MuayThai.grid(row=0, column=1, pady=(250, 00))
+
+
+        btn_JiuJitsu = ctk.CTkButton(central_frame, text="Jiu-Jitsu", fg_color="#808080", hover_color="#A9A9A9", command=self.JiuJitsu, font=("Arial", 18, "bold"), width=150, height=50)
+        btn_JiuJitsu.grid(row=0, column=2, pady=(250, 00))
 
         # Frame inferior (usando CustomTkinter)
         frame_inferior = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=0,height=30)
@@ -162,6 +174,55 @@ class Treinos():
 
         btn_voltar = ctk.CTkButton(frame_inferior, text="Voltar", fg_color="#808080", hover_color="#A9A9A9", command=self.Modalidades, font=("Arial", 18, "bold"), width=150, height=50)
         btn_voltar.pack(pady=10)
+
+    def MuayThai(self):
+        for widget in self.winfo_children():
+            widget.destroy()
+        background_frame = ctk.CTkFrame(self, fg_color="#313131", corner_radius=0)
+        background_frame.pack(fill="both", expand=True)
+
+        # Frame superior com o título e plano (usando CustomTkinter)
+        frame_superior = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=0, height=30)
+        frame_superior.pack(side="top", fill="x", pady=10)
+
+        title = ctk.CTkLabel(frame_superior, text="MultiForm", text_color="white", fg_color="#7fd350", font=("Arial", 18, 'bold'))
+        title.pack(side="left", padx=20)
+
+        home_button = ctk.CTkButton(frame_superior, text="🏠 Home", font=("Arial", 14, 'bold'), text_color="white", height=20 ,command=self.Home)
+        home_button.pack(side="right", padx=10)
+
+        plano_label = ctk.CTkLabel(frame_superior, text=f"Plano Intermediário, Olá {self.nome_usuario}", text_color="white", fg_color="#7fd350", font=("Arial", 18, 'bold'))
+        plano_label.pack(side="top")
+
+        # Frame central para os botões (usando CustomTkinter)
+        central_frame = ctk.CTkFrame(background_frame, fg_color="#313131")
+        central_frame.place(relx=0.5, rely=0.45, anchor=ctk.CENTER)
+
+        label_numero = ctk.CTkLabel(central_frame, text="#AAA", text_color="green", font=("Arial", 24))
+        label_numero.grid(row=0, column=0, pady=0)
+
+        label_text = ctk.CTkLabel(central_frame, text="", font=("Arial", 14, 'bold'))
+        label_text.grid(row=1, column=0, pady=5)
+
+        # Cria um botão que gera e exibe o número diretamente ao ser clicado
+        botao_gerar = ctk.CTkButton(
+            central_frame, 
+            text="Gerar Código Experimental", 
+            command=lambda: [
+                label_numero.configure(text=f"#{self.gerar_codigo()}"), 
+                label_text.configure(text="Apresente este código ao nosso instrutor Wilkson")
+            ]
+        )
+        botao_gerar.grid(row=2, column=0, pady=20)
+
+        # Frame inferior (usando CustomTkinter)
+        frame_inferior = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=0,height=30)
+        frame_inferior.pack(side="bottom", fill="x")
+
+        btn_voltar = ctk.CTkButton(frame_inferior, text="Voltar", fg_color="#808080", hover_color="#A9A9A9", command=self.Artes_marciais, font=("Arial", 18, "bold"), width=150, height=50)
+        btn_voltar.pack(pady=10)
+
+
 
     def Karate(self):
         for widget in self.winfo_children():
