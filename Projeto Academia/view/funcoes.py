@@ -248,7 +248,7 @@ class Funções():
 
     def enviar_dados(self, nome, email, senha, telefone, endereco, cpf, data_de_nascimento, codigo_adm, tabela):
         if self.controler.adicionar_usuario(nome.upper(), email, senha, telefone, endereco, cpf, data_de_nascimento, codigo_adm, tabela):
-            self.after(500, self.menu_inicial)
+            self.after(500, self.Home)
 
 
     def validar_data(self, data_nascimento_str):

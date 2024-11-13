@@ -414,14 +414,17 @@ class Application(tk.Tk, Funções, Treinos):
         btn_voltar = ctk.CTkButton(frame_inferior, fg_color="#808080", hover_color="#A9A9A9", command=self.Gerenciamento, text="Voltar")
         btn_voltar.pack(side="top", pady=5)
 
-        fundo_verde = ctk.CTkFrame(background_frame,fg_color="#7fd350",corner_radius=20,width=1000,height=600)
-        fundo_verde.pack(side="right", padx=(20,40),pady=(40))
+        central_frame = ctk.CTkFrame(background_frame,fg_color="#313131",corner_radius=20, width=1000, height=600)
+        central_frame.pack(side="right", padx=(00, 180))
+
+        fundo_verde = ctk.CTkFrame(central_frame, fg_color="#7fd350",corner_radius=20)
+        fundo_verde.pack(fill='both', expand=True)
 
         # btn_salvar_alterações = ctk.CTkButton(fundo_verde, text="Salvar alterações", fg_color="#808080", hover_color="#A9A9A9")
         # btn_salvar_alterações.grid(row=3, column=0)
 
-        frame_esquerda = ctk.CTkFrame(background_frame, fg_color="#292929", corner_radius=10)
-        frame_esquerda.pack(side="left", fill="y", expand=True, pady=20)
+        frame_esquerda = ctk.CTkFrame(background_frame, fg_color="#313131", corner_radius=10)
+        frame_esquerda.pack(side="left", fill="y", pady=20, padx=(280, 10))
 
         alunos = self.obter_alunos_por_instrutor()
 
@@ -438,11 +441,34 @@ class Application(tk.Tk, Funções, Treinos):
         menu_alunos = ctk.CTkOptionMenu(frame_esquerda, variable=self.aluno_selecionado, values=alunos)
         menu_alunos.grid(row=0, column=1, padx=(20, 10), pady=40)
 
-        #Frames
-        Peso = ctk.CTkLabel(fundo_verde, text="Peso", text_color="white", font=("Arial", 16))
-        Peso.grid(row=1, column=0, padx=(60, 00))
-        self.entry_codigo_de_administrador = ctk.CTkEntry(fundo_verde, placeholder_text="Codigo de Admin")
-        self.entry_codigo_de_administrador.grid(row=1, column=1, pady=5)
+        # Conteúdos para o fundo_verde
+        titulo_label = ctk.CTkLabel(fundo_verde, text="Acompanhamento", text_color="white", font=("Arial", 18, "bold"))
+        titulo_label.grid(row=0, column=0, columnspan=2, pady=(10, 20))
+
+        # Campo de Objetivo
+        objetivo_label = ctk.CTkLabel(fundo_verde, text="Objetivo:", text_color="white", font=("Arial", 14))
+        objetivo_label.grid(row=1, column=0, sticky="w", padx=(10, 0), pady=(10, 5))
+
+        objetivo_entry = ctk.CTkEntry(fundo_verde, placeholder_text="Digite o objetivo do aluno")
+        objetivo_entry.grid(row=1, column=1, padx=(10, 20), pady=(10, 5))
+
+        # Campo de Validade da Ficha
+        validade_label = ctk.CTkLabel(fundo_verde, text="Validade da Ficha:", text_color="white", font=("Arial", 14))
+        validade_label.grid(row=2, column=0, sticky="w", padx=(10, 0), pady=(10, 5))
+
+        validade_entry = ctk.CTkEntry(fundo_verde, placeholder_text="DD/MM/AAAA à DD/MM/AAAA")
+        validade_entry.grid(row=2, column=1, padx=(10, 20), pady=(10, 5))
+
+        # Caixa de Comentários
+        comentarios_label = ctk.CTkLabel(fundo_verde, text="Comentários:", text_color="white", font=("Arial", 14))
+        comentarios_label.grid(row=3, column=0, sticky="nw", padx=(10, 0), pady=(10, 5))
+
+        comentarios_textbox = ctk.CTkTextbox(fundo_verde, width=300, height=100, corner_radius=10, placeholder_text="Escreva o desempenho do aluno...")
+        comentarios_textbox.grid(row=3, column=1, padx=(10, 20), pady=(10, 5), sticky="w")
+
+        # Botão Salvar Alterações
+        btn_salvar_alteracoes = ctk.CTkButton(fundo_verde, text="Salvar Alterações", fg_color="#808080", hover_color="#A9A9A9")
+        btn_salvar_alteracoes.grid(row=4, column=0, columnspan=2, pady=(20, 10))
 
     def Gerenciamento(self):
         for widget in self.winfo_children():
