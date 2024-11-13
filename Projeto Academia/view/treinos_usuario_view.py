@@ -1,10 +1,10 @@
 from controller.controllers import UsuarioController
 from tkinter import messagebox
-from tkinter import ttk
+from tkinter import Tk
 import customtkinter as ctk
 from PIL import Image
 
-class Treinos():
+class Treinos(Tk):
     def __init__(self):
         self.controler = UsuarioController()
     

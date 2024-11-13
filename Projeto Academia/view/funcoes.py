@@ -24,6 +24,10 @@ class Funções():
             self.entry_senha.configure(show="")
         else:
             self.entry_senha.configure(show="*")
+
+    def limpar_frame(self, frame):
+        for widget in frame.winfo_children():
+            widget.destroy()
     
     def submit_feedback(self):
 
