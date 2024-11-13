@@ -4,7 +4,7 @@ from tkinter import Tk
 import customtkinter as ctk
 from PIL import Image
 
-class Treinos(Tk):
+class Treinos():
     def __init__(self):
         self.controler = UsuarioController()
     
@@ -27,7 +27,7 @@ class Treinos(Tk):
         home_button = ctk.CTkButton(frame_superior, text="🏠 Home", font=("Arial", 14, 'bold'), text_color="white", height=20 ,command=self.Home)
         home_button.pack(side="right", padx=10)
 
-        plano_label = ctk.CTkLabel(frame_superior, text=f"Plano Intermediário, Olá {self.nome_usuario}", text_color="white", fg_color="#5ce1e6", font=("Arial", 18, 'bold'))
+        plano_label = ctk.CTkLabel(frame_superior, text=f"Plano Intermediário, Olá {self.nome_usuario.lower().capitalize()}", text_color="white", fg_color="#5ce1e6", font=("Arial", 18, 'bold'))
         plano_label.pack(side="top")
 
         # Frame central para os botões (usando CustomTkinter)
@@ -82,7 +82,7 @@ class Treinos(Tk):
         home_button = ctk.CTkButton(frame_superior, text="🏠 Home", font=("Arial", 14, 'bold'), text_color="white", height=20 ,command=self.Home)
         home_button.pack(side="right", padx=10)
 
-        plano_label = ctk.CTkLabel(frame_superior, text=f"Plano Intermediário, Olá {self.nome_usuario}", text_color="white", fg_color="#7fd350", font=("Arial", 18, 'bold'))
+        plano_label = ctk.CTkLabel(frame_superior, text=f"Plano Intermediário, Olá {self.nome_usuario.lower().capitalize()}", text_color="white", fg_color="#7fd350", font=("Arial", 18, 'bold'))
         plano_label.pack(side="top")
 
 
@@ -138,7 +138,7 @@ class Treinos(Tk):
         home_button = ctk.CTkButton(frame_superior, text="🏠 Home", font=("Arial", 14, 'bold'), text_color="white", height=20 ,command=self.Home)
         home_button.pack(side="right", padx=10)
 
-        plano_label = ctk.CTkLabel(frame_superior, text=f"Plano Intermediário, Olá {self.nome_usuario}", text_color="white", fg_color="#5ce1e6", font=("Arial", 18, 'bold'))
+        plano_label = ctk.CTkLabel(frame_superior, text=f"Plano Intermediário, Olá {self.nome_usuario.lower().capitalize()}", text_color="white", fg_color="#5ce1e6", font=("Arial", 18, 'bold'))
         plano_label.pack(side="top")
 
         # Frame central para os botões (usando CustomTkinter)
@@ -181,7 +181,7 @@ class Treinos(Tk):
         home_button = ctk.CTkButton(frame_superior, text="🏠 Home", font=("Arial", 14, 'bold'), text_color="white", height=20 ,command=self.Home)
         home_button.pack(side="right", padx=10)
 
-        plano_label = ctk.CTkLabel(frame_superior, text=f"Plano Intermediário, Olá {self.nome_usuario}", text_color="white", fg_color="#5ce1e6", font=("Arial", 18, 'bold'))
+        plano_label = ctk.CTkLabel(frame_superior, text=f"Plano Intermediário, Olá {self.nome_usuario.lower().capitalize()}", text_color="white", fg_color="#5ce1e6", font=("Arial", 18, 'bold'))
         plano_label.pack(side="top")
 
         # Frame central para os botões (usando CustomTkinter)
@@ -230,7 +230,7 @@ class Treinos(Tk):
         home_button = ctk.CTkButton(frame_superior, text="🏠 Home", font=("Arial", 14, 'bold'), text_color="white", height=20 ,command=self.Home)
         home_button.pack(side="right", padx=10)
 
-        plano_label = ctk.CTkLabel(frame_superior, text=f"Plano Intermediário, Olá {self.nome_usuario}", text_color="white", fg_color="#7fd350", font=("Arial", 18, 'bold'))
+        plano_label = ctk.CTkLabel(frame_superior, text=f"Plano Intermediário, Olá {self.nome_usuario.lower().capitalize()}", text_color="white", fg_color="#7fd350", font=("Arial", 18, 'bold'))
         plano_label.pack(side="top")
 
 
@@ -285,7 +285,7 @@ class Treinos(Tk):
         home_button = ctk.CTkButton(frame_superior, text="🏠 Home", font=("Arial", 14, 'bold'), text_color="white", height=20 ,command=self.Home)
         home_button.pack(side="right", padx=10)
 
-        plano_label = ctk.CTkLabel(frame_superior, text=f"Plano Intermediário, Olá {self.nome_usuario}", text_color="white", fg_color="#7fd350", font=("Arial", 18, 'bold'))
+        plano_label = ctk.CTkLabel(frame_superior, text=f"Plano Intermediário, Olá {self.nome_usuario.lower().capitalize()}", text_color="white", fg_color="#7fd350", font=("Arial", 18, 'bold'))
         plano_label.pack(side="top")
 
         # Frame central para os botões (usando CustomTkinter)

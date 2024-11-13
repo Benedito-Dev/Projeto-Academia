@@ -20,7 +20,6 @@ class Application(tk.Tk, Funções, Treinos):
         self.geometry("800x600")
         self.current_page = 0
         self.controler = UsuarioController()
-        self.Treinos = Treinos()
         self.state('zoomed')
         self.menu_inicial()
 
@@ -293,7 +292,7 @@ class Application(tk.Tk, Funções, Treinos):
         log_out = ctk.CTkButton(frame_superior, text=" ⬅ Log Out", text_color="white", fg_color='#ED1B24', hover_color='#242424', font=("Arial", 14, 'bold'), height=20, command=self.realizar_login)
         log_out.pack(side="right", padx=10)
 
-        plano_label = ctk.CTkLabel(frame_superior, text=f"Plano Intermediário, Olá {self.nome_usuario.lower().capitalize()}", text_color="white", fg_color="#7fd350", font=("Arial", 18, 'bold'))
+        plano_label = ctk.CTkLabel(frame_superior, text=f"Plano Intermediário, Olá {self.nome_usuario.lower().capitalize().lower().capitalize()}", text_color="white", fg_color="#7fd350", font=("Arial", 18, 'bold'))
         plano_label.pack(side="top")
 
         # Frame central para os botões (usando CustomTkinter)
@@ -333,7 +332,7 @@ class Application(tk.Tk, Funções, Treinos):
             self.logo_image_treinos = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
             self.label_image_treinos = ctk.CTkLabel(central_frame, image=self.logo_image_treinos, text="")
             self.label_image_treinos.grid(row=0, column=1, pady=0)
-            btn_treinos = ctk.CTkButton(central_frame, text="Treinos", fg_color="#808080", hover_color="#A9A9A9", command=self.Treinos.Musculação, font=("Arial", 18, "bold"), width=150, height=50)
+            btn_treinos = ctk.CTkButton(central_frame, text="Treinos", fg_color="#808080", hover_color="#A9A9A9", command=self.Musculação, font=("Arial", 18, "bold"), width=150, height=50)
             btn_treinos.grid(row=0, column=1, pady=(250, 00))
 
         image_path = "Projeto Academia\\img\\Home\\Ajustes.png"
@@ -376,7 +375,7 @@ class Application(tk.Tk, Funções, Treinos):
         home_button = ctk.CTkButton(frame_superior, text="🏠 Home", font=("Arial", 14, 'bold'), text_color="white", height=20 ,command=self.Home)
         home_button.pack(side="right", padx=10)
 
-        plano_label = ctk.CTkLabel(frame_superior, text=f"Plano Intermediário, Olá Instrutor {self.nome_usuario}", text_color="white", fg_color="#7fd350", font=("Arial", 18, 'bold'))
+        plano_label = ctk.CTkLabel(frame_superior, text=f"Plano Intermediário, Olá Instrutor {self.nome_usuario.lower().capitalize()}", text_color="white", fg_color="#7fd350", font=("Arial", 18, 'bold'))
         plano_label.pack(side="top")
 
         # Frame central para os botões (usando CustomTkinter)
@@ -430,6 +429,7 @@ class Application(tk.Tk, Funções, Treinos):
 
         def update_placeholder(*args):
                 self.obter_informacoes_aluno(nome=self.aluno_selecionado.get())
+                objetivo_entry.configure(placeholder_text=f"{self.get_informacao_aluno('objetivo')}")
                 print(self.get_informacao_aluno('peso'))
         
         self.aluno_selecionado.trace_add("write", update_placeholder)
@@ -444,10 +444,10 @@ class Application(tk.Tk, Funções, Treinos):
         titulo_label.grid(row=0, column=0, columnspan=2, pady=(10, 20), padx=400)
 
         # Campo de Objetivo
-        objetivo_label = ctk.CTkLabel(fundo_verde, text="Objetivo:", text_color="white", font=("Arial", 18, "bold"))
+        objetivo_label = ctk.CTkLabel(fundo_verde, text="Objetivo", text_color="white", font=("Arial", 18, "bold"))
         objetivo_label.grid(row=1, column=0, sticky="w", padx=(20, 0), pady=(10, 5))
 
-        objetivo_entry = ctk.CTkEntry(fundo_verde, placeholder_text="Digite o objetivo do aluno", width=180)
+        objetivo_entry = ctk.CTkEntry(fundo_verde, placeholder_text=f"Objetivo", width=180)
         objetivo_entry.grid(row=2, column=0, sticky="w", padx=(60, 0), pady=(10, 5))
 
         # Campo de Validade da Ficha
@@ -489,7 +489,7 @@ class Application(tk.Tk, Funções, Treinos):
         home_button = ctk.CTkButton(frame_superior, text="🏠 Home", font=("Arial", 14, 'bold'), text_color="white", height=20 ,command=self.Home)
         home_button.pack(side="right", padx=10)
 
-        plano_label = ctk.CTkLabel(frame_superior, text=f"Plano Intermediário, Olá {self.nome_usuario.lower().capitalize()}", text_color="white", fg_color="#7fd350", font=("Arial", 18, 'bold'))
+        plano_label = ctk.CTkLabel(frame_superior, text=f"Plano Intermediário, Olá {self.nome_usuario.lower().capitalize().lower().capitalize()}", text_color="white", fg_color="#7fd350", font=("Arial", 18, 'bold'))
         plano_label.pack(side="top")
 
 
@@ -571,7 +571,7 @@ class Application(tk.Tk, Funções, Treinos):
         log_out = ctk.CTkButton(frame_superior, text=" ⬅ Log Out", text_color="white", fg_color='#ED1B24', hover_color='#242424', font=("Arial", 14, 'bold'), height=20, command=self.realizar_login)
         log_out.pack(side="right", padx=10)
 
-        plano_label = ctk.CTkLabel(frame_superior, text=f"Plano Intermediário, Olá {self.nome_usuario}", text_color="white", fg_color="#7fd350", font=("Arial", 18, 'bold'))
+        plano_label = ctk.CTkLabel(frame_superior, text=f"Plano Intermediário, Olá {self.nome_usuario.lower().capitalize()}", text_color="white", fg_color="#7fd350", font=("Arial", 18, 'bold'))
         plano_label.pack(side="top")
 
         # Adicionando a imagem
