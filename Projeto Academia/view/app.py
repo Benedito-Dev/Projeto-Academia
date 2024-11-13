@@ -230,8 +230,17 @@ class Application(tk.Tk, Funções, Treinos):
 
             lista_musculos = ['peso','altura','braco_direito','braco_esquerdo','peitoral','cintura','quadril','coxa_direita','coxa_esquerda','panturrilha_direita','panturrilha_esquerda']
 
-            dicionario_musculos = {'peso': 60.2,
+            self.dicionario_musculos = {'peso': 60.2,
                                    'altura': 1.75,
+                                   'braco_direito': 36.0,
+                                    'braco_esquerdo': 36.0,
+                                    'peitoral': 1.0,
+                                    'cintura': 70.0,
+                                    'quadril': 70.0,
+                                    'coxa_direita': 40.0,
+                                    'coxa_esquerda': 40.0,
+                                    'panturrilha_direita': 36.0,
+                                    'panturrilha_esquerda': 36.0
                                    }
 
             # Exibindo a lista de músculos no OptionMenu
@@ -239,12 +248,12 @@ class Application(tk.Tk, Funções, Treinos):
                 self.musculo_selecionado = ctk.StringVar(value=str(lista_musculos[0]))
                 optionmenu_alunos = ctk.CTkOptionMenu(frame, variable=self.musculo_selecionado, values=[str(m) for m in lista_musculos])
                 optionmenu_alunos.grid(row=8, column=0, padx=(60, 00))
-                self.entry_musculo = ctk.CTkEntry(frame, placeholder_text="Medida do Musculo", text_color="white")
+                self.entry_musculo = ctk.CTkEntry(frame, placeholder_text="Inserir informação", text_color="white")
                 self.entry_musculo.grid(row=8, column=1, pady=5)                        
 
                 def update_placeholder(*args):
                     self.entry_musculo.configure(placeholder_text=self.get_informacao(self.musculo_selecionado.get()))
-
+                    
                 # Conectando a função à StringVar para que seja chamada sempre que o valor mudar
                 self.musculo_selecionado.trace_add("write", update_placeholder)
             else:
@@ -252,7 +261,7 @@ class Application(tk.Tk, Funções, Treinos):
                                            , text="Nenhuma musculatura encontrada", text_color="red", font=('Arial', 14))
                 vazio_label.grid(row=8, column=1, padx=10)
 
-            btn_medidas = ctk.CTkButton(
+            btn_dicionario = ctk.CTkButton(
                 frame,
                 text="Inserir medida",  
                 text_color="white",
@@ -260,7 +269,7 @@ class Application(tk.Tk, Funções, Treinos):
                 hover_color="#A9A9A9",
                 command=lambda: self.alterar_dic()
             )
-            btn_medidas.grid(row=8, column=2, pady=5)
+            btn_dicionario.grid(row=8, column=2, pady=5)
 
         else:
             # Ajustes estéticos para RadioButton no CustomTkinter

@@ -338,17 +338,22 @@ class Funções():
 
     def alterar_dic(self):
         chave_selecionada = self.musculo_selecionado.get()  # Obtém a chave selecionada no OptionMenu
-        novo_valor = self.entry_musculo.get()  # Obtém o valor digitado no Entry
-                    
         # Verifica se o valor digitado é um número
+
         try:
-            novo_valor = float(novo_valor)  # Converte o valor para float
+            novo_valor = float(self.entry_musculo.get())
+            self.dicionario_musculos[chave_selecionada] = novo_valor
         except ValueError:
             print("Por favor, insira um número válido.")
             return
+        
+        for valor in self.dicionario_musculos.values():
+            print(valor)
+
+        
                     
                     # Atualiza o dicionário com o novo valor
-        self.dicionario_musculos[chave_selecionada] = novo_valor
+        print(self.dicionario_musculos)
         
     
     def validar_alteracoes(self):
