@@ -203,11 +203,20 @@ class Application(tk.Tk, Funções, Treinos):
         btn_abrir_calendario = ctk.CTkButton(frame, text="Escolher data", command=self.abrir_calendario)
         btn_abrir_calendario.grid(row=7, column=2, padx=5)
 
+        Objetivos = ["Emagrecimento", "Ganho de Massa", "Definição Muscular"]
+
+        self.aluno_selecionado = ctk.StringVar(value=Objetivos[0])
+
+        nome_emoji = ctk.CTkLabel(frame, text="🦾", text_color="white", font=("Arial", 16))
+        nome_emoji.grid(row=8, column=0, padx=(60, 00))
+        menu_Objetivos = ctk.CTkOptionMenu(frame, variable=self.aluno_selecionado, values=Objetivos)
+        menu_Objetivos.grid(row=8, column=1, padx=5, pady=10)
+
         #Codigo Administrador
         codigo_emoji = ctk.CTkLabel(frame, text="🔑", text_color="white", font=("Arial", 16))
-        codigo_emoji.grid(row=8, column=0, padx=(60, 00))
+        codigo_emoji.grid(row=9, column=0, padx=(60, 00))
         self.entry_codigo_de_administrador = ctk.CTkEntry(frame, placeholder_text="Codigo de Admin")
-        self.entry_codigo_de_administrador.grid(row=8, column=1, pady=5)
+        self.entry_codigo_de_administrador.grid(row=9, column=1, pady=5)
 
         self.tabela = ctk.StringVar(value="usuario")
         print(self.instrutor)
@@ -223,7 +232,7 @@ class Application(tk.Tk, Funções, Treinos):
                 hover_color="#7fd350",  # Cor ao passar o mouse
                 fg_color="#5ce1e6"      # Cor de seleção para contraste com o fundo
         )
-            Opção_1.grid(row=9, column=1, padx=(10, 10), pady=(10, 10))
+            Opção_1.grid(row=10, column=1, padx=(10, 10), pady=(10, 10))
         else:
             # Ajustes estéticos para RadioButton no CustomTkinter
             Opção_1 = ctk.CTkRadioButton(
@@ -236,7 +245,7 @@ class Application(tk.Tk, Funções, Treinos):
                 hover_color="#7fd350",  # Cor ao passar o mouse
                 fg_color="#5ce1e6"      # Cor de seleção para contraste com o fundo
         )
-            Opção_1.grid(row=9, column=0, padx=(10, 10), pady=(10, 10))     
+            Opção_1.grid(row=10, column=0, padx=(10, 10), pady=(10, 10))     
 
 
             Opção_2 = ctk.CTkRadioButton(
@@ -249,7 +258,7 @@ class Application(tk.Tk, Funções, Treinos):
                 hover_color="#7fd350",
                 fg_color="#5ce1e6"
             )
-            Opção_2.grid(row=9, column=1, padx=(10, 10), pady=(10, 10))
+            Opção_2.grid(row=10, column=1, padx=(10, 10), pady=(10, 10))
 
             Opção_3 = ctk.CTkRadioButton(
                 frame,
@@ -261,14 +270,14 @@ class Application(tk.Tk, Funções, Treinos):
                 hover_color="#7fd350",
                 fg_color="#5ce1e6"
             )
-            Opção_3.grid(row=9, column=2, padx=(10, 10), pady=(10, 10))
+            Opção_3.grid(row=10, column=2, padx=(10, 10), pady=(10, 10))
         
 
         # Botão Cadastrar-se
-        ctk.CTkButton(frame,text="Cadastrar-se",fg_color="#808080", hover_color="#A9A9A9", font=("Arial", 18), command=self.validar_dados).grid(row=10,column=1,pady=10)
+        ctk.CTkButton(frame,text="Cadastrar-se",fg_color="#808080", hover_color="#A9A9A9", font=("Arial", 18), command=self.validar_dados).grid(row=11,column=1,pady=10)
 
         # Botão Voltar
-        ctk.CTkButton(frame, text="Voltar",fg_color="#808080", hover_color="#A9A9A9", font=("Arial", 18), command=self.Home).grid(row=11, column=1,pady=10)
+        ctk.CTkButton(frame, text="Voltar",fg_color="#808080", hover_color="#A9A9A9", font=("Arial", 18), command=self.Home).grid(row=12, column=1,pady=10)
 
 
     def Home(self):

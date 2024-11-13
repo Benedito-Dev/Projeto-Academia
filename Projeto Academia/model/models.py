@@ -55,6 +55,8 @@ class Cliente(Base):
     cpf = Column(String)
     data_de_nascimento = Column(Date)
     objetivo = Column(String)
+    data_ficha = Column(Date)
+    Notas = Column(String)
     peso = Column(Numeric(precision=5,scale=2))
     altura = Column(Numeric(precision=3,scale=2))
     braco_direito = Column(Numeric(precision=4, scale=1))  # Ex.: 40.5 cm
