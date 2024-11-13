@@ -63,3 +63,7 @@ class Cliente(Base):
 
     def __repr__(self):
         return f'<Cliente {self.nome}>'
+class Evento:
+    def __init__(self, data, descricao):
+        self.data = data
+        self.descricao = descricao
