@@ -83,7 +83,6 @@ class Application(tk.Tk, Funções, Treinos):
         
         self.instrutor = False
         self.administrador = False
-        self.primeira_vez_home = True
 
         # Criação do frame de fundo
         background_frame = ctk.CTkFrame(self, fg_color="#313131", corner_radius=0)
@@ -303,10 +302,6 @@ class Application(tk.Tk, Funções, Treinos):
     def Home(self):
         for widget in self.winfo_children():
             widget.destroy()
-        
-        self.puxar_informacoes()
-        self.nome_usuario = self.get_informacao('nome')
-        
         
         self.puxar_informacoes()
         self.nome_usuario = self.get_informacao('nome')
