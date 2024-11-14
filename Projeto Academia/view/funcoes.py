@@ -6,6 +6,7 @@ from PIL import Image, ImageTk, ImageSequence
 from tkinter import messagebox
 from tkcalendar import Calendar
 from datetime import datetime, date
+from random import randint
 from controller.controllers import UsuarioController
 
 
@@ -110,6 +111,28 @@ class Funções():
 
         # Exibe a primeira imagem e texto
         exibir_imagem()
+
+    def gerar_codigo(self):
+        # Gera o primeiro número entre 1 e 7 para que os próximos sejam sequenciais
+        a = randint(1, 7)
+
+        choose = randint(1, 2)
+
+        if choose == 1:
+            b = a + 1
+            c = b + 1
+
+        elif choose == 2:
+            b = a - 1
+            c = b - 1
+        
+        if b == 0:
+            b = a + 1
+            c = b + 1
+
+        # Concatena os números para formar o código em string
+        codigo = f"{a}{b}{c}"
+        return codigo
 
 
     def mudar_exercicios(self, titulo, novos_exercicios, central_frame):

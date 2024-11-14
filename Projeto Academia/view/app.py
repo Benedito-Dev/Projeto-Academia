@@ -28,7 +28,6 @@ class Application(tk.Tk, Funções, Treinos):
         self.menu_inicial()
 
 
-
 # Janelas
 
     def menu_inicial(self):
@@ -332,12 +331,14 @@ class Application(tk.Tk, Funções, Treinos):
             ctk.CTkButton(central_frame, text="Gerenciar Perfis", font=("Arial", 18), width=160, height=50, fg_color="#808080",  hover_color="#A9A9A9", command=self.Exibir_perfis).grid(row=0, column=4, pady=(250, 00))
 
         else:
-            image_path = "Projeto Academia\\img\\Home\\Treinos.png"
-            self.logo_image_treinos = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
-            self.label_image_treinos = ctk.CTkLabel(central_frame, image=self.logo_image_treinos, text="")
-            self.label_image_treinos.grid(row=0, column=1, pady=0)
-            btn_treinos = ctk.CTkButton(central_frame, text="Treinos", fg_color="#808080", hover_color="#A9A9A9", command=self.Treinos.Modalidades, font=("Arial", 18, "bold"), width=150, height=50)
-            btn_treinos.grid(row=0, column=1, pady=(250, 00))
+            image_path = "Projeto Academia\\img\\Home\\Modalidades.png"
+            self.logo_image_modalidades = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
+
+            # Criar um Label para exibir a imagem
+            self.label_image_modalidades = ctk.CTkLabel(central_frame, image=self.logo_image_modalidades, text="")
+            self.label_image_modalidades.grid(row=0, column=1, pady=0)
+            btn_modalidades = ctk.CTkButton(central_frame, text="Modalidades", fg_color="#808080", hover_color="#A9A9A9", command=self.Modalidades, font=("Arial", 18, "bold"), width=150, height=50)
+            btn_modalidades.grid(row=0, column=1, pady=(250, 00))
 
         image_path = "Projeto Academia\\img\\Home\\Ajustes.png"
 
@@ -349,9 +350,6 @@ class Application(tk.Tk, Funções, Treinos):
 
         btn_ajustes = ctk.CTkButton(central_frame, text="Ajustes", fg_color="#808080", hover_color="#A9A9A9", command=self.Ajustes, font=("Arial", 18, "bold"), width=150, height=50)
         btn_ajustes.grid(row=0, column=2, pady=(250, 00))
-
-        btn_modalidades = ctk.CTkButton(central_frame, text="Modalidades", fg_color="#808080", hover_color="#A9A9A9", command=self.Modalidades, font=("Arial", 18, "bold"), width=150, height=50)
-        btn_modalidades.grid(row=0, column=5, pady=(250, 00))
 
         # Frame inferior (usando CustomTkinter)
         frame_inferior = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=0,height=30)
