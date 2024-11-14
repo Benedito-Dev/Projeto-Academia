@@ -387,13 +387,7 @@ class Application(tk.Tk, Funções, Treinos):
         else:
             feedback_btn = ctk.CTkButton(frame_inferior, text="Feedback", fg_color="#808080", hover_color="#A9A9A9", command=self.Feedback, font=("Arial", 18, "bold"))
             feedback_btn.pack(side='right', padx=10, pady=10)
-
-        if self.administrador:
-            pass
-        else:
-            feedback_btn = ctk.CTkButton(frame_inferior, text="Feedback", fg_color="#808080", hover_color="#A9A9A9", command=self.Feedback, font=("Arial", 18, "bold"))
-            feedback_btn.pack(side='right', padx=10, pady=10)
-
+            
 
     def Treinos_instrutor(self):
         for widget in self.winfo_children():
