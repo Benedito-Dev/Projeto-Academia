@@ -16,7 +16,7 @@ ctk.set_default_color_theme("blue")
 class Application(tk.Tk, Funções, Treinos):
     def __init__(self):
         super().__init__()
-        self.title("MultiForm")
+        self.title("4 Fitness")
         self.geometry("800x600")
         self.current_page = 0
         self.controler = UsuarioController()
