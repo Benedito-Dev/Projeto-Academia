@@ -7,6 +7,9 @@ from PIL import Image, ImageTk, ImageOps
 from view.funcoes import Funções
 from view.treinos_usuario_view import Treinos
 from controller.controllers import UsuarioController
+from controller.enviando_email import EnviandoEmail
+
+
 
 
 # Configurações do CustomTkinter
@@ -20,6 +23,8 @@ class Application(tk.Tk, Funções, Treinos):
         self.geometry("800x600")
         self.current_page = 0
         self.controler = UsuarioController()
+        self.emails = EnviandoEmail()
+        self.Treinos = Treinos()
         self.state('zoomed')
         self.menu_inicial()
 
@@ -70,6 +75,7 @@ class Application(tk.Tk, Funções, Treinos):
         
         self.instrutor = False
         self.administrador = False
+        self.primeira_vez_home = True
 
         # Criação do frame de fundo
         background_frame = ctk.CTkFrame(self, fg_color="#313131", corner_radius=0)

@@ -8,6 +8,7 @@ from tkinter import messagebox
 from tkcalendar import Calendar
 from datetime import datetime, date
 from controller.controllers import UsuarioController
+from controller.enviando_email import EnviandoEmail
 
 
 
@@ -15,6 +16,7 @@ from controller.controllers import UsuarioController
 class Funções():
     def __init__(self):
         self.controler = UsuarioController()
+        self.emails = EnviandoEmail()
 
     def pre_cadastramento_administrador(self):
         self.controler.pre_cadastrando_admin()
@@ -254,6 +256,7 @@ class Funções():
 
     def enviar_dados(self, nome, email, senha, telefone, endereco, cpf, data_de_nascimento, objetivo, data_ficha, codigo_adm, tabela):
         if self.controler.adicionar_usuario(nome, email, senha, telefone, endereco, cpf, data_de_nascimento, data_ficha, objetivo, codigo_adm, tabela):
+            self.emails.enviar_email(destinatario=email, nome=nome)
             self.after(500, self.Home)
 
 
