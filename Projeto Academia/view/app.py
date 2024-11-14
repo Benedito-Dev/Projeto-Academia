@@ -475,6 +475,22 @@ class Application(tk.Tk, Funções, Treinos):
         comentarios_textbox = ctk.CTkTextbox(fundo_verde, width=900, height=200, corner_radius=10)
         comentarios_textbox.grid(row=7, column=0, padx=(60, 20), pady=(10, 5), sticky="w")
 
+        def on_focus_in(event):
+            # Se o texto atual for o placeholder, limpa o conteúdo ao focar
+            if comentarios_textbox.get("1.0", "end-1c") == self.get_informacao_aluno('notas'):
+                comentarios_textbox.delete("1.0", "end")
+                comentarios_textbox.configure(fg_color="black")  # Altera a cor do texto
+
+        def on_focus_out(event):
+            # Se o conteúdo estiver vazio ao perder o foco, restaura o placeholder
+            if comentarios_textbox.get("1.0", "end-1c") == "":
+                comentarios_textbox.insert("1.0", self.get_informacao_aluno('notas'))
+                comentarios_textbox.configure(fg_color="gray")  # Altera a cor do placeholder
+
+        # Liga os eventos de foco
+        comentarios_textbox.bind("<FocusIn>", on_focus_in)
+        comentarios_textbox.bind("<FocusOut>", on_focus_out)
+
         # # Botão Salvar Alterações
         btn_salvar_alteracoes = ctk.CTkButton(fundo_verde, text="Salvar Alterações", fg_color="#808080", hover_color="#A9A9A9")
         btn_salvar_alteracoes.grid(row=8, column=0, columnspan=2, pady=(20, 10))
