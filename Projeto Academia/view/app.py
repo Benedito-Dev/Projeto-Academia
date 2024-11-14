@@ -4,6 +4,8 @@ from tkinter import ttk
 import customtkinter as ctk
 from tkinter import messagebox
 from PIL import Image, ImageTk, ImageOps
+from tkinter import messagebox
+from PIL import Image, ImageTk, ImageOps
 from view.funcoes import Funções
 from view.treinos_usuario_view import Treinos
 from controller.controllers import UsuarioController
@@ -29,11 +31,14 @@ class Application(tk.Tk, Funções, Treinos):
         self.menu_inicial()
 
 
+
 # Janelas
 
     def menu_inicial(self):
         for widget in self.winfo_children():
             widget.destroy()
+        
+        self.pre_cadastramento_administrador()
         
         self.pre_cadastramento_administrador()
         
@@ -43,6 +48,8 @@ class Application(tk.Tk, Funções, Treinos):
         background_frame.grid_columnconfigure(0, weight=1)
         background_frame.grid_rowconfigure(0, weight=0) 
 
+
+        image_path = "Projeto Academia\\img\\Logo.png"
 
         image_path = "Projeto Academia\\img\\Logo.png"
         self.logo_image = ctk.CTkImage(light_image=Image.open(image_path), size=(150, 150))  # Ajuste o tamanho da imagem
@@ -63,6 +70,7 @@ class Application(tk.Tk, Funções, Treinos):
         titulo.grid(row=0, column=0, columnspan=2, pady=20)
 
         #Botoes
+        ctk.CTkButton(frame, text="Menu Login", font=("Arial", 18), width=160, fg_color="#808080", hover_color="#A9A9A9", command=self.realizar_login).grid(row=1, column=0, columnspan=2, pady=30, padx=60)
         ctk.CTkButton(frame, text="Menu Login", font=("Arial", 18), width=160, fg_color="#808080", hover_color="#A9A9A9", command=self.realizar_login).grid(row=1, column=0, columnspan=2, pady=30, padx=60)
         
         ctk.CTkButton(frame, text="Encerrar Programa", font=("Arial", 18), width=160, fg_color="#808080",  hover_color="#A9A9A9", command=self.Encerrar_programa).grid(row=3, column=0, columnspan=2, pady=30, padx=60)
@@ -110,6 +118,10 @@ class Application(tk.Tk, Funções, Treinos):
         ctk.CTkLabel(frame, text="Email:", text_color="white", font=("Arial", 14)).grid(row=1, column=0, sticky="e", padx=10)
         self.entry_email = ctk.CTkEntry(frame, placeholder_text="Email")
         self.entry_email.grid(row=1, column=1, pady=5, padx=20)
+        # Email do usuário
+        ctk.CTkLabel(frame, text="Email:", text_color="white", font=("Arial", 14)).grid(row=1, column=0, sticky="e", padx=10)
+        self.entry_email = ctk.CTkEntry(frame, placeholder_text="Email")
+        self.entry_email.grid(row=1, column=1, pady=5, padx=20)
 
         # Senha
         ctk.CTkLabel(frame, text="Senha:", text_color="white", font=("Arial", 14)).grid(row=2, column=0, sticky="e", padx=10)
@@ -130,6 +142,7 @@ class Application(tk.Tk, Funções, Treinos):
 
     def cadastrar_cliente(self):
           # Remove widgets existentes
+          # Remove widgets existentes
         for widget in self.winfo_children():
             widget.destroy()
 
@@ -140,6 +153,7 @@ class Application(tk.Tk, Funções, Treinos):
         background_frame.grid_columnconfigure(0, weight=1)
         background_frame.grid_rowconfigure(0, weight=0)  # Para centralizar verticalmente
 
+        image_path = "Projeto Academia\\img\\Logo.png"
         image_path = "Projeto Academia\\img\\Logo.png"
         self.logo_image = ctk.CTkImage(light_image=Image.open(image_path), size=(120, 120))  # Ajuste o tamanho da imagem
 
@@ -158,6 +172,7 @@ class Application(tk.Tk, Funções, Treinos):
         title = ctk.CTkLabel(frame, text="Realizar cadastro", text_color="white", font=("Arial", 20, 'italic'))
         title.grid(row=0, column=1, pady=(15, 20), padx=(5, 00))
 
+       
        
         # Nome
         nome_emoji = ctk.CTkLabel(frame, text="👤", text_color="white", font=("Arial", 16))
@@ -292,6 +307,10 @@ class Application(tk.Tk, Funções, Treinos):
         self.puxar_informacoes()
         self.nome_usuario = self.get_informacao('nome')
         
+        
+        self.puxar_informacoes()
+        self.nome_usuario = self.get_informacao('nome')
+        
         # Criando Fundo com CustomTkinter
         background_frame = ctk.CTkFrame(self, fg_color="#313131", corner_radius=0)
         background_frame.pack(fill="both", expand=True)
@@ -312,9 +331,11 @@ class Application(tk.Tk, Funções, Treinos):
         # Frame central para os botões (usando CustomTkinter)
         central_frame = ctk.CTkFrame(background_frame, fg_color="#313131")
         central_frame.place(relx=0.50, rely=0.45, anchor=ctk.CENTER)  # Centralizando o frame
+        central_frame.place(relx=0.50, rely=0.45, anchor=ctk.CENTER)  # Centralizando o frame
 
         #Imagem Perfil
 
+        image_path = "Projeto Academia\\img\\Home\\Perfil.png"
         image_path = "Projeto Academia\\img\\Home\\Perfil.png"
 
         self.logo_image_perfil = ctk.CTkImage(light_image=Image.open(image_path), size=(350, 350))  # Ajuste o tamanho da imagem
@@ -363,6 +384,12 @@ class Application(tk.Tk, Funções, Treinos):
         # Frame inferior (usando CustomTkinter)
         frame_inferior = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=0,height=30)
         frame_inferior.pack(side="bottom", fill="x", pady=10)
+
+        if self.administrador:
+            pass
+        else:
+            feedback_btn = ctk.CTkButton(frame_inferior, text="Feedback", fg_color="#808080", hover_color="#A9A9A9", command=self.Feedback, font=("Arial", 18, "bold"))
+            feedback_btn.pack(side='right', padx=10, pady=10)
 
         if self.administrador:
             pass
@@ -572,10 +599,12 @@ class Application(tk.Tk, Funções, Treinos):
         title.pack(pady=20)
 
         colunas = ("ID", "Nome", "Email", "Nome Instrutor")
+        colunas = ("ID", "Nome", "Email", "Nome Instrutor")
         self.tree = ttk.Treeview(background_frame, columns=colunas, show='headings')
         self.tree.heading("ID", text="ID")
         self.tree.heading("Nome", text="Nome")
         self.tree.heading("Email", text="Email")
+        self.tree.heading("Nome Instrutor", text="Nome Do instrutor")
         self.tree.heading("Nome Instrutor", text="Nome Do instrutor")
         self.tree.pack(pady=0, fill=tk.BOTH, expand=True)
         self.carregar_perfis()
@@ -664,6 +693,7 @@ class Application(tk.Tk, Funções, Treinos):
         notificaoes_selecionada = ctk.StringVar(value=notificacoes[0])
 
         optionmenu_notificacoes = ctk.CTkOptionMenu(frame, variable=notificaoes_selecionada, values=notificacoes, fg_color="#808080")
+        optionmenu_notificacoes = ctk.CTkOptionMenu(frame, variable=notificaoes_selecionada, values=notificacoes, fg_color="#808080")
         optionmenu_notificacoes.grid(row=1, column=1, padx=10)
 
         # Label Idioma
@@ -674,6 +704,7 @@ class Application(tk.Tk, Funções, Treinos):
 
         idioma_selecionado = ctk.StringVar(value=idiomas[0])
 
+        optionmenu_idioma = ctk.CTkOptionMenu(frame,variable=idioma_selecionado,values=idiomas, fg_color="#808080")
         optionmenu_idioma = ctk.CTkOptionMenu(frame,variable=idioma_selecionado,values=idiomas, fg_color="#808080")
         optionmenu_idioma.grid(row=2, column=1, padx=10)   
 
@@ -686,6 +717,7 @@ class Application(tk.Tk, Funções, Treinos):
         unidade_selecionada = ctk.StringVar(value=unidades[0])
         
         optionmenu_unidade = ctk.CTkOptionMenu(frame,variable=unidade_selecionada,values=unidades, fg_color="#808080")
+        optionmenu_unidade = ctk.CTkOptionMenu(frame,variable=unidade_selecionada,values=unidades, fg_color="#808080")
         optionmenu_unidade.grid(row=3, column=1, padx=10)
 
         # Label Frequência
@@ -695,6 +727,7 @@ class Application(tk.Tk, Funções, Treinos):
         Frequencias = ["5 Dias na semana", "3 Dias na semana", "4 Dias na semana"]
 
         Frequencia_var = ctk.StringVar(value=Frequencias[0])  
+        optionmenu_frequencia = ctk.CTkOptionMenu(frame,variable=Frequencia_var, values=Frequencias, fg_color="#808080")
         optionmenu_frequencia = ctk.CTkOptionMenu(frame,variable=Frequencia_var, values=Frequencias, fg_color="#808080")
         optionmenu_frequencia.grid(row=4, column=1, padx=10)
 
@@ -706,12 +739,15 @@ class Application(tk.Tk, Funções, Treinos):
 
         Meta_var = ctk.StringVar(value=Metas[0])  
         optionmenu_meta = ctk.CTkOptionMenu(frame, variable=Meta_var, values=Metas, fg_color="#808080")
+        optionmenu_meta = ctk.CTkOptionMenu(frame, variable=Meta_var, values=Metas, fg_color="#808080")
         optionmenu_meta.grid(row=5, column=1, padx=10)
 
         # Botão Cadastrar-se
         ctk.CTkButton(frame, text="Salvar Alterações",fg_color="#696767", hover_color="#A9A9A9", command=self.Home).grid(row=6, column=0, columnspan=5, pady=10, padx=20)
+        ctk.CTkButton(frame, text="Salvar Alterações",fg_color="#696767", hover_color="#A9A9A9", command=self.Home).grid(row=6, column=0, columnspan=5, pady=10, padx=20)
         
         # Botão Voltar
+        ctk.CTkButton(frame, text="Voltar", fg_color="#696767", hover_color="#A9A9A9", command=self.Home).grid(row=7, column=0, columnspan=5, pady=10)
         ctk.CTkButton(frame, text="Voltar", fg_color="#696767", hover_color="#A9A9A9", command=self.Home).grid(row=7, column=0, columnspan=5, pady=10)
 
 

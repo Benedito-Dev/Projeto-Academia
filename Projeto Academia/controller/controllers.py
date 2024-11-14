@@ -11,6 +11,9 @@ class UsuarioController:
     
     def pre_cadastrando_admin(self):
         self.repository.pre_cadastrar_administrador()
+    
+    def pre_cadastrando_admin(self):
+        self.repository.pre_cadastrar_administrador()
 
     # Controlador responsável por criar um produto
     def adicionar_usuario(self, nome, email, senha, telefone, endereco, cpf, data_de_nascimento, data_ficha, objetivo, codigo_adm, tabela):
@@ -95,6 +98,10 @@ class UsuarioController:
         self.repository.deletar_cliente(usuario_id)
 
     def validar_cpf(self, cpf):
+        # Consultar CPF nas três tabelas
+        if self.repository.consultar_cpf(cpf):
+            return False  # CPF já está cadastrado em alguma tabela
+        
         # Consultar CPF nas três tabelas
         if self.repository.consultar_cpf(cpf):
             return False  # CPF já está cadastrado em alguma tabela

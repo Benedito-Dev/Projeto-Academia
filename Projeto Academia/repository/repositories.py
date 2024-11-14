@@ -42,6 +42,33 @@ class ClienteRepository():
         except Exception as e:
             print(f"Erro ao tentar pré-cadastrar administrador: {e}")
 
+    
+    def pre_cadastrar_administrador(self):
+        try:
+            # Verifica se já existe um administrador com nome 'admin' e senha 'admin'
+            administrador_existe = self.session.query(
+                self.session.query(Administradores).filter_by(nome='ADMIN', senha='admin').exists()
+            ).scalar()
+
+            if not administrador_existe:
+                # Se não existir, cria o pré-cadastro do administrador
+                novo_administrador = Administradores(
+                    nome='ADMIN',
+                    email='admin@exemplo.com',
+                    senha='admin',
+                    telefone='0000-0000',
+                    endereco='Endereço padrão',
+                    cpf='000.000.000-00',
+                    data_de_nascimento=None
+                )
+                self.session.add(novo_administrador)
+                self.session.commit()
+                print("Administrador pré-cadastrado com sucesso!")
+            else:
+                print("Administrador já existe. Nenhum novo cadastro foi feito.")
+        except Exception as e:
+            print(f"Erro ao tentar pré-cadastrar administrador: {e}")
+
     # Função para cadastrar um novo cliente
     def cadastrar_cliente(self, nome, email, senha, telefone, endereco, cpf, data_de_nascimento, data_ficha, objetivo, codigo_adm, tabela):
         if tabela == 'usuario':
@@ -90,6 +117,9 @@ class ClienteRepository():
     def validar_login(self, email, senha):
         try:
             # Busca o cliente com o nome e senha fornecidos
+            cliente = self.session.query(Cliente).filter_by(email=email, senha=senha).one_or_none()
+            instrutor = self.session.query(Instrutores).filter_by(email=email, senha=senha).one_or_none()
+            administrador = self.session.query(Administradores).filter_by(email=email, senha=senha).one_or_none()
             cliente = self.session.query(Cliente).filter_by(email=email, senha=senha).one_or_none()
             instrutor = self.session.query(Instrutores).filter_by(email=email, senha=senha).one_or_none()
             administrador = self.session.query(Administradores).filter_by(email=email, senha=senha).one_or_none()
@@ -198,7 +228,20 @@ class ClienteRepository():
 
     def consultar_cpf(self, cpf):
         # Buscar o CPF nas três tabelas
+        # Buscar o CPF nas três tabelas
         cliente = self.session.query(Cliente).filter_by(cpf=cpf).first()
+        if cliente:
+            return cliente  # Retorna o cliente se encontrado
+
+        instrutor = self.session.query(Instrutores).filter_by(cpf=cpf).first()
+        if instrutor:
+            return instrutor  # Retorna o instrutor se encontrado
+
+        administrador = self.session.query(Administradores).filter_by(cpf=cpf).first()
+        if administrador:
+            return administrador  # Retorna o administrador se encontrado
+
+        return None  # Se não encontrar em nenhuma tabela, retorna None
         if cliente:
             return cliente  # Retorna o cliente se encontrado
 

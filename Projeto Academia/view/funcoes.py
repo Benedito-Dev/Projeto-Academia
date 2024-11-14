@@ -7,6 +7,7 @@ from PIL import Image, ImageTk, ImageSequence
 from tkinter import messagebox
 from tkcalendar import Calendar
 from datetime import datetime, date
+from random import randint
 from controller.controllers import UsuarioController
 from controller.enviando_email import EnviandoEmail
 
@@ -14,9 +15,12 @@ from controller.enviando_email import EnviandoEmail
 
 
 class Funções():
-    def __init__(self):
+    def __init__(self, master):
         self.controler = UsuarioController()
-        self.emails = EnviandoEmail()
+        self.master = master
+        self.eventos = {}  # Dicionário para armazenar eventos {(ano, mes, dia): "evento"}
+        self.ano_atual = datetime.now().year
+        self.mes_atual = datetime.now().month
 
     def pre_cadastramento_administrador(self):
         self.controler.pre_cadastrando_admin()
@@ -26,10 +30,6 @@ class Funções():
             self.entry_senha.configure(show="")
         else:
             self.entry_senha.configure(show="*")
-
-    def limpar_frame(self, frame):
-        for widget in frame.winfo_children():
-            widget.destroy()
     
     def submit_feedback(self):
 
@@ -113,6 +113,28 @@ class Funções():
 
         # Exibe a primeira imagem e texto
         exibir_imagem()
+
+    def gerar_codigo(self):
+        # Gera o primeiro número entre 1 e 7 para que os próximos sejam sequenciais
+        a = randint(1, 7)
+
+        choose = randint(1, 2)
+
+        if choose == 1:
+            b = a + 1
+            c = b + 1
+
+        elif choose == 2:
+            b = a - 1
+            c = b - 1
+        
+        if b == 0:
+            b = a + 1
+            c = b + 1
+
+        # Concatena os números para formar o código em string
+        codigo = f"{a}{b}{c}"
+        return codigo
 
 
     def mudar_exercicios(self, titulo, novos_exercicios, central_frame):
@@ -311,6 +333,8 @@ class Funções():
 
         btn_selecionar_data = ttk.Button(janela_calendario, text="Selecionar", command=pegar_data)
         btn_selecionar_data.pack(pady=10)
+
+
 
     def validando_login(self):
         email = self.entry_email.get().strip()
