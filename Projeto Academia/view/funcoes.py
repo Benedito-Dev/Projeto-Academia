@@ -195,6 +195,8 @@ class Funções():
         endereco = self.entry_endereco.get().strip()
         cpf = self.entry_cpf.get().strip()
         data_de_nascimento = self.entry_dataDeNascimento.get().strip()
+        objetivo = self.menu_Objetivos.get().strip()
+        data_ficha = datetime.now().strftime("%d-%m-%Y")
         codigo = self.entry_codigo_de_administrador.get().strip()
         tabela = self.tabela.get()
 
@@ -246,12 +248,12 @@ class Funções():
                 messagebox.showerror("Erro", "Digite o codigo de maneira correta")
 
         # Se todos os dados estiverem válidos, prosseguir com a lógica de envio
-        self.enviar_dados(nome=nome, email=email, senha=senha, telefone=telefone, endereco=endereco, cpf=cpf, data_de_nascimento=data_de_nascimento, codigo_adm=codigo, tabela=tabela)
+        self.enviar_dados(nome=nome, email=email, senha=senha, telefone=telefone, endereco=endereco, cpf=cpf, data_de_nascimento=data_de_nascimento, objetivo=objetivo, data_ficha=data_ficha, codigo_adm=codigo, tabela=tabela)
 
     # Função para validar a idade do novo usuário
 
-    def enviar_dados(self, nome, email, senha, telefone, endereco, cpf, data_de_nascimento, codigo_adm, tabela):
-        if self.controler.adicionar_usuario(nome.upper(), email, senha, telefone, endereco, cpf, data_de_nascimento, codigo_adm, tabela):
+    def enviar_dados(self, nome, email, senha, telefone, endereco, cpf, data_de_nascimento, objetivo, data_ficha, codigo_adm, tabela):
+        if self.controler.adicionar_usuario(nome, email, senha, telefone, endereco, cpf, data_de_nascimento, data_ficha, objetivo, codigo_adm, tabela):
             self.after(500, self.Home)
 
 

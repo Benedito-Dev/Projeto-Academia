@@ -43,7 +43,7 @@ class ClienteRepository():
             print(f"Erro ao tentar pré-cadastrar administrador: {e}")
 
     # Função para cadastrar um novo cliente
-    def cadastrar_cliente(self, nome, email, senha, telefone, endereco, cpf, data_de_nascimento, codigo_adm, tabela):
+    def cadastrar_cliente(self, nome, email, senha, telefone, endereco, cpf, data_de_nascimento, data_ficha, objetivo, codigo_adm, tabela):
         if tabela == 'usuario':
             novo_cliente = Cliente(
                 nome=nome,
@@ -52,6 +52,8 @@ class ClienteRepository():
                 telefone=telefone,
                 endereco=endereco,
                 cpf=cpf,
+                objetivo=objetivo,
+                data_ficha=data_ficha,
                 data_de_nascimento=data_de_nascimento,
                 instrutor_id = codigo_adm
             )
