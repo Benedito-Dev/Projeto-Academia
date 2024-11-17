@@ -1,5 +1,4 @@
 import tkinter as tk
-from time import sleep
 import re
 from tkinter import ttk
 from customtkinter import CTkLabel, CTkButton, CTkFrame
@@ -9,7 +8,6 @@ from tkcalendar import Calendar
 from datetime import datetime, date
 from random import randint
 from controller.controllers import UsuarioController
-from controller.enviando_email import EnviandoEmail
 
 
 
@@ -25,6 +23,25 @@ class Funções():
     def pre_cadastramento_administrador(self):
         self.controler.pre_cadastrando_admin()
 
+    def redefinir_placeholder(self, textbox, novo_placeholder):
+        """
+        Limpa o conteúdo do Textbox e insere um novo placeholder.
+        
+        Args:
+            textbox (CTkTextbox): O widget Textbox a ser atualizado.
+            novo_placeholder (str): O texto do novo placeholder.
+        """
+        # Limpa o conteúdo existente no Textbox
+        textbox.delete("1.0", tk.END)
+        # Insere o novo placeholder
+        textbox.insert("1.0", novo_placeholder)
+        # Define a cor do texto como cinza para indicar que é um placeholder
+        textbox.configure(fg="gray")
+
+    def formatar_data(self, data):
+        data_formatada = data.strftime("%d/%m/%Y")
+        return data_formatada
+        
     def Exibir_senha(self):
         if self.check_senha.get() == 1:
             self.entry_senha.configure(show="")

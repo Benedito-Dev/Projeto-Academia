@@ -5,7 +5,6 @@ import customtkinter as ctk
 from tkinter import messagebox
 from PIL import Image, ImageTk, ImageOps
 from tkinter import messagebox
-from PIL import Image, ImageTk, ImageOps
 from view.funcoes import Funções
 from view.treinos_usuario_view import Treinos
 from controller.controllers import UsuarioController
@@ -387,49 +386,6 @@ class Application(tk.Tk, Funções, Treinos):
         else:
             feedback_btn = ctk.CTkButton(frame_inferior, text="Feedback", fg_color="#808080", hover_color="#A9A9A9", command=self.Feedback, font=("Arial", 18, "bold"))
             feedback_btn.pack(side='right', padx=10, pady=10)
-            
-
-    def Treinos_instrutor(self):
-        for widget in self.winfo_children():
-            widget.destroy()
-
-        # Criando Fundo com CustomTkinter
-        background_frame = ctk.CTkFrame(self, fg_color="#313131", corner_radius=0)
-        background_frame.pack(fill="both", expand=True)
-
-        # Frame superior com o título e plano (usando CustomTkinter)
-        frame_superior = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=0, height=30)
-        frame_superior.pack(side="top", fill="x", pady=10)
-
-        title = ctk.CTkLabel(frame_superior, text="4 FITNESS", text_color="white", fg_color="#7fd350", font=("Arial", 18, 'bold'))
-        title.pack(side="left", padx=20)
-
-        home_button = ctk.CTkButton(frame_superior, text="🏠 Home", font=("Arial", 14, 'bold'), text_color="white", height=20 ,command=self.Home)
-        home_button.pack(side="right", padx=10)
-
-        plano_label = ctk.CTkLabel(frame_superior, text=f"Plano Intermediário, Olá Instrutor {self.nome_usuario.lower().capitalize()}", text_color="white", fg_color="#7fd350", font=("Arial", 18, 'bold'))
-        plano_label.pack(side="top")
-
-        # Frame central para os botões (usando CustomTkinter)
-        central_frame = ctk.CTkFrame(background_frame, fg_color="#313131")
-        central_frame.place(relx=0.5, rely=0.45, anchor=ctk.CENTER)  # Centralizando o frame
-
-        alunos = ctk.CTkLabel(central_frame, text="👤 Alunos :", text_color="white", font=('Arial', 14))
-        alunos.grid(row=1, column=0, pady=10, padx=10)
-
-        alunos = self.obter_alunos_por_instrutor()
-
-        self.aluno_selecionado = ctk.StringVar(value=alunos[0])
-
-        optionmenu_alunos = ctk.CTkOptionMenu(central_frame, variable=self.aluno_selecionado, values=alunos)
-        optionmenu_alunos.grid(row=1, column=1, padx=10)
-
-        avancar_btn = ctk.CTkButton(central_frame, text="Avançar", text_color="white", fg_color="#808080", hover_color="#A9A9A9", command=self.Treinos)
-        avancar_btn.grid(row=2, column=0, columnspan=2, pady=5)
-
-        # Frame inferior (usando CustomTkinter)
-        frame_inferior = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=0,height=30)
-        frame_inferior.pack(side="bottom", fill="x", pady=10)
 
 
     def tela_instrutor(self):
@@ -462,7 +418,8 @@ class Application(tk.Tk, Funções, Treinos):
         def update_placeholder(*args):
                 self.obter_informacoes_aluno(nome=self.aluno_selecionado.get())
                 objetivo_entry.configure(placeholder_text=f"{self.get_informacao_aluno('objetivo')}")
-                validade_entry.configure(placeholder_text=f"{self.get_informacao_aluno('data_ficha')} - DD/MM/AAAA")
+                validade_entry.configure(placeholder_text=f"{self.formatar_data(self.get_informacao_aluno('data_ficha'))} - DD/MM/AAAA")
+                self.redefinir_placeholder(textbox=comentarios_textbox, novo_placeholder=self.get_informacao_aluno('notas'))
         
         self.aluno_selecionado.trace_add("write", update_placeholder)
 
@@ -498,22 +455,6 @@ class Application(tk.Tk, Funções, Treinos):
 
         comentarios_textbox = ctk.CTkTextbox(fundo_verde, width=900, height=200, corner_radius=10)
         comentarios_textbox.grid(row=7, column=0, padx=(60, 20), pady=(10, 5), sticky="w")
-
-        def on_focus_in(event):
-            # Se o texto atual for o placeholder, limpa o conteúdo ao focar
-            if comentarios_textbox.get("1.0", "end-1c") == self.get_informacao_aluno('notas'):
-                comentarios_textbox.delete("1.0", "end")
-                comentarios_textbox.configure(fg_color="black")  # Altera a cor do texto
-
-        def on_focus_out(event):
-            # Se o conteúdo estiver vazio ao perder o foco, restaura o placeholder
-            if comentarios_textbox.get("1.0", "end-1c") == "":
-                comentarios_textbox.insert("1.0", self.get_informacao_aluno('notas'))
-                comentarios_textbox.configure(fg_color="gray")  # Altera a cor do placeholder
-
-        # Liga os eventos de foco
-        comentarios_textbox.bind("<FocusIn>", on_focus_in)
-        comentarios_textbox.bind("<FocusOut>", on_focus_out)
 
         # # Botão Salvar Alterações
         btn_salvar_alteracoes = ctk.CTkButton(fundo_verde, text="Salvar Alterações", fg_color="#808080", hover_color="#A9A9A9")
