@@ -190,8 +190,6 @@ class ClienteRepository():
         else:
             return []
     
-       
-
     # Função para atualizar um cliente
     def atualizar_cliente(self, cliente_id, nome, email, senha, telefone, endereco, data_de_nascimento):
         cliente = self.session.query(Cliente).get(cliente_id)
@@ -204,6 +202,14 @@ class ClienteRepository():
             if not data_de_nascimento:
                 raise ValueError("Data de nascimento não pode estar vazia")
             cliente.data_de_nascimento = data_de_nascimento
+
+    def atualizar_notas_instrutor(self, cliente_id, objetivo, atual_data_ficha, renovacao, notas):
+        cliente = self.session.query(Cliente).get(cliente_id)
+        if cliente:
+            cliente.objetivo = objetivo
+            cliente.atual_data_ficha = atual_data_ficha
+            cliente.renovacao_data_ficha = renovacao
+            cliente.notas = notas
 
     def enviando_medidas(self, id, musculo, medida):
         cliente = self.session.query(Cliente).filter_by(id=id).first()
@@ -219,7 +225,6 @@ class ClienteRepository():
         else:
             print("Cliente não encontrado")
             
-
     # Função para deletar um cliente
     def deletar_cliente(self, cliente_id):
         cliente = self.session.query(Cliente).get(cliente_id)
@@ -271,4 +276,4 @@ class ClienteRepository():
             return administrador  # Retorna o administrador se encontrado
 
         return None  # Se não encontrar em nenhuma tabela, retorna None
-    
+       

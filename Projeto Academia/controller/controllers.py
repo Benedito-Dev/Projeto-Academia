@@ -93,6 +93,13 @@ class UsuarioController:
         except Exception as e:
             messagebox.showerror("Erro", f"O erro e {e}")
 
+    def atualizar_notas_instrutor(self, id, objetivo, atual_data_ficha, renovacao, notas):
+        try:
+            self.repository.atualizar_notas_instrutor(cliente_id=id, objetivo=objetivo, atual_data_ficha=atual_data_ficha, renovacao=renovacao, notas=notas)
+            messagebox.showinfo("Sucesso", "Notas atualizadas com sucesso")
+        except Exception as e:
+            messagebox.showerror("Erro Controler", f"O erro e {e}")
+
     # Controlador responsável por deletar um produto
     def deletar_usuario(self, usuario_id):
         self.repository.deletar_cliente(usuario_id)

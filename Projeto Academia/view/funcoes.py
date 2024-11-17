@@ -334,7 +334,7 @@ class Funções():
                 return False
 
 
-    def abrir_calendario(self):
+    def abrir_calendario(self, entry_destino):
         janela_calendario = tk.Toplevel(self)
         janela_calendario.title("Selecione a data de nascimento")
 
@@ -344,13 +344,12 @@ class Funções():
         def pegar_data():
             data_selecionada = calendario.get_date()
             # Convertendo a data para o formato "YYYY-MM-DD"
-            self.entry_dataDeNascimento.delete(0, tk.END)
-            self.entry_dataDeNascimento.insert(0, data_selecionada)
+            entry_destino.delete(0, tk.END)
+            entry_destino.insert(0, data_selecionada)
             janela_calendario.destroy()
 
         btn_selecionar_data = ttk.Button(janela_calendario, text="Selecionar", command=pegar_data)
         btn_selecionar_data.pack(pady=10)
-
 
 
     def validando_login(self):
@@ -380,7 +379,20 @@ class Funções():
             pass
     
     def salvar_comentarios_instrutor(self):
-        pass
+        id = self.get_informacao_aluno('id')
+        objetivo = self.objetivo_entry.get().strip() or self.get_informacao_aluno('objetivo')
+        atual_data_ficha = self.validade_entry.get().strip() or self.get_informacao_aluno('atual_data_ficha')
+        comentarios = self.comentarios_textbox.get("1.0", "end").strip()
+        # Convertendo para o formato do Banco
+        if isinstance(atual_data_ficha, str):
+            data_date = datetime.strptime(atual_data_ficha, "%d/%m/%Y").date()
+            atual_data_ficha = data_date
+        else:
+            pass
+        
+        renovacao_data_ficha = atual_data_ficha + relativedelta(months=3)
+
+        self.controler.atualizar_notas_instrutor(id=id, objetivo=objetivo, atual_data_ficha=atual_data_ficha, renovacao=renovacao_data_ficha, notas=comentarios)
     
     def puxar_informacoes(self):
         user_email = self.email.strip()
