@@ -36,8 +36,6 @@ class Funções():
         textbox.delete("1.0", tk.END)
         # Insere o novo placeholder
         textbox.insert("1.0", novo_placeholder)
-        # Define a cor do texto como cinza para indicar que é um placeholder
-        textbox.configure(fg="gray")
 
     def formatar_data(self, data):
         data_formatada = data.strftime("%d/%m/%Y")
@@ -380,6 +378,9 @@ class Funções():
             self.after(500, self.Home)
         else:
             pass
+    
+    def salvar_comentarios_instrutor(self):
+        pass
     
     def puxar_informacoes(self):
         user_email = self.email.strip()

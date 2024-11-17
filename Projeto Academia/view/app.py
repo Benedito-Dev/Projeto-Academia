@@ -414,11 +414,14 @@ class Application(tk.Tk, Funções, Treinos):
         alunos = self.obter_alunos_por_instrutor()
 
         self.aluno_selecionado = ctk.StringVar(value=alunos[0])
+        self.obter_informacoes_aluno(nome=self.aluno_selecionado.get())
 
         def update_placeholder(*args):
                 self.obter_informacoes_aluno(nome=self.aluno_selecionado.get())
                 objetivo_entry.configure(placeholder_text=f"{self.get_informacao_aluno('objetivo')}")
-                validade_entry.configure(placeholder_text=f"{self.formatar_data(self.get_informacao_aluno('atual_data_ficha'))} - {self.formatar_data(self.get_informacao_aluno('renovacao_data_ficha'))}")
+                data_validade.configure(text=f"{self.formatar_data(self.get_informacao_aluno("renovacao_data_ficha"))}")
+                validade_entry.configure(placeholder_text=f"{self.formatar_data(self.get_informacao_aluno('atual_data_ficha'))}")
+                #validade_entry.configure(placeholder_text=f"{self.formatar_data(self.get_informacao_aluno('atual_data_ficha'))} - {self.formatar_data(self.get_informacao_aluno('renovacao_data_ficha'))}")
                 self.redefinir_placeholder(textbox=comentarios_textbox, novo_placeholder=self.get_informacao_aluno('notas'))
         
         self.aluno_selecionado.trace_add("write", update_placeholder)
@@ -436,14 +439,17 @@ class Application(tk.Tk, Funções, Treinos):
         objetivo_label = ctk.CTkLabel(fundo_verde, text="Objetivo", text_color="white", font=("Arial", 18, "bold"))
         objetivo_label.grid(row=1, column=0, sticky="w", padx=(20, 0), pady=(10, 5))
 
-        objetivo_entry = ctk.CTkEntry(fundo_verde, placeholder_text=f"Objetivo", width=180)
+        objetivo_entry = ctk.CTkEntry(fundo_verde, placeholder_text=f"{self.get_informacao_aluno('objetivo')}", width=180)
         objetivo_entry.grid(row=2, column=0, sticky="w", padx=(60, 0), pady=(10, 5))
 
         # Campo de Validade da Ficha
         validade_label = ctk.CTkLabel(fundo_verde, text="Validade da Ficha:", text_color="white", font=("Arial", 18, "bold"))
         validade_label.grid(row=3, column=0, sticky="w", padx=(20, 0), pady=(20, 5))
 
-        validade_entry = ctk.CTkEntry(fundo_verde, placeholder_text=f"14/09/2024 - DD/MM/AAAA", width=180)
+        data_validade = ctk.CTkLabel(fundo_verde, text=f"{self.formatar_data(self.get_informacao_aluno("renovacao_data_ficha"))}", text_color="red", font=("Arial", 16, "bold"))
+        data_validade.grid(row=3, column=0, sticky="w", padx=(190, 0), pady=(20, 5))
+
+        validade_entry = ctk.CTkEntry(fundo_verde, placeholder_text=f"{self.formatar_data(self.get_informacao_aluno('atual_data_ficha'))}", width=180)
         validade_entry.grid(row=4, column=0, sticky="w", padx=(60, 0), pady=(10, 5))
 
         # btn_alterar_medidas = ctk.CTkButton(fundo_verde, text="Alterar medidas", fg_color="#808080", hover_color="#A9A9A9", command=self.limpar_frame(fundo_verde))
@@ -455,6 +461,7 @@ class Application(tk.Tk, Funções, Treinos):
 
         comentarios_textbox = ctk.CTkTextbox(fundo_verde, width=900, height=200, corner_radius=10)
         comentarios_textbox.grid(row=7, column=0, padx=(60, 20), pady=(10, 5), sticky="w")
+        self.redefinir_placeholder(textbox=comentarios_textbox, novo_placeholder=self.get_informacao_aluno('notas'))
 
         # # Botão Salvar Alterações
         btn_salvar_alteracoes = ctk.CTkButton(fundo_verde, text="Salvar Alterações", fg_color="#808080", hover_color="#A9A9A9")
