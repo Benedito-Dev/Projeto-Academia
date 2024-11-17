@@ -217,10 +217,10 @@ class Application(tk.Tk, Funções, Treinos):
         #Data de nascimento
         self.entry_dataDeNascimento = ctk.CTkEntry(frame, placeholder_text="DD/MM/YYYY")
         self.entry_dataDeNascimento.grid(row=7, column=1, pady=5)
-        btn_abrir_calendario = ctk.CTkButton(frame, text="🗓️", font=("Arial", 16, 'bold'), fg_color="#313131", hover_color="#313131", width=15, command=partial(self.abrir_calendario, self.entry_dataDeNascimento))
+        btn_abrir_calendario = ctk.CTkButton(frame, text="🗓️", font=("Arial", 16, 'bold'), fg_color="#313131", hover_color="#313131", width=15, command=partial(self.abrir_calendario, self.entry_dataDeNascimento, ano_inicial=2005))
         btn_abrir_calendario.grid(row=7, column=0, padx=(83, 0))
 
-        btn_abrir_calendario = ctk.CTkButton(frame, text="Escolher data", command=partial(self.abrir_calendario, self.entry_dataDeNascimento))
+        btn_abrir_calendario = ctk.CTkButton(frame, text="Escolher data", command=partial(self.abrir_calendario, self.entry_dataDeNascimento, ano_inicial=2005))
         btn_abrir_calendario.grid(row=7, column=2, padx=5)
 
         Objetivos = ["Emagrecimento", "Ganho de Massa", "Definição Muscular"]
@@ -452,7 +452,7 @@ class Application(tk.Tk, Funções, Treinos):
 
         self.validade_entry = ctk.CTkEntry(fundo_verde, placeholder_text=f"{self.formatar_data(self.get_informacao_aluno('atual_data_ficha'))}", width=180)
         self.validade_entry.grid(row=4, column=0, sticky="w", padx=(60, 0), pady=(10, 5))
-        btn_abrir_calendario = ctk.CTkButton(fundo_verde, text="🗓️", text_color="#313131", font=("Arial", 16, 'bold'), fg_color="#7fd350", hover_color="#7fd350", width=5, command=partial(self.abrir_calendario, self.validade_entry))
+        btn_abrir_calendario = ctk.CTkButton(fundo_verde, text="🗓️", text_color="#313131", font=("Arial", 16, 'bold'), fg_color="#7fd350", hover_color="#7fd350", width=5, command=partial(self.abrir_calendario, self.validade_entry, ano_inicial=self.obter_ano_atual()))
         btn_abrir_calendario.grid(row=4, column=0, sticky="w", padx=(245, 0), pady=(10, 5))
 
         # Caixa de Comentários
@@ -730,7 +730,7 @@ class Application(tk.Tk, Funções, Treinos):
         self.entry_dataDeNascimento.grid(row=2, column=1, pady=10)
 
         # Botão do calendário com cor preta
-        self.btn_calendario = ctk.CTkButton(frame_verde, text="Escolher data", command=partial(self.abrir_calendario, self.entry_dataDeNascimento), fg_color="#000000", text_color="#ffffff")
+        self.btn_calendario = ctk.CTkButton(frame_verde, text="Escolher data", command=partial(self.abrir_calendario, self.entry_dataDeNascimento, ano_inicial=2005), fg_color="#000000", text_color="#ffffff")
         self.btn_calendario.grid(row=2, column=2, padx=10)  # Espaço lateral maior
 
         # Labels e entradas para endereço

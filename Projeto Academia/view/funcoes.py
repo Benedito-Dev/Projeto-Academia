@@ -40,6 +40,9 @@ class Funções():
     def formatar_data(self, data):
         data_formatada = data.strftime("%d/%m/%Y")
         return data_formatada
+
+    def obter_ano_atual(self):
+        return datetime.now().year
         
     def Exibir_senha(self):
         if self.check_senha.get() == 1:
@@ -334,11 +337,11 @@ class Funções():
                 return False
 
 
-    def abrir_calendario(self, entry_destino):
+    def abrir_calendario(self, entry_destino, ano_inicial):
         janela_calendario = tk.Toplevel(self)
         janela_calendario.title("Selecione a data de nascimento")
 
-        calendario = Calendar(janela_calendario, selectmode="day", year=2000, month=1, day=10)
+        calendario = Calendar(janela_calendario, selectmode="day", year=ano_inicial, month=1, day=10)
         calendario.pack(pady=20)
 
         def pegar_data():
