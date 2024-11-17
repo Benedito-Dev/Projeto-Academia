@@ -16,12 +16,12 @@ class UsuarioController:
         self.repository.pre_cadastrar_administrador()
 
     # Controlador responsável por criar um produto
-    def adicionar_usuario(self, nome, email, senha, telefone, endereco, cpf, data_de_nascimento, data_ficha, objetivo, codigo_adm, tabela):
+    def adicionar_usuario(self, nome, email, senha, telefone, endereco, cpf, data_de_nascimento, atual_data_ficha, renovacao_data_ficha, objetivo, codigo_adm, tabela):
         # Convertendo data de nascimento para formato Correto
         data_de_nascimento = datetime.strptime(data_de_nascimento, '%d/%m/%Y').date()
         try:
             # Mudado de self.db para self.controler
-            id = self.repository.cadastrar_cliente(nome, email, senha, telefone, endereco, cpf, data_de_nascimento, data_ficha, objetivo, codigo_adm, tabela)
+            id = self.repository.cadastrar_cliente(nome, email, senha, telefone, endereco, cpf, data_de_nascimento, atual_data_ficha, renovacao_data_ficha, objetivo, codigo_adm, tabela)
 
             if id > 0:
                 if tabela == 'instrutor':

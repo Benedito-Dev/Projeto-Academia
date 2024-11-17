@@ -418,7 +418,7 @@ class Application(tk.Tk, Funções, Treinos):
         def update_placeholder(*args):
                 self.obter_informacoes_aluno(nome=self.aluno_selecionado.get())
                 objetivo_entry.configure(placeholder_text=f"{self.get_informacao_aluno('objetivo')}")
-                validade_entry.configure(placeholder_text=f"{self.formatar_data(self.get_informacao_aluno('data_ficha'))} - DD/MM/AAAA")
+                validade_entry.configure(placeholder_text=f"{self.formatar_data(self.get_informacao_aluno('atual_data_ficha'))} - {self.formatar_data(self.get_informacao_aluno('renovacao_data_ficha'))}")
                 self.redefinir_placeholder(textbox=comentarios_textbox, novo_placeholder=self.get_informacao_aluno('notas'))
         
         self.aluno_selecionado.trace_add("write", update_placeholder)
