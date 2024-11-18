@@ -42,78 +42,79 @@ class ClienteRepository():
         except Exception as e:
             print(f"Erro ao tentar pré-cadastrar administrador: {e}")
 
-    
-    def pre_cadastrar_administrador(self):
-        try:
-            # Verifica se já existe um administrador com nome 'admin' e senha 'admin'
-            administrador_existe = self.session.query(
-                self.session.query(Administradores).filter_by(nome='ADMIN', senha='admin').exists()
-            ).scalar()
-
-            if not administrador_existe:
-                # Se não existir, cria o pré-cadastro do administrador
-                novo_administrador = Administradores(
-                    nome='ADMIN',
-                    email='admin@exemplo.com',
-                    senha='admin',
-                    telefone='0000-0000',
-                    endereco='Endereço padrão',
-                    cpf='000.000.000-00',
-                    data_de_nascimento=None
-                )
-                self.session.add(novo_administrador)
-                self.session.commit()
-                print("Administrador pré-cadastrado com sucesso!")
-            else:
-                print("Administrador já existe. Nenhum novo cadastro foi feito.")
-        except Exception as e:
-            print(f"Erro ao tentar pré-cadastrar administrador: {e}")
 
     # Função para cadastrar um novo cliente
     def cadastrar_cliente(self, nome, email, senha, telefone, endereco, cpf, data_de_nascimento, atual_data_ficha, renovacao_data_ficha, objetivo, codigo_adm, tabela):
-        if tabela == 'usuario':
-            novo_cliente = Cliente(
-                nome=nome,
-                email=email,
-                senha=senha,
-                telefone=telefone,
-                endereco=endereco,
-                cpf=cpf,
-                objetivo=objetivo,
-                atual_data_ficha=atual_data_ficha,
-                renovacao_data_ficha=renovacao_data_ficha,
-                data_de_nascimento=data_de_nascimento,
-                instrutor_id = codigo_adm
-            )
-            self.session.add(novo_cliente)
-            self.session.commit()
-        if tabela == 'instrutor':
-            novo_cliente = Instrutores(
-                nome=nome,
-                email=email,
-                senha=senha,
-                telefone=telefone,
-                endereco=endereco,
-                cpf=cpf,
-                data_de_nascimento=data_de_nascimento,
-                administrador_id = codigo_adm
-            )
-            self.session.add(novo_cliente)
-            self.session.commit()
-        if tabela == 'administrador':
-            novo_cliente = Administradores(
-                nome=nome,
-                email=email,
-                senha=senha,
-                telefone=telefone,
-                endereco=endereco,
-                cpf=cpf,
-                data_de_nascimento=data_de_nascimento,
-            )
-            self.session.add(novo_cliente)
-            self.session.commit()
+        try:
+            if tabela == 'usuario':
+                try:
+                    novo_cliente = Cliente(
+                        nome=nome,
+                        email=email,
+                        senha=senha,
+                        telefone=telefone,
+                        endereco=endereco,
+                        cpf=cpf,
+                        objetivo=objetivo,
+                        atual_data_ficha=atual_data_ficha,
+                        renovacao_data_ficha=renovacao_data_ficha,
+                        data_de_nascimento=data_de_nascimento,
+                        instrutor_id=codigo_adm
+                    )
+                    self.session.add(novo_cliente)
+                    self.session.commit()
+                    return novo_cliente.id
+                except Exception as e:
+                    self.session.rollback()  # Reverte qualquer alteração pendente
+                    print(f"Erro ao cadastrar usuário: {e}")
+                    raise
 
-        return novo_cliente.id
+            elif tabela == 'instrutor':
+                try:
+                    novo_cliente = Instrutores(
+                        nome=nome,
+                        email=email,
+                        senha=senha,
+                        telefone=telefone,
+                        endereco=endereco,
+                        cpf=cpf,
+                        data_de_nascimento=data_de_nascimento,
+                        administrador_id=codigo_adm
+                    )
+                    self.session.add(novo_cliente)
+                    self.session.commit()
+                    return novo_cliente.id
+                except Exception as e:
+                    self.session.rollback()
+                    print(f"Erro ao cadastrar instrutor: {e}")
+                    raise
+
+            elif tabela == 'administrador':
+                try:
+                    novo_cliente = Administradores(
+                        nome=nome,
+                        email=email,
+                        senha=senha,
+                        telefone=telefone,
+                        endereco=endereco,
+                        cpf=cpf,
+                        data_de_nascimento=data_de_nascimento,
+                    )
+                    self.session.add(novo_cliente)
+                    self.session.commit()
+                    return novo_cliente.id
+                except Exception as e:
+                    self.session.rollback()
+                    print(f"Erro ao cadastrar administrador: {e}")
+                    raise
+
+            else:
+                print("Tabela inválida. Não foi possível cadastrar.")
+                return None
+
+        except Exception as e:
+            print(f"Erro inesperado durante o cadastro: {e}")
+            raise
 
     def validar_login(self, email, senha):
         try:

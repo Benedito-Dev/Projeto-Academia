@@ -11,9 +11,6 @@ class UsuarioController:
     
     def pre_cadastrando_admin(self):
         self.repository.pre_cadastrar_administrador()
-    
-    def pre_cadastrando_admin(self):
-        self.repository.pre_cadastrar_administrador()
 
     # Controlador responsável por criar um produto
     def adicionar_usuario(self, nome, email, senha, telefone, endereco, cpf, data_de_nascimento, atual_data_ficha, renovacao_data_ficha, objetivo, codigo_adm, tabela):
@@ -36,7 +33,7 @@ class UsuarioController:
                 messagebox.showerror("Erro", "Erro ao cadastrar usuário: ID retornado é inválido.")
 
         except Exception as e:
-            messagebox.showerror("Erro", f"Erro ao cadastrar-se usuário: {e}")
+            messagebox.showerror("Erro", f"Erro ao cadastrar-se usuário! Verifique Todas as informações")
 
     def fazer_login(self, email, senha):
         # Chama a função validar_login do repository
