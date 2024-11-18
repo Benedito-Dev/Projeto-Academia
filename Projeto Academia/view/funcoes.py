@@ -347,14 +347,6 @@ class Funções():
             print("Por favor, insira um número válido.")
             return
         
-        for valor in self.dicionario_musculos.values():
-            print(valor)
-
-        
-                    
-                    # Atualiza o dicionário com o novo valor
-        print(self.dicionario_musculos)
-        
     
     def validar_alteracoes(self):
         id_cliente = self.get_informacao("id")  # Renomeado para id_cliente para maior clareza
