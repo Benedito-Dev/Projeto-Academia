@@ -25,15 +25,8 @@ class Funções():
         self.controler.pre_cadastrando_admin()
 
     def redefinir_placeholder(self, textbox, novo_placeholder):
-        """
-        Limpa o conteúdo do Textbox e insere um novo placeholder.
-        
-        Args:
-            textbox (CTkTextbox): O widget Textbox a ser atualizado.
-            novo_placeholder (str): O texto do novo placeholder.
-        """
         # Limpa o conteúdo existente no Textbox
-        textbox.delete("1.0", tk.END)
+        textbox.delete("1.0", "end")
         # Insere o novo placeholder
         textbox.insert("1.0", novo_placeholder)
 
@@ -396,6 +389,7 @@ class Funções():
         renovacao_data_ficha = atual_data_ficha + relativedelta(months=3)
 
         self.controler.atualizar_notas_instrutor(id=id, objetivo=objetivo, atual_data_ficha=atual_data_ficha, renovacao=renovacao_data_ficha, notas=comentarios)
+        self.after(500, self.Gerenciamento)
     
     def puxar_informacoes(self):
         user_email = self.email.strip()
