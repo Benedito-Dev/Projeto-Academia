@@ -230,18 +230,19 @@ class Application(tk.Tk, Funções, Treinos):
 
             lista_musculos = ['peso','altura','braco_direito','braco_esquerdo','peitoral','cintura','quadril','coxa_direita','coxa_esquerda','panturrilha_direita','panturrilha_esquerda']
 
-            self.dicionario_musculos = {'peso': 60.2,
-                                   'altura': 1.75,
-                                   'braco_direito': 36.0,
-                                    'braco_esquerdo': 36.0,
-                                    'peitoral': 1.0,
-                                    'cintura': 70.0,
-                                    'quadril': 70.0,
-                                    'coxa_direita': 40.0,
-                                    'coxa_esquerda': 40.0,
-                                    'panturrilha_direita': 36.0,
-                                    'panturrilha_esquerda': 36.0
+            self.dicionario_musculos = {'peso': None,
+                                   'altura': None,
+                                   'braco_direito': None,
+                                    'braco_esquerdo': None,
+                                    'peitoral': None,
+                                    'cintura': None,
+                                    'quadril': None,
+                                    'coxa_direita': None,
+                                    'coxa_esquerda': None,
+                                    'panturrilha_direita': None,
+                                    'panturrilha_esquerda': None
                                    }
+            
 
             # Exibindo a lista de músculos no OptionMenu
             if lista_musculos:
