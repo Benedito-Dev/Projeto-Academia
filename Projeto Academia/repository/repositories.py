@@ -211,7 +211,7 @@ class ClienteRepository():
             cliente.atual_data_ficha = atual_data_ficha
             cliente.renovacao_data_ficha = renovacao
             cliente.notas = notas
-
+            self.session.commit()  # Confirma as alterações no banco
     def enviando_medidas(self, id, musculo, medida):
         cliente = self.session.query(Cliente).filter_by(id=id).first()
         if cliente:
