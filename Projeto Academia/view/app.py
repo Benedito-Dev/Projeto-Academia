@@ -147,16 +147,8 @@ class Application(tk.Tk, Funções, Treinos):
         background_frame.grid_columnconfigure(0, weight=1)
         background_frame.grid_rowconfigure(0, weight=0)  # Para centralizar verticalmente
 
-        image_path = "Projeto Academia\\img\\Logo.png"
-        image_path = "Projeto Academia\\img\\Logo.png"
-        self.logo_image = ctk.CTkImage(light_image=Image.open(image_path), size=(120, 120))  # Ajuste o tamanho da imagem
-
-        # Criar um Label para exibir a imagem
-        self.label_image = ctk.CTkLabel(background_frame, image=self.logo_image, text="")
-        self.label_image.grid(row=1, column=0, pady=(00, 0))
-
         border_frame = ctk.CTkFrame(background_frame, fg_color="#7fd350", corner_radius=10)
-        border_frame.grid(row=2, column=0, padx=20, pady=00)
+        border_frame.grid(row=1, column=0, padx=20, pady=20)
         
         # Frame para centralizar o conteúdo
         frame = ctk.CTkFrame(border_frame, fg_color="#313131",corner_radius=10)
@@ -398,14 +390,14 @@ class Application(tk.Tk, Funções, Treinos):
         btn_voltar.pack(side="top", pady=5)
 
         fundo_verde = ctk.CTkFrame(background_frame, fg_color="#7fd350",corner_radius=20, width=1000, height=600)
-        fundo_verde.pack(side="right", padx=(00, 180))
+        fundo_verde.pack(side="right", padx=(00, 40))
         fundo_verde.grid_propagate(False)
 
         # btn_salvar_alterações = ctk.CTkButton(fundo_verde, text="Salvar alterações", fg_color="#808080", hover_color="#A9A9A9")
         # btn_salvar_alterações.grid(row=3, column=0)
 
         frame_esquerda = ctk.CTkFrame(background_frame, fg_color="#313131", corner_radius=10)
-        frame_esquerda.pack(side="left", fill="y", pady=20, padx=(280, 10))
+        frame_esquerda.pack(side="left", fill="y", pady=20, padx=(00, 10))
 
         alunos = self.obter_alunos_por_instrutor()
 
