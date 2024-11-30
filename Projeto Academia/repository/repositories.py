@@ -249,18 +249,6 @@ class ClienteRepository():
             return administrador  # Retorna o administrador se encontrado
 
         return None  # Se não encontrar em nenhuma tabela, retorna None
-        if cliente:
-            return cliente  # Retorna o cliente se encontrado
-
-        instrutor = self.session.query(Instrutores).filter_by(cpf=cpf).first()
-        if instrutor:
-            return instrutor  # Retorna o instrutor se encontrado
-
-        administrador = self.session.query(Administradores).filter_by(cpf=cpf).first()
-        if administrador:
-            return administrador  # Retorna o administrador se encontrado
-
-        return None  # Se não encontrar em nenhuma tabela, retorna None
     
     def consultar_email(self, email):
         # Buscar o e-mail nas três tabelas
