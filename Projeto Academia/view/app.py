@@ -11,8 +11,6 @@ from controller.controllers import UsuarioController
 from controller.enviando_email import EnviandoEmail
 
 
-
-
 # Configurações do CustomTkinter
 ctk.set_appearance_mode("Dark")
 ctk.set_default_color_theme("blue")
@@ -28,7 +26,6 @@ class Application(tk.Tk, Funções, Treinos):
         self.Treinos = Treinos()
         self.state('zoomed')
         self.menu_inicial()
-
 
 
 # Janelas
